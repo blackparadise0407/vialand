@@ -1,0 +1,7 @@
+.nav {
+  @apply fixed top-[88px] bottom-0 left-0 right-0 flex flex-col items-center justify-evenly transition-transform translate-x-full bg-[#5d4954];
+}
+
+.nav--active {
+  @apply translate-x-0;
+}
