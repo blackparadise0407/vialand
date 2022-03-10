@@ -1,9 +1,25 @@
+import { EPropertyDirection, EHouseType } from 'enums'
+
 declare global {
-  interface INews {
-    id: number;
-    title?: string;
-    url?: string;
-    description?: string;
+  interface IKeyValue {
+    [key: string]: any | IKeyValue
+  }
+  interface IProperty {
+    id: string
+    subject: string
+    contactNumber: string
+    contactName: string
+    size: number
+    direction: EPropertyDirection
+    address: string
+    houseType: EHouseType
+    region: number
+    regionName: string
+    areaName: string
+    structure: string
+    architecture: string
+    description: string
+    image: string
   }
 }
-export {};
+export {}

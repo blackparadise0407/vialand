@@ -1,0 +1,4262 @@
+[
+    {
+        "name": "Cát Hải",
+        "id": "1804",
+        "typeName": "Huyện",
+        "parentId": "18"
+    },
+    {
+        "name": "An Phú",
+        "id": "8801",
+        "typeName": "Huyện",
+        "parentId": "88"
+    },
+    {
+        "name": "Chợ Mới",
+        "id": "8805",
+        "typeName": "Huyện",
+        "parentId": "88"
+    },
+    {
+        "name": "Châu Đốc",
+        "id": "8802",
+        "typeName": "Thành phố",
+        "parentId": "88"
+    },
+    {
+        "name": "Châu Phú",
+        "id": "8803",
+        "typeName": "Huyện",
+        "parentId": "88"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "8804",
+        "typeName": "Huyện",
+        "parentId": "88"
+    },
+    {
+        "name": "Long Xuyên",
+        "id": "8806",
+        "typeName": "Thành phố",
+        "parentId": "88"
+    },
+    {
+        "name": "Phú Tân",
+        "id": "8807",
+        "typeName": "Huyện",
+        "parentId": "88"
+    },
+    {
+        "name": "Tịnh Biên",
+        "id": "8810",
+        "typeName": "Huyện",
+        "parentId": "88"
+    },
+    {
+        "name": "Tân Châu",
+        "id": "8808",
+        "typeName": "Thị xã",
+        "parentId": "88"
+    },
+    {
+        "name": "Thoại Sơn",
+        "id": "8809",
+        "typeName": "Huyện",
+        "parentId": "88"
+    },
+    {
+        "name": "Tri Tôn",
+        "id": "8811",
+        "typeName": "Huyện",
+        "parentId": "88"
+    },
+    {
+        "name": "Bạc Liêu",
+        "id": "9601",
+        "typeName": "Thành phố",
+        "parentId": "96"
+    },
+    {
+        "name": "Đông Hải",
+        "id": "9602",
+        "typeName": "Huyện",
+        "parentId": "96"
+    },
+    {
+        "name": "Giá Rai",
+        "id": "9603",
+        "typeName": "Thị xã",
+        "parentId": "96"
+    },
+    {
+        "name": "Hồng Dân",
+        "id": "9605",
+        "typeName": "Huyện",
+        "parentId": "96"
+    },
+    {
+        "name": "Hoà Bình",
+        "id": "9604",
+        "typeName": "Thành phố",
+        "parentId": "96"
+    },
+    {
+        "name": "Phước Long",
+        "id": "9606",
+        "typeName": "Thị xã",
+        "parentId": "96"
+    },
+    {
+        "name": "Vĩnh Lợi",
+        "id": "9607",
+        "typeName": "Huyện",
+        "parentId": "96"
+    },
+    {
+        "name": "Bắc Giang",
+        "id": "2301",
+        "typeName": "Thành phố",
+        "parentId": "23"
+    },
+    {
+        "name": "Hiệp Hòa",
+        "id": "2302",
+        "typeName": "Huyện",
+        "parentId": "23"
+    },
+    {
+        "name": "Lạng Giang",
+        "id": "2303",
+        "typeName": "Huyện",
+        "parentId": "23"
+    },
+    {
+        "name": "Lục Nam",
+        "id": "2304",
+        "typeName": "Huyện",
+        "parentId": "23"
+    },
+    {
+        "name": "Lục Ngạn",
+        "id": "2305",
+        "typeName": "Huyện",
+        "parentId": "23"
+    },
+    {
+        "name": "Sơn Động",
+        "id": "2306",
+        "typeName": "Huyện",
+        "parentId": "23"
+    },
+    {
+        "name": "Tân Yên",
+        "id": "2307",
+        "typeName": "Huyện",
+        "parentId": "23"
+    },
+    {
+        "name": "Việt Yên",
+        "id": "2308",
+        "typeName": "Huyện",
+        "parentId": "23"
+    },
+    {
+        "name": "Yên Dũng",
+        "id": "2309",
+        "typeName": "Huyện",
+        "parentId": "23"
+    },
+    {
+        "name": "Yên Thế",
+        "id": "2310",
+        "typeName": "Huyện",
+        "parentId": "23"
+    },
+    {
+        "name": "Bạch Thông",
+        "id": "2602",
+        "typeName": "Huyện",
+        "parentId": "26"
+    },
+    {
+        "name": "Ba Bể",
+        "id": "2601",
+        "typeName": "Huyện",
+        "parentId": "26"
+    },
+    {
+        "name": "Chợ Đồn",
+        "id": "2603",
+        "typeName": "Huyện",
+        "parentId": "26"
+    },
+    {
+        "name": "Chợ Mới",
+        "id": "2604",
+        "typeName": "Huyện",
+        "parentId": "26"
+    },
+    {
+        "name": "Na Rì",
+        "id": "2605",
+        "typeName": "Huyện",
+        "parentId": "26"
+    },
+    {
+        "name": "Ngân Sơn",
+        "id": "2606",
+        "typeName": "Huyện",
+        "parentId": "26"
+    },
+    {
+        "name": "Pác Nặm",
+        "id": "2607",
+        "typeName": "Huyện",
+        "parentId": "26"
+    },
+    {
+        "name": "Bắc Kạn",
+        "id": "2608",
+        "typeName": "Thành phố",
+        "parentId": "26"
+    },
+    {
+        "name": "Bắc Ninh",
+        "id": "2201",
+        "typeName": "Thành phố",
+        "parentId": "22"
+    },
+    {
+        "name": "Gia Bình",
+        "id": "2202",
+        "typeName": "Huyện",
+        "parentId": "22"
+    },
+    {
+        "name": "Lương Tài",
+        "id": "2203",
+        "typeName": "Huyện",
+        "parentId": "22"
+    },
+    {
+        "name": "Quế Võ",
+        "id": "2204",
+        "typeName": "Huyện",
+        "parentId": "22"
+    },
+    {
+        "name": "Từ Sơn",
+        "id": "2207",
+        "typeName": "Thị xã",
+        "parentId": "22"
+    },
+    {
+        "name": "Thuận Thành",
+        "id": "2205",
+        "typeName": "Huyện",
+        "parentId": "22"
+    },
+    {
+        "name": "Tiên Du",
+        "id": "2206",
+        "typeName": "Huyện",
+        "parentId": "22"
+    },
+    {
+        "name": "Yên Phong",
+        "id": "2208",
+        "typeName": "Huyện",
+        "parentId": "22"
+    },
+    {
+        "name": "Bến Tre",
+        "id": "9302",
+        "typeName": "Thành phố",
+        "parentId": "93"
+    },
+    {
+        "name": "Ba Tri",
+        "id": "9301",
+        "typeName": "Huyện",
+        "parentId": "93"
+    },
+    {
+        "name": "Bình Đại",
+        "id": "9303",
+        "typeName": "Huyện",
+        "parentId": "93"
+    },
+    {
+        "name": "Chợ Lách",
+        "id": "9305",
+        "typeName": "Huyện",
+        "parentId": "93"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "9304",
+        "typeName": "Huyện",
+        "parentId": "93"
+    },
+    {
+        "name": "Giồng Trôm",
+        "id": "9306",
+        "typeName": "Huyện",
+        "parentId": "93"
+    },
+    {
+        "name": "Mỏ Cày Bắc",
+        "id": "9307",
+        "typeName": "Huyện",
+        "parentId": "93"
+    },
+    {
+        "name": "Mỏ Cày Nam",
+        "id": "9308",
+        "typeName": "Huyện",
+        "parentId": "93"
+    },
+    {
+        "name": "Thạnh Phú",
+        "id": "9309",
+        "typeName": "Huyện",
+        "parentId": "93"
+    },
+    {
+        "name": "Bà Rịa",
+        "id": "7901",
+        "typeName": "Thành phố",
+        "parentId": "79"
+    },
+    {
+        "name": "Châu Đức",
+        "id": "7902",
+        "typeName": "Huyện",
+        "parentId": "79"
+    },
+    {
+        "name": "Đất Đỏ",
+        "id": "7903",
+        "typeName": "Huyện",
+        "parentId": "79"
+    },
+    {
+        "name": "Long Điền",
+        "id": "7904",
+        "typeName": "Huyện",
+        "parentId": "79"
+    },
+    {
+        "name": "Phú Mỹ",
+        "id": "7905",
+        "typeName": "Huyện",
+        "parentId": "79"
+    },
+    {
+        "name": "Vũng Tàu",
+        "id": "7906",
+        "typeName": "Thành phố",
+        "parentId": "79"
+    },
+    {
+        "name": "Xuyên Mộc",
+        "id": "7907",
+        "typeName": "Huyện",
+        "parentId": "79"
+    },
+    {
+        "name": "An Lão",
+        "id": "5901",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "An Nhơn",
+        "id": "5902",
+        "typeName": "Thị xã",
+        "parentId": "59"
+    },
+    {
+        "name": "Hoài Ân",
+        "id": "5903",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "Hoài Nhơn",
+        "id": "5904",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "Phù Cát",
+        "id": "5905",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "Phù Mỹ",
+        "id": "5906",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "Qui Nhơn",
+        "id": "5907",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "Tây Sơn",
+        "id": "5908",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "Tuy Phước",
+        "id": "5909",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "Vân Canh",
+        "id": "5910",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "Vĩnh Thạnh",
+        "id": "5911",
+        "typeName": "Huyện",
+        "parentId": "59"
+    },
+    {
+        "name": "Bắc Tân Uyên",
+        "id": "8201",
+        "typeName": "Huyện",
+        "parentId": "82"
+    },
+    {
+        "name": "Bến Cát",
+        "id": "8203",
+        "typeName": "Thị xã",
+        "parentId": "82"
+    },
+    {
+        "name": "Bàu Bàng",
+        "id": "8202",
+        "typeName": "Huyện",
+        "parentId": "82"
+    },
+    {
+        "name": "Dầu Tiếng",
+        "id": "8204",
+        "typeName": "Huyện",
+        "parentId": "82"
+    },
+    {
+        "name": "Dĩ An",
+        "id": "8205",
+        "typeName": "Thành phố",
+        "parentId": "82"
+    },
+    {
+        "name": "Phú Giáo",
+        "id": "8206",
+        "typeName": "Huyện",
+        "parentId": "82"
+    },
+    {
+        "name": "Tân Uyên",
+        "id": "8207",
+        "typeName": "Thị xã",
+        "parentId": "82"
+    },
+    {
+        "name": "Thủ Dầu Một",
+        "id": "8208",
+        "typeName": "Thành phố",
+        "parentId": "82"
+    },
+    {
+        "name": "Thuận An",
+        "id": "8209",
+        "typeName": "Thành phố",
+        "parentId": "82"
+    },
+    {
+        "name": "Bình Long",
+        "id": "8301",
+        "typeName": "Thị xã",
+        "parentId": "83"
+    },
+    {
+        "name": "Bù Đốp",
+        "id": "8303",
+        "typeName": "Huyện",
+        "parentId": "83"
+    },
+    {
+        "name": "Bù Đăng",
+        "id": "8302",
+        "typeName": "Huyện",
+        "parentId": "83"
+    },
+    {
+        "name": "Bù Gia Mập",
+        "id": "8304",
+        "typeName": "Huyện",
+        "parentId": "83"
+    },
+    {
+        "name": "Chơn Thành",
+        "id": "8305",
+        "typeName": "Huyện",
+        "parentId": "83"
+    },
+    {
+        "name": "Đồng Phú",
+        "id": "8306",
+        "typeName": "Huyện",
+        "parentId": "83"
+    },
+    {
+        "name": "Đồng Xoài",
+        "id": "8307",
+        "typeName": "Thành phố",
+        "parentId": "83"
+    },
+    {
+        "name": "Hớn Quản",
+        "id": "8308",
+        "typeName": "Huyện",
+        "parentId": "83"
+    },
+    {
+        "name": "Lộc Ninh",
+        "id": "8309",
+        "typeName": "Huyện",
+        "parentId": "83"
+    },
+    {
+        "name": "Phú Riềng",
+        "id": "8310",
+        "typeName": "Huyện",
+        "parentId": "83"
+    },
+    {
+        "name": "Phước Long",
+        "id": "8311",
+        "typeName": "Thị xã",
+        "parentId": "83"
+    },
+    {
+        "name": "Bắc Bình",
+        "id": "8001",
+        "typeName": "Huyện",
+        "parentId": "80"
+    },
+    {
+        "name": "Đức Linh",
+        "id": "8002",
+        "typeName": "Huyện",
+        "parentId": "80"
+    },
+    {
+        "name": "Hàm Tân",
+        "id": "8003",
+        "typeName": "Huyện",
+        "parentId": "80"
+    },
+    {
+        "name": "Hàm Thuận Bắc",
+        "id": "8004",
+        "typeName": "Huyện",
+        "parentId": "80"
+    },
+    {
+        "name": "Hàm Thuận Nam",
+        "id": "8005",
+        "typeName": "Huyện",
+        "parentId": "80"
+    },
+    {
+        "name": "La Gi",
+        "id": "8006",
+        "typeName": "Thị xã",
+        "parentId": "80"
+    },
+    {
+        "name": "Phan Thiết",
+        "id": "8007",
+        "typeName": "Thành phố",
+        "parentId": "80"
+    },
+    {
+        "name": "Phú Quí",
+        "id": "8008",
+        "typeName": "Huyện",
+        "parentId": "80"
+    },
+    {
+        "name": "Tánh Linh",
+        "id": "8009",
+        "typeName": "Huyện",
+        "parentId": "80"
+    },
+    {
+        "name": "Tuy Phong",
+        "id": "8010",
+        "typeName": "Huyện",
+        "parentId": "80"
+    },
+    {
+        "name": "Bình Thuỷ",
+        "id": "9001",
+        "typeName": "Quận",
+        "parentId": "90"
+    },
+    {
+        "name": "Cờ Đỏ",
+        "id": "9003",
+        "typeName": "Huyện",
+        "parentId": "90"
+    },
+    {
+        "name": "Cái Răng",
+        "id": "9002",
+        "typeName": "Quận",
+        "parentId": "90"
+    },
+    {
+        "name": "Ninh Kiều",
+        "id": "9004",
+        "typeName": "Quận",
+        "parentId": "90"
+    },
+    {
+        "name": "Ô Môn",
+        "id": "9005",
+        "typeName": "Quận",
+        "parentId": "90"
+    },
+    {
+        "name": "Phong Điền",
+        "id": "9006",
+        "typeName": "Huyện",
+        "parentId": "90"
+    },
+    {
+        "name": "Thốt Nốt",
+        "id": "9008",
+        "typeName": "Quận",
+        "parentId": "90"
+    },
+    {
+        "name": "Thới Lai",
+        "id": "9007",
+        "typeName": "Huyện",
+        "parentId": "90"
+    },
+    {
+        "name": "Vĩnh Thạnh",
+        "id": "9009",
+        "typeName": "Huyện",
+        "parentId": "90"
+    },
+    {
+        "name": "Cà Mau",
+        "id": "9701",
+        "typeName": "Thành phố",
+        "parentId": "97"
+    },
+    {
+        "name": "Cái Nước",
+        "id": "9702",
+        "typeName": "Huyện",
+        "parentId": "97"
+    },
+    {
+        "name": "Đầm Dơi",
+        "id": "9703",
+        "typeName": "Huyện",
+        "parentId": "97"
+    },
+    {
+        "name": "Năm Căn",
+        "id": "9704",
+        "typeName": "Huyện",
+        "parentId": "97"
+    },
+    {
+        "name": "Ngọc Hiển",
+        "id": "9705",
+        "typeName": "Huyện",
+        "parentId": "97"
+    },
+    {
+        "name": "Phú Tân",
+        "id": "9706",
+        "typeName": "Huyện",
+        "parentId": "97"
+    },
+    {
+        "name": "Thới Bình",
+        "id": "9707",
+        "typeName": "Huyện",
+        "parentId": "97"
+    },
+    {
+        "name": "Trần Văn Thời",
+        "id": "9708",
+        "typeName": "Huyện",
+        "parentId": "97"
+    },
+    {
+        "name": "U Minh",
+        "id": "9709",
+        "typeName": "Huyện",
+        "parentId": "97"
+    },
+    {
+        "name": "Bảo Lạc",
+        "id": "2701",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Bảo Lâm",
+        "id": "2702",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Cao Bằng",
+        "id": "2703",
+        "typeName": "Thành phố",
+        "parentId": "27"
+    },
+    {
+        "name": "Hạ Lang",
+        "id": "2704",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Hà Quảng",
+        "id": "2705",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Hoà An",
+        "id": "2706",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Nguyên Bình",
+        "id": "2707",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Phục Hoà",
+        "id": "2708",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Quảng Uyên",
+        "id": "2709",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Thạch An",
+        "id": "2710",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Thông Nông",
+        "id": "2711",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Trà Lĩnh",
+        "id": "2712",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Trùng Khánh",
+        "id": "2713",
+        "typeName": "Huyện",
+        "parentId": "27"
+    },
+    {
+        "name": "Buôn Đôn",
+        "id": "6301",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Buôn Ma Thuột",
+        "id": "6302",
+        "typeName": "Thành phố",
+        "parentId": "63"
+    },
+    {
+        "name": "Cư Kuin",
+        "id": "6303",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Cư M'gar",
+        "id": "6304",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Ea H'leo",
+        "id": "6305",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Ea Kar",
+        "id": "6306",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Ea Súp",
+        "id": "6307",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Krông A Na",
+        "id": "6308",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Krông Bông",
+        "id": "6309",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Krông Búk",
+        "id": "6310",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Krông Năng",
+        "id": "6311",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Krông Pắc",
+        "id": "6312",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Lắk",
+        "id": "6313",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "M'Đrắk",
+        "id": "6314",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Buôn Hồ",
+        "id": "6315",
+        "typeName": "Huyện",
+        "parentId": "63"
+    },
+    {
+        "name": "Cư Jút",
+        "id": "6401",
+        "typeName": "Huyện",
+        "parentId": "64"
+    },
+    {
+        "name": "Đắk Mil",
+        "id": "6403",
+        "typeName": "Huyện",
+        "parentId": "64"
+    },
+    {
+        "name": "Đắk R'Lấp",
+        "id": "6404",
+        "typeName": "Huyện",
+        "parentId": "64"
+    },
+    {
+        "name": "Đắk Song",
+        "id": "6405",
+        "typeName": "Huyện",
+        "parentId": "64"
+    },
+    {
+        "name": "Đăk Glong",
+        "id": "6402",
+        "typeName": "Huyện",
+        "parentId": "64"
+    },
+    {
+        "name": "Gia Nghĩa",
+        "id": "6406",
+        "typeName": "Thành phố",
+        "parentId": "64"
+    },
+    {
+        "name": "Krông Nô",
+        "id": "6407",
+        "typeName": "Huyện",
+        "parentId": "64"
+    },
+    {
+        "name": "Tuy Đức",
+        "id": "6408",
+        "typeName": "Huyện",
+        "parentId": "64"
+    },
+    {
+        "name": "Biên Hòa",
+        "id": "8101",
+        "typeName": "Thành phố",
+        "parentId": "81"
+    },
+    {
+        "name": "Cẩm Mỹ",
+        "id": "8102",
+        "typeName": "Huyện",
+        "parentId": "81"
+    },
+    {
+        "name": "Định Quán",
+        "id": "8103",
+        "typeName": "Huyện",
+        "parentId": "81"
+    },
+    {
+        "name": "Long Khánh",
+        "id": "8104",
+        "typeName": "Thành phố",
+        "parentId": "81"
+    },
+    {
+        "name": "Long Thành",
+        "id": "8105",
+        "typeName": "Huyện",
+        "parentId": "81"
+    },
+    {
+        "name": "Nhơn Trạch",
+        "id": "8106",
+        "typeName": "Huyện",
+        "parentId": "81"
+    },
+    {
+        "name": "Tân Phú",
+        "id": "8107",
+        "typeName": "Quận",
+        "parentId": "81"
+    },
+    {
+        "name": "Thống Nhất",
+        "id": "8108",
+        "typeName": "Huyện",
+        "parentId": "81"
+    },
+    {
+        "name": "Trảng Bom",
+        "id": "8109",
+        "typeName": "Huyện",
+        "parentId": "81"
+    },
+    {
+        "name": "Vĩnh Cửu",
+        "id": "8110",
+        "typeName": "Huyện",
+        "parentId": "81"
+    },
+    {
+        "name": "Xuân Lộc",
+        "id": "8111",
+        "typeName": "Huyện",
+        "parentId": "81"
+    },
+    {
+        "name": "Cao Lãnh",
+        "id": "8701",
+        "typeName": "Thành phố",
+        "parentId": "87"
+    },
+    {
+        "name": "Cao Lãnh",
+        "id": "8702",
+        "typeName": "Thành phố",
+        "parentId": "87"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "8703",
+        "typeName": "Huyện",
+        "parentId": "87"
+    },
+    {
+        "name": "Hồng Ngự",
+        "id": "8704",
+        "typeName": "Thị xã",
+        "parentId": "87"
+    },
+    {
+        "name": "Hồng Ngự",
+        "id": "8705",
+        "typeName": "Thị xã",
+        "parentId": "87"
+    },
+    {
+        "name": "Lấp Vò",
+        "id": "8707",
+        "typeName": "Huyện",
+        "parentId": "87"
+    },
+    {
+        "name": "Lai Vung",
+        "id": "8706",
+        "typeName": "Huyện",
+        "parentId": "87"
+    },
+    {
+        "name": "Sa Đéc",
+        "id": "8708",
+        "typeName": "Thành phố",
+        "parentId": "87"
+    },
+    {
+        "name": "Tam Nông",
+        "id": "8709",
+        "typeName": "Huyện",
+        "parentId": "87"
+    },
+    {
+        "name": "Tân Hồng",
+        "id": "8710",
+        "typeName": "Huyện",
+        "parentId": "87"
+    },
+    {
+        "name": "Thanh Bình",
+        "id": "8711",
+        "typeName": "Huyện",
+        "parentId": "87"
+    },
+    {
+        "name": "Tháp Mười",
+        "id": "8712",
+        "typeName": "Huyện",
+        "parentId": "87"
+    },
+    {
+        "name": "Cẩm Lệ",
+        "id": "5501",
+        "typeName": "Quận",
+        "parentId": "55"
+    },
+    {
+        "name": "Hải Châu",
+        "id": "5502",
+        "typeName": "Quận",
+        "parentId": "55"
+    },
+    {
+        "name": "Hòa Vang",
+        "id": "5503",
+        "typeName": "Huyện",
+        "parentId": "55"
+    },
+    {
+        "name": "Liên Chiểu",
+        "id": "5504",
+        "typeName": "Quận",
+        "parentId": "55"
+    },
+    {
+        "name": "Ngũ Hành Sơn",
+        "id": "5505",
+        "typeName": "Quận",
+        "parentId": "55"
+    },
+    {
+        "name": "Sơn Trà",
+        "id": "5506",
+        "typeName": "Quận",
+        "parentId": "55"
+    },
+    {
+        "name": "Thanh Khê",
+        "id": "5507",
+        "typeName": "Quận",
+        "parentId": "55"
+    },
+    {
+        "name": "Điện Biên",
+        "id": "3801",
+        "typeName": "Huyện",
+        "parentId": "38"
+    },
+    {
+        "name": "Điện Biên Đông",
+        "id": "3802",
+        "typeName": "Huyện",
+        "parentId": "38"
+    },
+    {
+        "name": "Điện Biên Phủ",
+        "id": "3803",
+        "typeName": "Thành phố",
+        "parentId": "38"
+    },
+    {
+        "name": "Mường Ảng",
+        "id": "3804",
+        "typeName": "Huyện",
+        "parentId": "38"
+    },
+    {
+        "name": "Mường Chà",
+        "id": "3805",
+        "typeName": "Huyện",
+        "parentId": "38"
+    },
+    {
+        "name": "Mường Nhé",
+        "id": "3806",
+        "typeName": "Huyện",
+        "parentId": "38"
+    },
+    {
+        "name": "Nậm Pồ",
+        "id": "3807",
+        "typeName": "Huyện",
+        "parentId": "38"
+    },
+    {
+        "name": "Tủa Chùa",
+        "id": "3809",
+        "typeName": "Huyện",
+        "parentId": "38"
+    },
+    {
+        "name": "Mường Lay",
+        "id": "3808",
+        "typeName": "Thị xã",
+        "parentId": "38"
+    },
+    {
+        "name": "Tuần Giáo",
+        "id": "3810",
+        "typeName": "Huyện",
+        "parentId": "38"
+    },
+    {
+        "name": "An Khê",
+        "id": "6001",
+        "typeName": "Thị xã",
+        "parentId": "60"
+    },
+    {
+        "name": "Ayun Pa",
+        "id": "6002",
+        "typeName": "Thị xã",
+        "parentId": "60"
+    },
+    {
+        "name": "Chư Păh",
+        "id": "6003",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Chư Prông",
+        "id": "6004",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Chư Pưh",
+        "id": "6005",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Chư Sê",
+        "id": "6006",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Đức Cơ",
+        "id": "6009",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Đăk Đoa",
+        "id": "6007",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Đăk Pơ",
+        "id": "6008",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Ia Grai",
+        "id": "6010",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Ia Pa",
+        "id": "6011",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "KBang",
+        "id": "6012",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Kông Chro",
+        "id": "6013",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Krông Pa",
+        "id": "6014",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Mang Yang",
+        "id": "6015",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Phú Thiện",
+        "id": "6016",
+        "typeName": "Huyện",
+        "parentId": "60"
+    },
+    {
+        "name": "Pleiku",
+        "id": "6017",
+        "typeName": "Thành phố",
+        "parentId": "60"
+    },
+    {
+        "name": "Bình Giang",
+        "id": "1701",
+        "typeName": "Huyện",
+        "parentId": "17"
+    },
+    {
+        "name": "Cẩm Giàng",
+        "id": "1702",
+        "typeName": "Huyện",
+        "parentId": "17"
+    },
+    {
+        "name": "Chí Linh",
+        "id": "1703",
+        "typeName": "Thành phố",
+        "parentId": "17"
+    },
+    {
+        "name": "Gia Lộc",
+        "id": "1704",
+        "typeName": "Huyện",
+        "parentId": "17"
+    },
+    {
+        "name": "Hải Dương",
+        "id": "1705",
+        "typeName": "Thành phố",
+        "parentId": "17"
+    },
+    {
+        "name": "Kim Thành",
+        "id": "1706",
+        "typeName": "Huyện",
+        "parentId": "17"
+    },
+    {
+        "name": "Kinh Môn",
+        "id": "1707",
+        "typeName": "Thị xã",
+        "parentId": "17"
+    },
+    {
+        "name": "Nam Sách",
+        "id": "1708",
+        "typeName": "Huyện",
+        "parentId": "17"
+    },
+    {
+        "name": "Ninh Giang",
+        "id": "1709",
+        "typeName": "Huyện",
+        "parentId": "17"
+    },
+    {
+        "name": "Tứ Kỳ",
+        "id": "1712",
+        "typeName": "Huyện",
+        "parentId": "17"
+    },
+    {
+        "name": "Thanh Hà",
+        "id": "1710",
+        "typeName": "Huyện",
+        "parentId": "17"
+    },
+    {
+        "name": "Thanh Miện",
+        "id": "1711",
+        "typeName": "Huyện",
+        "parentId": "17"
+    },
+    {
+        "name": "An Dương",
+        "id": "1801",
+        "typeName": "Huyện",
+        "parentId": "18"
+    },
+    {
+        "name": "An Lão",
+        "id": "1802",
+        "typeName": "Huyện",
+        "parentId": "18"
+    },
+    {
+        "name": "Bạch Long Vĩ",
+        "id": "1803",
+        "typeName": "Huyện",
+        "parentId": "18"
+    },
+    {
+        "name": "Đồ Sơn",
+        "id": "1805",
+        "typeName": "Quận",
+        "parentId": "18"
+    },
+    {
+        "name": "Dương Kinh",
+        "id": "1806",
+        "typeName": "Quận",
+        "parentId": "18"
+    },
+    {
+        "name": "Hải An",
+        "id": "1807",
+        "typeName": "Quận",
+        "parentId": "18"
+    },
+    {
+        "name": "Hồng Bàng",
+        "id": "1808",
+        "typeName": "Quận",
+        "parentId": "18"
+    },
+    {
+        "name": "Kiến An",
+        "id": "1809",
+        "typeName": "Quận",
+        "parentId": "18"
+    },
+    {
+        "name": "Kiến Thuỵ",
+        "id": "1810",
+        "typeName": "Huyện",
+        "parentId": "18"
+    },
+    {
+        "name": "Lê Chân",
+        "id": "1811",
+        "typeName": "Quận",
+        "parentId": "18"
+    },
+    {
+        "name": "Ngô Quyền",
+        "id": "1812",
+        "typeName": "Quận",
+        "parentId": "18"
+    },
+    {
+        "name": "Thuỷ Nguyên",
+        "id": "1813",
+        "typeName": "Huyện",
+        "parentId": "18"
+    },
+    {
+        "name": "Tiên Lãng",
+        "id": "1814",
+        "typeName": "Huyện",
+        "parentId": "18"
+    },
+    {
+        "name": "Vĩnh Bảo",
+        "id": "1815",
+        "typeName": "Huyện",
+        "parentId": "18"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "9101",
+        "typeName": "Huyện",
+        "parentId": "91"
+    },
+    {
+        "name": "Châu Thành A",
+        "id": "9102",
+        "typeName": "Huyện",
+        "parentId": "91"
+    },
+    {
+        "name": "Long Mỹ",
+        "id": "9103",
+        "typeName": "Thị xã",
+        "parentId": "91"
+    },
+    {
+        "name": "Long Mỹ",
+        "id": "9104",
+        "typeName": "Thị xã",
+        "parentId": "91"
+    },
+    {
+        "name": "Ngã Bảy",
+        "id": "9105",
+        "typeName": "Thành phố",
+        "parentId": "91"
+    },
+    {
+        "name": "Phụng Hiệp",
+        "id": "9106",
+        "typeName": "Huyện",
+        "parentId": "91"
+    },
+    {
+        "name": "Vị Thanh",
+        "id": "9107",
+        "typeName": "Thành phố",
+        "parentId": "91"
+    },
+    {
+        "name": "Vị Thuỷ",
+        "id": "9108",
+        "typeName": "Huyện",
+        "parentId": "91"
+    },
+    {
+        "name": "Bình Chánh",
+        "id": "7101",
+        "typeName": "Huyện",
+        "parentId": "71"
+    },
+    {
+        "name": "Bình Tân",
+        "id": "7102",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Bình Thạnh",
+        "id": "7103",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Cần Giờ",
+        "id": "7104",
+        "typeName": "Huyện",
+        "parentId": "71"
+    },
+    {
+        "name": "Củ Chi",
+        "id": "7105",
+        "typeName": "Huyện",
+        "parentId": "71"
+    },
+    {
+        "name": "Gò Vấp",
+        "id": "7106",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Hóc Môn",
+        "id": "7107",
+        "typeName": "Huyện",
+        "parentId": "71"
+    },
+    {
+        "name": "Nhà Bè",
+        "id": "7108",
+        "typeName": "Huyện",
+        "parentId": "71"
+    },
+    {
+        "name": "Phú Nhuận",
+        "id": "7109",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 1",
+        "id": "7110",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 10",
+        "id": "7111",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 11",
+        "id": "7112",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 12",
+        "id": "7113",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 2",
+        "id": "7114",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 3",
+        "id": "7115",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 4",
+        "id": "7116",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 5",
+        "id": "7117",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 6",
+        "id": "7118",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 7",
+        "id": "7119",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 8",
+        "id": "7120",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Quận 9",
+        "id": "7121",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Tân Bình",
+        "id": "7122",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Tân Phú",
+        "id": "7123",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Thủ Đức",
+        "id": "7124",
+        "typeName": "Quận",
+        "parentId": "71"
+    },
+    {
+        "name": "Bắc Mê",
+        "id": "3101",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Bắc Quang",
+        "id": "3102",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Đồng Văn",
+        "id": "3103",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Hà Giang",
+        "id": "3104",
+        "typeName": "Thành phố",
+        "parentId": "31"
+    },
+    {
+        "name": "Hoàng Su Phì",
+        "id": "3105",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Mèo Vạc",
+        "id": "3106",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Quản Bạ",
+        "id": "3107",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Quang Bình",
+        "id": "3108",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Vị Xuyên",
+        "id": "3109",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Xín Mần",
+        "id": "3110",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Yên Minh",
+        "id": "3111",
+        "typeName": "Huyện",
+        "parentId": "31"
+    },
+    {
+        "name": "Ứng Hòa",
+        "id": "1130",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Bắc Từ Liêm",
+        "id": "1103",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Ba Đình",
+        "id": "1101",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Ba Vì",
+        "id": "1102",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Cầu Giấy",
+        "id": "1104",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Chương Mỹ",
+        "id": "1105",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Đống Đa",
+        "id": "1108",
+        "typeName": "Xã",
+        "parentId": "11"
+    },
+    {
+        "name": "Đan Phượng",
+        "id": "1106",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Đông Anh",
+        "id": "1107",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Gia Lâm",
+        "id": "1109",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Hà Đông",
+        "id": "1110",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Hai Bà Trưng",
+        "id": "1111",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Hoài Đức",
+        "id": "1112",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Hoàn Kiếm",
+        "id": "1113",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Hoàng Mai",
+        "id": "1114",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Long Biên",
+        "id": "1115",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Mỹ Đức",
+        "id": "1117",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Mê Linh",
+        "id": "1116",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Nam Từ Liêm",
+        "id": "1118",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Phú Xuyên",
+        "id": "1119",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Phúc Thọ",
+        "id": "1120",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Quốc Oai",
+        "id": "1121",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Sóc Sơn",
+        "id": "1122",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Sơn Tây",
+        "id": "1123",
+        "typeName": "Thị xã",
+        "parentId": "11"
+    },
+    {
+        "name": "Tây Hồ",
+        "id": "1124",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Thạch Thất",
+        "id": "1125",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Thanh Oai",
+        "id": "1126",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Thanh Trì",
+        "id": "1127",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Thanh Xuân",
+        "id": "1128",
+        "typeName": "Quận",
+        "parentId": "11"
+    },
+    {
+        "name": "Thường Tín",
+        "id": "1129",
+        "typeName": "Huyện",
+        "parentId": "11"
+    },
+    {
+        "name": "Bình Lục",
+        "id": "4001",
+        "typeName": "Huyện",
+        "parentId": "40"
+    },
+    {
+        "name": "Duy Tiên",
+        "id": "4002",
+        "typeName": "Thị xã",
+        "parentId": "40"
+    },
+    {
+        "name": "Kim Bảng",
+        "id": "4003",
+        "typeName": "Huyện",
+        "parentId": "40"
+    },
+    {
+        "name": "Lý Nhân",
+        "id": "4004",
+        "typeName": "Huyện",
+        "parentId": "40"
+    },
+    {
+        "name": "Phủ Lý",
+        "id": "4005",
+        "typeName": "Thành phố",
+        "parentId": "40"
+    },
+    {
+        "name": "Thanh Liêm",
+        "id": "4006",
+        "typeName": "Huyện",
+        "parentId": "40"
+    },
+    {
+        "name": "Cẩm Xuyên",
+        "id": "4801",
+        "typeName": "Huyện",
+        "parentId": "48"
+    },
+    {
+        "name": "Can Lộc",
+        "id": "4802",
+        "typeName": "Huyện",
+        "parentId": "48"
+    },
+    {
+        "name": "Đức Thọ",
+        "id": "4803",
+        "typeName": "Huyện",
+        "parentId": "48"
+    },
+    {
+        "name": "Hồng Lĩnh",
+        "id": "4805",
+        "typeName": "Thị xã",
+        "parentId": "48"
+    },
+    {
+        "name": "Hà Tĩnh",
+        "id": "4804",
+        "typeName": "Thành phố",
+        "parentId": "48"
+    },
+    {
+        "name": "Hương Khê",
+        "id": "4806",
+        "typeName": "Huyện",
+        "parentId": "48"
+    },
+    {
+        "name": "Hương Sơn",
+        "id": "4807",
+        "typeName": "Huyện",
+        "parentId": "48"
+    },
+    {
+        "name": "Kỳ Anh",
+        "id": "4808",
+        "typeName": "Thị xã",
+        "parentId": "48"
+    },
+    {
+        "name": "Kỳ Anh",
+        "id": "4809",
+        "typeName": "Thị xã",
+        "parentId": "48"
+    },
+    {
+        "name": "Lộc Hà",
+        "id": "4810",
+        "typeName": "Huyện",
+        "parentId": "48"
+    },
+    {
+        "name": "Nghi Xuân",
+        "id": "4811",
+        "typeName": "Huyện",
+        "parentId": "48"
+    },
+    {
+        "name": "Thạch Hà",
+        "id": "4812",
+        "typeName": "Huyện",
+        "parentId": "48"
+    },
+    {
+        "name": "Vũ Quang",
+        "id": "4813",
+        "typeName": "Huyện",
+        "parentId": "48"
+    },
+    {
+        "name": "Cao Phong",
+        "id": "3501",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Đà Bắc",
+        "id": "3502",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Hòa Bình",
+        "id": "3503",
+        "typeName": "Thành phố",
+        "parentId": "35"
+    },
+    {
+        "name": "Kỳ Sơn",
+        "id": "3505",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Kim Bôi",
+        "id": "3504",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Lạc Sơn",
+        "id": "3506",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Lạc Thủy",
+        "id": "3507",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Lương Sơn",
+        "id": "3508",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Mai Châu",
+        "id": "3509",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Tân Lạc",
+        "id": "3510",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Yên Thủy",
+        "id": "3511",
+        "typeName": "Huyện",
+        "parentId": "35"
+    },
+    {
+        "name": "Ân Thi",
+        "id": "1601",
+        "typeName": "Huyện",
+        "parentId": "16"
+    },
+    {
+        "name": "Hưng Yên",
+        "id": "1602",
+        "typeName": "Thành phố",
+        "parentId": "16"
+    },
+    {
+        "name": "Khoái Châu",
+        "id": "1603",
+        "typeName": "Huyện",
+        "parentId": "16"
+    },
+    {
+        "name": "Kim Động",
+        "id": "1604",
+        "typeName": "Huyện",
+        "parentId": "16"
+    },
+    {
+        "name": "Mỹ Hào",
+        "id": "1605",
+        "typeName": "Thị xã",
+        "parentId": "16"
+    },
+    {
+        "name": "Phù Cừ",
+        "id": "1606",
+        "typeName": "Huyện",
+        "parentId": "16"
+    },
+    {
+        "name": "Tiên Lữ",
+        "id": "1607",
+        "typeName": "Huyện",
+        "parentId": "16"
+    },
+    {
+        "name": "Văn Giang",
+        "id": "1608",
+        "typeName": "Huyện",
+        "parentId": "16"
+    },
+    {
+        "name": "Văn Lâm",
+        "id": "1609",
+        "typeName": "Huyện",
+        "parentId": "16"
+    },
+    {
+        "name": "Yên Mỹ",
+        "id": "1610",
+        "typeName": "Huyện",
+        "parentId": "16"
+    },
+    {
+        "name": "Cam Lâm",
+        "id": "6501",
+        "typeName": "Huyện",
+        "parentId": "65"
+    },
+    {
+        "name": "Cam Ranh",
+        "id": "6502",
+        "typeName": "Thành phố",
+        "parentId": "65"
+    },
+    {
+        "name": "Diên Khánh",
+        "id": "6503",
+        "typeName": "Huyện",
+        "parentId": "65"
+    },
+    {
+        "name": "Khánh Sơn",
+        "id": "6504",
+        "typeName": "Huyện",
+        "parentId": "65"
+    },
+    {
+        "name": "Khánh Vĩnh",
+        "id": "6505",
+        "typeName": "Huyện",
+        "parentId": "65"
+    },
+    {
+        "name": "Nha Trang",
+        "id": "6506",
+        "typeName": "Thành phố",
+        "parentId": "65"
+    },
+    {
+        "name": "Ninh Hòa",
+        "id": "6507",
+        "typeName": "Thị xã",
+        "parentId": "65"
+    },
+    {
+        "name": "Vạn Ninh",
+        "id": "6508",
+        "typeName": "Huyện",
+        "parentId": "65"
+    },
+    {
+        "name": "An Biên",
+        "id": "9201",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "An Minh",
+        "id": "9202",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "9203",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Giồng Riềng",
+        "id": "9205",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Giang Thành",
+        "id": "9204",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Gò Quao",
+        "id": "9206",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Hà Tiên",
+        "id": "9207",
+        "typeName": "Thành phố",
+        "parentId": "92"
+    },
+    {
+        "name": "Hòn Đất",
+        "id": "9208",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Kiên Hải",
+        "id": "9209",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Kiên Lương",
+        "id": "9210",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Phú Quốc",
+        "id": "9211",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Rạch Giá",
+        "id": "9212",
+        "typeName": "Thành phố",
+        "parentId": "92"
+    },
+    {
+        "name": "Tân Hiệp",
+        "id": "9213",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "U Minh Thượng",
+        "id": "9214",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Vĩnh Thuận",
+        "id": "9215",
+        "typeName": "Huyện",
+        "parentId": "92"
+    },
+    {
+        "name": "Đắk Glei",
+        "id": "5801",
+        "typeName": "Huyện",
+        "parentId": "58"
+    },
+    {
+        "name": "Đắk Hà",
+        "id": "5802",
+        "typeName": "Huyện",
+        "parentId": "58"
+    },
+    {
+        "name": "Đắk Tô",
+        "id": "5803",
+        "typeName": "Huyện",
+        "parentId": "58"
+    },
+    {
+        "name": "Ia H' Drai",
+        "id": "5804",
+        "typeName": "Huyện",
+        "parentId": "58"
+    },
+    {
+        "name": "Kon Plông",
+        "id": "5805",
+        "typeName": "Huyện",
+        "parentId": "58"
+    },
+    {
+        "name": "Kon Rẫy",
+        "id": "5806",
+        "typeName": "Huyện",
+        "parentId": "58"
+    },
+    {
+        "name": "Kon Tum",
+        "id": "5807",
+        "typeName": "Thành phố",
+        "parentId": "58"
+    },
+    {
+        "name": "Ngọc Hồi",
+        "id": "5808",
+        "typeName": "Huyện",
+        "parentId": "58"
+    },
+    {
+        "name": "Sa Thầy",
+        "id": "5809",
+        "typeName": "Huyện",
+        "parentId": "58"
+    },
+    {
+        "name": "Tu Mơ Rông",
+        "id": "5810",
+        "typeName": "Huyện",
+        "parentId": "58"
+    },
+    {
+        "name": "Bắc Sơn",
+        "id": "2401",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Bình Gia",
+        "id": "2402",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Cao Lộc",
+        "id": "2403",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Chi Lăng",
+        "id": "2404",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Đình Lập",
+        "id": "2405",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Hữu Lũng",
+        "id": "2406",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Lạng Sơn",
+        "id": "2407",
+        "typeName": "Thành phố",
+        "parentId": "24"
+    },
+    {
+        "name": "Lộc Bình",
+        "id": "2408",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Tràng Định",
+        "id": "2409",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Văn Lãng",
+        "id": "2410",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Văn Quan",
+        "id": "2411",
+        "typeName": "Huyện",
+        "parentId": "24"
+    },
+    {
+        "name": "Lai Châu",
+        "id": "3901",
+        "typeName": "Thành phố",
+        "parentId": "39"
+    },
+    {
+        "name": "Mường Tè",
+        "id": "3902",
+        "typeName": "Huyện",
+        "parentId": "39"
+    },
+    {
+        "name": "Nậm Nhùn",
+        "id": "3903",
+        "typeName": "Huyện",
+        "parentId": "39"
+    },
+    {
+        "name": "Phong Thổ",
+        "id": "3904",
+        "typeName": "Huyện",
+        "parentId": "39"
+    },
+    {
+        "name": "Sìn Hồ",
+        "id": "3905",
+        "typeName": "Huyện",
+        "parentId": "39"
+    },
+    {
+        "name": "Tam Đường",
+        "id": "3906",
+        "typeName": "Huyện",
+        "parentId": "39"
+    },
+    {
+        "name": "Tân Uyên",
+        "id": "3907",
+        "typeName": "Thị xã",
+        "parentId": "39"
+    },
+    {
+        "name": "Than Uyên",
+        "id": "3908",
+        "typeName": "Huyện",
+        "parentId": "39"
+    },
+    {
+        "name": "Bảo Lộc",
+        "id": "6702",
+        "typeName": "Thành phố",
+        "parentId": "67"
+    },
+    {
+        "name": "Bảo Lâm",
+        "id": "6701",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Cát Tiên",
+        "id": "6703",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Đạ Huoai",
+        "id": "6704",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Đạ Tẻh",
+        "id": "6706",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Đức Trọng",
+        "id": "6710",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Đà Lạt",
+        "id": "6705",
+        "typeName": "Thành phố",
+        "parentId": "67"
+    },
+    {
+        "name": "Đam Rông",
+        "id": "6707",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Di Linh",
+        "id": "6708",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Đơn Dương",
+        "id": "6709",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Lạc Dương",
+        "id": "6711",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Lâm Hà",
+        "id": "6712",
+        "typeName": "Huyện",
+        "parentId": "67"
+    },
+    {
+        "name": "Bảo Thắng",
+        "id": "3302",
+        "typeName": "Huyện",
+        "parentId": "33"
+    },
+    {
+        "name": "Bảo Yên",
+        "id": "3303",
+        "typeName": "Huyện",
+        "parentId": "33"
+    },
+    {
+        "name": "Bắc Hà",
+        "id": "3301",
+        "typeName": "Huyện",
+        "parentId": "33"
+    },
+    {
+        "name": "Bát Xát",
+        "id": "3304",
+        "typeName": "Huyện",
+        "parentId": "33"
+    },
+    {
+        "name": "Lào Cai",
+        "id": "3305",
+        "typeName": "Thành phố",
+        "parentId": "33"
+    },
+    {
+        "name": "Mường Khương",
+        "id": "3306",
+        "typeName": "Huyện",
+        "parentId": "33"
+    },
+    {
+        "name": "Sa Pa",
+        "id": "3307",
+        "typeName": "Thị xã",
+        "parentId": "33"
+    },
+    {
+        "name": "Si Ma Cai",
+        "id": "3308",
+        "typeName": "Huyện",
+        "parentId": "33"
+    },
+    {
+        "name": "Văn Bàn",
+        "id": "3309",
+        "typeName": "Huyện",
+        "parentId": "33"
+    },
+    {
+        "name": "Bến Lức",
+        "id": "8501",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Cần Đước",
+        "id": "8502",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Cần Giuộc",
+        "id": "8503",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "8504",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Đức Hòa",
+        "id": "8505",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Đức Huệ",
+        "id": "8506",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Kiến Tường",
+        "id": "8507",
+        "typeName": "Thị xã",
+        "parentId": "85"
+    },
+    {
+        "name": "Mộc Hóa",
+        "id": "8508",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Tân An",
+        "id": "8509",
+        "typeName": "Thành phố",
+        "parentId": "85"
+    },
+    {
+        "name": "Tân Hưng",
+        "id": "8510",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Tân Thạnh",
+        "id": "8511",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Tân Trụ",
+        "id": "8512",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Thạnh Hóa",
+        "id": "8513",
+        "typeName": "Thành phố",
+        "parentId": "85"
+    },
+    {
+        "name": "Thủ Thừa",
+        "id": "8514",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Vĩnh Hưng",
+        "id": "8515",
+        "typeName": "Huyện",
+        "parentId": "85"
+    },
+    {
+        "name": "Giao Thủy",
+        "id": "4201",
+        "typeName": "Huyện",
+        "parentId": "42"
+    },
+    {
+        "name": "Hải Hậu",
+        "id": "4202",
+        "typeName": "Huyện",
+        "parentId": "42"
+    },
+    {
+        "name": "Mỹ Lộc",
+        "id": "4203",
+        "typeName": "Huyện",
+        "parentId": "42"
+    },
+    {
+        "name": "Nam Định",
+        "id": "4204",
+        "typeName": "Thành phố",
+        "parentId": "42"
+    },
+    {
+        "name": "Nam Trực",
+        "id": "4205",
+        "typeName": "Huyện",
+        "parentId": "42"
+    },
+    {
+        "name": "Nghĩa Hưng",
+        "id": "4206",
+        "typeName": "Huyện",
+        "parentId": "42"
+    },
+    {
+        "name": "Trực Ninh",
+        "id": "4207",
+        "typeName": "Huyện",
+        "parentId": "42"
+    },
+    {
+        "name": "Vụ Bản",
+        "id": "4208",
+        "typeName": "Huyện",
+        "parentId": "42"
+    },
+    {
+        "name": "Xuân Trường",
+        "id": "4209",
+        "typeName": "Huyện",
+        "parentId": "42"
+    },
+    {
+        "name": "Ý Yên",
+        "id": "4210",
+        "typeName": "Huyện",
+        "parentId": "42"
+    },
+    {
+        "name": "Anh Sơn",
+        "id": "4601",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Cửa Lò",
+        "id": "4603",
+        "typeName": "Thị xã",
+        "parentId": "46"
+    },
+    {
+        "name": "Con Cuông",
+        "id": "4602",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Diễn Châu",
+        "id": "4604",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Đô Lương",
+        "id": "4605",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Hoàng Mai",
+        "id": "4606",
+        "typeName": "Quận",
+        "parentId": "46"
+    },
+    {
+        "name": "Hưng Nguyên",
+        "id": "4607",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Kỳ Sơn",
+        "id": "4608",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Nam Đàn",
+        "id": "4609",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Nghi Lộc",
+        "id": "4610",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Nghĩa Đàn",
+        "id": "4611",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Quế Phong",
+        "id": "4612",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Quỳ Châu",
+        "id": "4613",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Quỳ Hợp",
+        "id": "4614",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Quỳnh Lưu",
+        "id": "4615",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Tân Kỳ",
+        "id": "4616",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Thái Hoà",
+        "id": "4617",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Thanh Chương",
+        "id": "4618",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Tương Dương",
+        "id": "4619",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Vinh",
+        "id": "4620",
+        "typeName": "Thành phố",
+        "parentId": "46"
+    },
+    {
+        "name": "Yên Thành",
+        "id": "4621",
+        "typeName": "Huyện",
+        "parentId": "46"
+    },
+    {
+        "name": "Gia Viễn",
+        "id": "4301",
+        "typeName": "Huyện",
+        "parentId": "43"
+    },
+    {
+        "name": "Hoa Lư",
+        "id": "4302",
+        "typeName": "Huyện",
+        "parentId": "43"
+    },
+    {
+        "name": "Kim Sơn",
+        "id": "4303",
+        "typeName": "Huyện",
+        "parentId": "43"
+    },
+    {
+        "name": "Nho Quan",
+        "id": "4304",
+        "typeName": "Huyện",
+        "parentId": "43"
+    },
+    {
+        "name": "Ninh Bình",
+        "id": "4305",
+        "typeName": "Thành phố",
+        "parentId": "43"
+    },
+    {
+        "name": "Tam Điệp",
+        "id": "4306",
+        "typeName": "Thành phố",
+        "parentId": "43"
+    },
+    {
+        "name": "Yên Khánh",
+        "id": "4307",
+        "typeName": "Huyện",
+        "parentId": "43"
+    },
+    {
+        "name": "Yên Mô",
+        "id": "4308",
+        "typeName": "Huyện",
+        "parentId": "43"
+    },
+    {
+        "name": "Bác Ái",
+        "id": "6601",
+        "typeName": "Huyện",
+        "parentId": "66"
+    },
+    {
+        "name": "Ninh Hải",
+        "id": "6602",
+        "typeName": "Huyện",
+        "parentId": "66"
+    },
+    {
+        "name": "Ninh Phước",
+        "id": "6603",
+        "typeName": "Huyện",
+        "parentId": "66"
+    },
+    {
+        "name": "Ninh Sơn",
+        "id": "6604",
+        "typeName": "Huyện",
+        "parentId": "66"
+    },
+    {
+        "name": "Phan Rang Tháp Chàm",
+        "id": "6605",
+        "typeName": "Huyện",
+        "parentId": "66"
+    },
+    {
+        "name": "Thuận Bắc",
+        "id": "6606",
+        "typeName": "Huyện",
+        "parentId": "66"
+    },
+    {
+        "name": "Thuận Nam",
+        "id": "6607",
+        "typeName": "Huyện",
+        "parentId": "66"
+    },
+    {
+        "name": "Cẩm Khê",
+        "id": "2901",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Đoan Hùng",
+        "id": "2902",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Hạ Hoà",
+        "id": "2903",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Lâm Thao",
+        "id": "2904",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Phù Ninh",
+        "id": "2905",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Phú Thọ",
+        "id": "2906",
+        "typeName": "Thị xã",
+        "parentId": "29"
+    },
+    {
+        "name": "Tam Nông",
+        "id": "2907",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Tân Sơn",
+        "id": "2908",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Thanh Ba",
+        "id": "2909",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Thanh Sơn",
+        "id": "2910",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Thanh Thuỷ",
+        "id": "2911",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Việt Trì",
+        "id": "2912",
+        "typeName": "Thành phố",
+        "parentId": "29"
+    },
+    {
+        "name": "Yên Lập",
+        "id": "2913",
+        "typeName": "Huyện",
+        "parentId": "29"
+    },
+    {
+        "name": "Đồng Xuân",
+        "id": "6202",
+        "typeName": "Huyện",
+        "parentId": "62"
+    },
+    {
+        "name": "Đông Hòa",
+        "id": "6201",
+        "typeName": "Huyện",
+        "parentId": "62"
+    },
+    {
+        "name": "Phú Hoà",
+        "id": "6203",
+        "typeName": "Huyện",
+        "parentId": "62"
+    },
+    {
+        "name": "Sơn Hòa",
+        "id": "6204",
+        "typeName": "Huyện",
+        "parentId": "62"
+    },
+    {
+        "name": "Sông Cầu",
+        "id": "6205",
+        "typeName": "Thị xã",
+        "parentId": "62"
+    },
+    {
+        "name": "Sông Hinh",
+        "id": "6206",
+        "typeName": "Huyện",
+        "parentId": "62"
+    },
+    {
+        "name": "Tây Hoà",
+        "id": "6207",
+        "typeName": "Huyện",
+        "parentId": "62"
+    },
+    {
+        "name": "Tuy An",
+        "id": "6208",
+        "typeName": "Huyện",
+        "parentId": "62"
+    },
+    {
+        "name": "Tuy Hoà",
+        "id": "6209",
+        "typeName": "Huyện",
+        "parentId": "62"
+    },
+    {
+        "name": "Bố Trạch",
+        "id": "5102",
+        "typeName": "Huyện",
+        "parentId": "51"
+    },
+    {
+        "name": "Ba Đồn",
+        "id": "5101",
+        "typeName": "Thị xã",
+        "parentId": "51"
+    },
+    {
+        "name": "Lệ Thủy",
+        "id": "5103",
+        "typeName": "Huyện",
+        "parentId": "51"
+    },
+    {
+        "name": "Minh Hóa",
+        "id": "5104",
+        "typeName": "Huyện",
+        "parentId": "51"
+    },
+    {
+        "name": "Quảng Ninh",
+        "id": "5105",
+        "typeName": "Huyện",
+        "parentId": "51"
+    },
+    {
+        "name": "Quảng Trạch",
+        "id": "5106",
+        "typeName": "Huyện",
+        "parentId": "51"
+    },
+    {
+        "name": "Đồng Hới",
+        "id": "5107",
+        "typeName": "Thành phố",
+        "parentId": "51"
+    },
+    {
+        "name": "Tuyên Hóa",
+        "id": "5108",
+        "typeName": "Huyện",
+        "parentId": "51"
+    },
+    {
+        "name": "Bắc Trà My",
+        "id": "5601",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Đại Lộc",
+        "id": "5602",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Điện Bàn",
+        "id": "5603",
+        "typeName": "Thị xã",
+        "parentId": "56"
+    },
+    {
+        "name": "Đông Giang",
+        "id": "5604",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Duy Xuyên",
+        "id": "5605",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Hội An",
+        "id": "5607",
+        "typeName": "Thành phố",
+        "parentId": "56"
+    },
+    {
+        "name": "Hiệp Đức",
+        "id": "5606",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Nam Giang",
+        "id": "5608",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Nam Trà My",
+        "id": "5609",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Nông Sơn",
+        "id": "5610",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Núi Thành",
+        "id": "5611",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Phú Ninh",
+        "id": "5612",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Phước Sơn",
+        "id": "5613",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Quế Sơn",
+        "id": "5614",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Tam Kỳ",
+        "id": "5615",
+        "typeName": "Thành phố",
+        "parentId": "56"
+    },
+    {
+        "name": "Tây Giang",
+        "id": "5616",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Thăng Bình",
+        "id": "5617",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Tiên Phước",
+        "id": "5618",
+        "typeName": "Huyện",
+        "parentId": "56"
+    },
+    {
+        "name": "Ba Tơ",
+        "id": "5701",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Bình Sơn",
+        "id": "5702",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Đức Phổ",
+        "id": "5703",
+        "typeName": "Thị xã",
+        "parentId": "57"
+    },
+    {
+        "name": "Lý Sơn",
+        "id": "5704",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Mộ Đức",
+        "id": "5706",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Minh Long",
+        "id": "5705",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Nghĩa Hành",
+        "id": "5707",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Quảng Ngãi",
+        "id": "5708",
+        "typeName": "Thành phố",
+        "parentId": "57"
+    },
+    {
+        "name": "Sơn Hà",
+        "id": "5709",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Sơn Tịnh",
+        "id": "5711",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Sơn Tây",
+        "id": "5710",
+        "typeName": "Thị xã",
+        "parentId": "57"
+    },
+    {
+        "name": "Tây Trà",
+        "id": "5712",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Trà Bồng",
+        "id": "5713",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Tư Nghĩa",
+        "id": "5714",
+        "typeName": "Huyện",
+        "parentId": "57"
+    },
+    {
+        "name": "Ba Chẽ",
+        "id": "2001",
+        "typeName": "Huyện",
+        "parentId": "20"
+    },
+    {
+        "name": "Bình Liêu",
+        "id": "2002",
+        "typeName": "Huyện",
+        "parentId": "20"
+    },
+    {
+        "name": "Cẩm Phả",
+        "id": "2003",
+        "typeName": "Thành phố",
+        "parentId": "20"
+    },
+    {
+        "name": "Cô Tô",
+        "id": "2004",
+        "typeName": "Huyện",
+        "parentId": "20"
+    },
+    {
+        "name": "Đầm Hà",
+        "id": "2005",
+        "typeName": "Huyện",
+        "parentId": "20"
+    },
+    {
+        "name": "Đông Triều",
+        "id": "2006",
+        "typeName": "Thị xã",
+        "parentId": "20"
+    },
+    {
+        "name": "Hạ Long",
+        "id": "2007",
+        "typeName": "Thành phố",
+        "parentId": "20"
+    },
+    {
+        "name": "Hải Hà",
+        "id": "2008",
+        "typeName": "Huyện",
+        "parentId": "20"
+    },
+    {
+        "name": "Hoành Bồ",
+        "id": "2009",
+        "typeName": "Huyện",
+        "parentId": "20"
+    },
+    {
+        "name": "Móng Cái",
+        "id": "2010",
+        "typeName": "Thành phố",
+        "parentId": "20"
+    },
+    {
+        "name": "Quảng Yên",
+        "id": "2011",
+        "typeName": "Thị xã",
+        "parentId": "20"
+    },
+    {
+        "name": "Tiên Yên",
+        "id": "2012",
+        "typeName": "Huyện",
+        "parentId": "20"
+    },
+    {
+        "name": "Uông Bí",
+        "id": "2013",
+        "typeName": "Thành phố",
+        "parentId": "20"
+    },
+    {
+        "name": "Vân Đồn",
+        "id": "2014",
+        "typeName": "Huyện",
+        "parentId": "20"
+    },
+    {
+        "name": "Cồn Cỏ",
+        "id": "5202",
+        "typeName": "Huyện",
+        "parentId": "52"
+    },
+    {
+        "name": "Cam Lộ",
+        "id": "5201",
+        "typeName": "Huyện",
+        "parentId": "52"
+    },
+    {
+        "name": "Đa Krông",
+        "id": "5203",
+        "typeName": "Huyện",
+        "parentId": "52"
+    },
+    {
+        "name": "Đông Hà",
+        "id": "5204",
+        "typeName": "Thành phố",
+        "parentId": "52"
+    },
+    {
+        "name": "Gio Linh",
+        "id": "5205",
+        "typeName": "Huyện",
+        "parentId": "52"
+    },
+    {
+        "name": "Hải Lăng",
+        "id": "5206",
+        "typeName": "Huyện",
+        "parentId": "52"
+    },
+    {
+        "name": "Hướng Hóa",
+        "id": "5207",
+        "typeName": "Huyện",
+        "parentId": "52"
+    },
+    {
+        "name": "Quảng Trị",
+        "id": "5208",
+        "typeName": "Thị xã",
+        "parentId": "52"
+    },
+    {
+        "name": "Triệu Phong",
+        "id": "5209",
+        "typeName": "Huyện",
+        "parentId": "52"
+    },
+    {
+        "name": "Vĩnh Linh",
+        "id": "5210",
+        "typeName": "Huyện",
+        "parentId": "52"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "9501",
+        "typeName": "Huyện",
+        "parentId": "95"
+    },
+    {
+        "name": "Cù Lao Dung",
+        "id": "9502",
+        "typeName": "Huyện",
+        "parentId": "95"
+    },
+    {
+        "name": "Kế Sách",
+        "id": "9503",
+        "typeName": "Huyện",
+        "parentId": "95"
+    },
+    {
+        "name": "Long Phú",
+        "id": "9504",
+        "typeName": "Huyện",
+        "parentId": "95"
+    },
+    {
+        "name": "Mỹ Tú",
+        "id": "9505",
+        "typeName": "Huyện",
+        "parentId": "95"
+    },
+    {
+        "name": "Mỹ Xuyên",
+        "id": "9506",
+        "typeName": "Huyện",
+        "parentId": "95"
+    },
+    {
+        "name": "Ngã Năm",
+        "id": "9507",
+        "typeName": "Thị xã",
+        "parentId": "95"
+    },
+    {
+        "name": "Sóc Trăng",
+        "id": "9508",
+        "typeName": "Thành phố",
+        "parentId": "95"
+    },
+    {
+        "name": "Thạnh Trị",
+        "id": "9509",
+        "typeName": "Huyện",
+        "parentId": "95"
+    },
+    {
+        "name": "Trần Đề",
+        "id": "9510",
+        "typeName": "Huyện",
+        "parentId": "95"
+    },
+    {
+        "name": "Vĩnh Châu",
+        "id": "9511",
+        "typeName": "Thị xã",
+        "parentId": "95"
+    },
+    {
+        "name": "Bắc Yên",
+        "id": "3601",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Mộc Châu",
+        "id": "3603",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Mai Sơn",
+        "id": "3602",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Mường La",
+        "id": "3604",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Phù Yên",
+        "id": "3605",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Quỳnh Nhai",
+        "id": "3606",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Sốp Cộp",
+        "id": "3609",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Sơn La",
+        "id": "3607",
+        "typeName": "Thành phố",
+        "parentId": "36"
+    },
+    {
+        "name": "Sông Mã",
+        "id": "3608",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Thuận Châu",
+        "id": "3610",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Vân Hồ",
+        "id": "3611",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Yên Châu",
+        "id": "3612",
+        "typeName": "Huyện",
+        "parentId": "36"
+    },
+    {
+        "name": "Bến Cầu",
+        "id": "8401",
+        "typeName": "Huyện",
+        "parentId": "84"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "8402",
+        "typeName": "Huyện",
+        "parentId": "84"
+    },
+    {
+        "name": "Dương Minh Châu",
+        "id": "8403",
+        "typeName": "Huyện",
+        "parentId": "84"
+    },
+    {
+        "name": "Gò Dầu",
+        "id": "8404",
+        "typeName": "Huyện",
+        "parentId": "84"
+    },
+    {
+        "name": "Hòa Thành",
+        "id": "8405",
+        "typeName": "Thị xã",
+        "parentId": "84"
+    },
+    {
+        "name": "Tân Biên",
+        "id": "8406",
+        "typeName": "Huyện",
+        "parentId": "84"
+    },
+    {
+        "name": "Tân Châu",
+        "id": "8407",
+        "typeName": "Thị xã",
+        "parentId": "84"
+    },
+    {
+        "name": "Tây Ninh",
+        "id": "8408",
+        "typeName": "Thành phố",
+        "parentId": "84"
+    },
+    {
+        "name": "Trảng Bàng",
+        "id": "8409",
+        "typeName": "Thị xã",
+        "parentId": "84"
+    },
+    {
+        "name": "A Lưới",
+        "id": "5301",
+        "typeName": "Huyện",
+        "parentId": "53"
+    },
+    {
+        "name": "Huế",
+        "id": "5302",
+        "typeName": "Thành phố",
+        "parentId": "53"
+    },
+    {
+        "name": "Hương Thủy",
+        "id": "5303",
+        "typeName": "Thị xã",
+        "parentId": "53"
+    },
+    {
+        "name": "Hương Trà",
+        "id": "5304",
+        "typeName": "Thị xã",
+        "parentId": "53"
+    },
+    {
+        "name": "Nam Đông",
+        "id": "5305",
+        "typeName": "Huyện",
+        "parentId": "53"
+    },
+    {
+        "name": "Phong Điền",
+        "id": "5306",
+        "typeName": "Huyện",
+        "parentId": "53"
+    },
+    {
+        "name": "Phú Lộc",
+        "id": "5307",
+        "typeName": "Huyện",
+        "parentId": "53"
+    },
+    {
+        "name": "Phú Vang",
+        "id": "5308",
+        "typeName": "Huyện",
+        "parentId": "53"
+    },
+    {
+        "name": "Quảng Điền",
+        "id": "5309",
+        "typeName": "Huyện",
+        "parentId": "53"
+    },
+    {
+        "name": "Đông Hưng",
+        "id": "4101",
+        "typeName": "Huyện",
+        "parentId": "41"
+    },
+    {
+        "name": "Hưng Hà",
+        "id": "4102",
+        "typeName": "Huyện",
+        "parentId": "41"
+    },
+    {
+        "name": "Kiến Xương",
+        "id": "4103",
+        "typeName": "Huyện",
+        "parentId": "41"
+    },
+    {
+        "name": "Quỳnh Phụ",
+        "id": "4104",
+        "typeName": "Huyện",
+        "parentId": "41"
+    },
+    {
+        "name": "Thái Bình",
+        "id": "4105",
+        "typeName": "Thành phố",
+        "parentId": "41"
+    },
+    {
+        "name": "Thái Thụy",
+        "id": "4106",
+        "typeName": "Huyện",
+        "parentId": "41"
+    },
+    {
+        "name": "Tiền Hải",
+        "id": "4107",
+        "typeName": "Huyện",
+        "parentId": "41"
+    },
+    {
+        "name": "Vũ Thư",
+        "id": "4108",
+        "typeName": "Huyện",
+        "parentId": "41"
+    },
+    {
+        "name": "Đại Từ",
+        "id": "2501",
+        "typeName": "Huyện",
+        "parentId": "25"
+    },
+    {
+        "name": "Định Hóa",
+        "id": "2502",
+        "typeName": "Huyện",
+        "parentId": "25"
+    },
+    {
+        "name": "Đồng Hỷ",
+        "id": "2503",
+        "typeName": "Huyện",
+        "parentId": "25"
+    },
+    {
+        "name": "Phổ Yên",
+        "id": "2504",
+        "typeName": "Thị xã",
+        "parentId": "25"
+    },
+    {
+        "name": "Phú Bình",
+        "id": "2505",
+        "typeName": "Huyện",
+        "parentId": "25"
+    },
+    {
+        "name": "Phú Lương",
+        "id": "2506",
+        "typeName": "Huyện",
+        "parentId": "25"
+    },
+    {
+        "name": "Sông Công",
+        "id": "2507",
+        "typeName": "Thành phố",
+        "parentId": "25"
+    },
+    {
+        "name": "Thái Nguyên",
+        "id": "2508",
+        "typeName": "Thành phố",
+        "parentId": "25"
+    },
+    {
+        "name": "Võ Nhai",
+        "id": "2509",
+        "typeName": "Huyện",
+        "parentId": "25"
+    },
+    {
+        "name": "Bỉm Sơn",
+        "id": "4402",
+        "typeName": "Thị xã",
+        "parentId": "44"
+    },
+    {
+        "name": "Bá Thước",
+        "id": "4401",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Cẩm Thủy",
+        "id": "4403",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Đông Sơn",
+        "id": "4404",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Hậu Lộc",
+        "id": "4406",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Hà Trung",
+        "id": "4405",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Hoằng Hóa",
+        "id": "4407",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Lang Chánh",
+        "id": "4408",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Mường Lát",
+        "id": "4409",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Ngọc Lặc",
+        "id": "4411",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Nga Sơn",
+        "id": "4410",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Như Thanh",
+        "id": "4412",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Như Xuân",
+        "id": "4413",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Nông Cống",
+        "id": "4414",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Quảng Xương",
+        "id": "4417",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Quan Hóa",
+        "id": "4415",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Duyên Hải",
+        "id": "9405",
+        "typeName": "Thị xã",
+        "parentId": "94"
+    },
+    {
+        "name": "Duyên Hải",
+        "id": "9406",
+        "typeName": "Thị xã",
+        "parentId": "94"
+    },
+    {
+        "name": "Tiểu Cần",
+        "id": "9407",
+        "typeName": "Huyện",
+        "parentId": "94"
+    },
+    {
+        "name": "Trà Cú",
+        "id": "9408",
+        "typeName": "Huyện",
+        "parentId": "94"
+    },
+    {
+        "name": "Trà Vinh",
+        "id": "9409",
+        "typeName": "Thành phố",
+        "parentId": "94"
+    },
+    {
+        "name": "Chiêm Hóa",
+        "id": "3001",
+        "typeName": "Huyện",
+        "parentId": "30"
+    },
+    {
+        "name": "Hàm Yên",
+        "id": "3002",
+        "typeName": "Huyện",
+        "parentId": "30"
+    },
+    {
+        "name": "Lâm Bình",
+        "id": "3003",
+        "typeName": "Huyện",
+        "parentId": "30"
+    },
+    {
+        "name": "Nà Hang",
+        "id": "3004",
+        "typeName": "Huyện",
+        "parentId": "30"
+    },
+    {
+        "name": "Sơn Dương",
+        "id": "3005",
+        "typeName": "Huyện",
+        "parentId": "30"
+    },
+    {
+        "name": "Tuyên Quang",
+        "id": "3006",
+        "typeName": "Thành phố",
+        "parentId": "30"
+    },
+    {
+        "name": "Yên Sơn",
+        "id": "3007",
+        "typeName": "Huyện",
+        "parentId": "30"
+    },
+    {
+        "name": "Bình Minh",
+        "id": "8901",
+        "typeName": "Thị xã",
+        "parentId": "89"
+    },
+    {
+        "name": "Bình Tân",
+        "id": "8902",
+        "typeName": "Quận",
+        "parentId": "89"
+    },
+    {
+        "name": "Long Hồ",
+        "id": "8903",
+        "typeName": "Huyện",
+        "parentId": "89"
+    },
+    {
+        "name": "Mang Thít",
+        "id": "8904",
+        "typeName": "Huyện",
+        "parentId": "89"
+    },
+    {
+        "name": "Tam Bình",
+        "id": "8905",
+        "typeName": "Huyện",
+        "parentId": "89"
+    },
+    {
+        "name": "Trà Ôn",
+        "id": "8906",
+        "typeName": "Huyện",
+        "parentId": "89"
+    },
+    {
+        "name": "Vĩnh Long",
+        "id": "8907",
+        "typeName": "Thành phố",
+        "parentId": "89"
+    },
+    {
+        "name": "Vũng Liêm",
+        "id": "8908",
+        "typeName": "Huyện",
+        "parentId": "89"
+    },
+    {
+        "name": "Bình Xuyên",
+        "id": "2801",
+        "typeName": "Huyện",
+        "parentId": "28"
+    },
+    {
+        "name": "Lập Thạch",
+        "id": "2802",
+        "typeName": "Huyện",
+        "parentId": "28"
+    },
+    {
+        "name": "Phúc Yên",
+        "id": "2803",
+        "typeName": "Thành phố",
+        "parentId": "28"
+    },
+    {
+        "name": "Sông Lô",
+        "id": "2804",
+        "typeName": "Huyện",
+        "parentId": "28"
+    },
+    {
+        "name": "Tam Đảo",
+        "id": "2805",
+        "typeName": "Huyện",
+        "parentId": "28"
+    },
+    {
+        "name": "Tam Dương",
+        "id": "2806",
+        "typeName": "Huyện",
+        "parentId": "28"
+    },
+    {
+        "name": "Vĩnh Tường",
+        "id": "2807",
+        "typeName": "Huyện",
+        "parentId": "28"
+    },
+    {
+        "name": "Vĩnh Yên",
+        "id": "2808",
+        "typeName": "Thành phố",
+        "parentId": "28"
+    },
+    {
+        "name": "Yên Lạc",
+        "id": "2809",
+        "typeName": "Huyện",
+        "parentId": "28"
+    },
+    {
+        "name": "Lục Yên",
+        "id": "3201",
+        "typeName": "Huyện",
+        "parentId": "32"
+    },
+    {
+        "name": "Mù Căng Chải",
+        "id": "3202",
+        "typeName": "Huyện",
+        "parentId": "32"
+    },
+    {
+        "name": "Nghĩa Lộ",
+        "id": "3203",
+        "typeName": "Thị xã",
+        "parentId": "32"
+    },
+    {
+        "name": "Trạm Tấu",
+        "id": "3204",
+        "typeName": "Huyện",
+        "parentId": "32"
+    },
+    {
+        "name": "Trấn Yên",
+        "id": "3205",
+        "typeName": "Huyện",
+        "parentId": "32"
+    },
+    {
+        "name": "Văn Chấn",
+        "id": "3206",
+        "typeName": "Huyện",
+        "parentId": "32"
+    },
+    {
+        "name": "Văn Yên",
+        "id": "3207",
+        "typeName": "Huyện",
+        "parentId": "32"
+    },
+    {
+        "name": "Yên Bái",
+        "id": "3208",
+        "typeName": "Thành phố",
+        "parentId": "32"
+    },
+    {
+        "name": "Yên Bình",
+        "id": "3209",
+        "typeName": "Huyện",
+        "parentId": "32"
+    },
+    {
+        "name": "Quan Sơn",
+        "id": "4416",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Sầm Sơn",
+        "id": "4418",
+        "typeName": "Thành phố",
+        "parentId": "44"
+    },
+    {
+        "name": "Thạch Thành",
+        "id": "4419",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Thọ Xuân",
+        "id": "4422",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Thanh Hóa",
+        "id": "4420",
+        "typeName": "Thành phố",
+        "parentId": "44"
+    },
+    {
+        "name": "Thiệu Hóa",
+        "id": "4421",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Thường Xuân",
+        "id": "4423",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Tĩnh Gia",
+        "id": "4424",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Triệu Sơn",
+        "id": "4425",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Vĩnh Lộc",
+        "id": "4426",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Yên Định",
+        "id": "4427",
+        "typeName": "Huyện",
+        "parentId": "44"
+    },
+    {
+        "name": "Cái Bè",
+        "id": "8601",
+        "typeName": "Huyện",
+        "parentId": "86"
+    },
+    {
+        "name": "Cai Lậy",
+        "id": "8602",
+        "typeName": "Thị xã",
+        "parentId": "86"
+    },
+    {
+        "name": "Cai Lậy",
+        "id": "8603",
+        "typeName": "Thị xã",
+        "parentId": "86"
+    },
+    {
+        "name": "Chợ Gạo",
+        "id": "8605",
+        "typeName": "Huyện",
+        "parentId": "86"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "8604",
+        "typeName": "Huyện",
+        "parentId": "86"
+    },
+    {
+        "name": "Gò Công",
+        "id": "8606",
+        "typeName": "Thị xã",
+        "parentId": "86"
+    },
+    {
+        "name": "Gò Công Đông",
+        "id": "8607",
+        "typeName": "Huyện",
+        "parentId": "86"
+    },
+    {
+        "name": "Gò Công Tây",
+        "id": "8608",
+        "typeName": "Huyện",
+        "parentId": "86"
+    },
+    {
+        "name": "Mỹ Tho",
+        "id": "8609",
+        "typeName": "Thành phố",
+        "parentId": "86"
+    },
+    {
+        "name": "Tân Phú Đông",
+        "id": "8610",
+        "typeName": "Huyện",
+        "parentId": "86"
+    },
+    {
+        "name": "Tân Phước",
+        "id": "8611",
+        "typeName": "Huyện",
+        "parentId": "86"
+    },
+    {
+        "name": "Cầu Kè",
+        "id": "9402",
+        "typeName": "Huyện",
+        "parentId": "94"
+    },
+    {
+        "name": "Cầu Ngang",
+        "id": "9403",
+        "typeName": "Huyện",
+        "parentId": "94"
+    },
+    {
+        "name": "Càng Long",
+        "id": "9401",
+        "typeName": "Huyện",
+        "parentId": "94"
+    },
+    {
+        "name": "Châu Thành",
+        "id": "9404",
+        "typeName": "Huyện",
+        "parentId": "94"
+    }
+]

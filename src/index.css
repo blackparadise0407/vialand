@@ -12,12 +12,24 @@
 }
 
 html {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
+}
+
+slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: auto;
+}
+
+label {
+  @apply font-medium;
 }
 
 @layer utilities {
@@ -34,10 +46,12 @@ body {
   }
 }
 
-slick-track {
-  display: flex !important;
-}
+@layer components {
+  .form-input {
+    @apply flex flex-col;
+  }
 
-.slick-slide {
-  height: auto;
+  .input {
+    @apply bg-transparent outline-none border border-gray-400 focus:ring-2 focus:ring-gray-300 rounded-md px-2 py-1.5;
+  }
 }

@@ -1,18 +1,18 @@
 type NewsCardProps = {
-  data: INews;
-};
+  data: IProperty
+}
 
 export default function NewsCard({ data }: NewsCardProps) {
-  if (!data) return null;
+  if (!data) return null
 
-  const { title, url } = data;
+  const { subject, image } = data
 
   return (
     <div className="flex gap-5">
-      <img className="w-[128px]" src={url} alt="" />
+      <img className="w-[128px]" src={image} alt="" />
       <div className="">
-        <p className="text-base font-light">{title}</p>
+        <p className="text-base font-light">{subject}</p>
       </div>
     </div>
-  );
+  )
 }

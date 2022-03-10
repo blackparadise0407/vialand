@@ -1,0 +1,17 @@
+export enum EPropertyDirection {
+  east = 1,
+  west = 2,
+  south = 3,
+  north = 4,
+  northEast = 5,
+  northSouth = 6,
+  southEase = 7,
+  southWest = 8,
+}
+
+export enum EHouseType {
+  house = 1,
+  land = 2,
+  premises = 3,
+  businessTransfer = 4,
+}
