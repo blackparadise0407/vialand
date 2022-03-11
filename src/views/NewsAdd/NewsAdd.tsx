@@ -1,10 +1,20 @@
-import { first, second } from 'assets/images'
+import { second } from 'assets/images'
+import { AddressSelect } from 'components'
+import { useForm } from 'react-hook-form'
 
 export default function NewsAdd() {
+  const { register } = useForm()
+
+  const handleNumberInput = (e: any) => {
+    if (!/[0-9]/.test(e.key)) {
+      e.preventDefault()
+    }
+  }
+
   return (
-    <div className="m-5 flex">
+    <div className="my-5 mx-5 md:mx-20 lg:mx-30 flex gap-5">
       <div
-        className="relative max-w-[60vh] w-full h-[59vh] mx-auto"
+        className="relative max-w-[50vh] w-full h-[59vh] mx-auto hidden md:block"
         style={{
           background: `url(${second}) center no-repeat`,
           backgroundSize: 'cover',
@@ -14,34 +24,84 @@ export default function NewsAdd() {
           <p className="text-center">Đăng tin bất động sản</p>
         </div>
       </div>
-      <div className="grid grid-cols-4 w-[50%]">
+      <form className="grid grid-cols-4 w-full lg:w-[50%] md:w-[80%] place-content-start gap-5">
+        <div className="col-span-4">
+          <h1 className="text-2xl font-medium">
+            Điền thông tin của bất động sản
+          </h1>
+        </div>
         <div className="form-input col-span-4">
           <label htmlFor="subject">Tiêu đề</label>
-          <input className="input" placeholder="Nhập tiêu đề" type="text" />
+          <input className="input" placeholder="Nhập tiêu đề..." type="text" />
         </div>
-        <div className="form-input">
-          <label htmlFor="size">Diện tích</label>
+        <div className="form-input xl:col-span-1 col-span-2">
+          <label htmlFor="size">Diện tích (m²)</label>
           <input
             className="input"
-            placeholder="Nhập diện tích"
+            placeholder="Nhập diện tích..."
             type="number"
             min={0}
             max={10000}
           />
         </div>
-        <div className="form-input">
-          <label htmlFor="description">Mô tả</label>
-          <input className="input" placeholder="Nhập mô tả" type="text" />
+        <div className="form-input xl:col-span-1 col-span-2">
+          <label htmlFor="structure">Kết cấu</label>
+          <input
+            className="input"
+            placeholder="VD: 1 trệt 1 lửng 1 lầu"
+            type="text"
+          />
         </div>
-        <div className="form-input">
+        <div className="form-input xl:col-span-1 col-span-2">
+          <label htmlFor="architecture">Kiến trúc</label>
+          <input className="input" placeholder="VD: 2PN 1WC" type="text" />
+        </div>
+        <div className="form-input xl:col-span-1 col-span-2">
+          <label htmlFor="direction">Hướng</label>
+          <input className="input" placeholder="Nhập hướng" type="text" />
+        </div>
+        <div className="col-span-4">
+          <label htmlFor="address">Địa chỉ</label>
+          <AddressSelect />
+        </div>
+        <div className="form-input col-span-2">
           <label htmlFor="contactName">Tên liên hệ</label>
-          <input className="input" placeholder="Nhập tên liên hệ" type="text" />
+          <input className="input" placeholder="Nguyễn Văn A" type="text" />
         </div>
-        <div className="form-input">
+        <div className="form-input col-span-2">
           <label htmlFor="contactNumber">SĐT liên hệ</label>
-          <input className="input" placeholder="Nhập SĐT" type="text" />
+          <input
+            className="input"
+            maxLength={10}
+            placeholder="0911xxxxxx"
+            onKeyPress={handleNumberInput}
+            type="text"
+          />
         </div>
-      </div>
+        <div className="form-input col-span-4">
+          <label htmlFor="description">Thông tin</label>
+          <textarea
+            {...register('description')}
+            className="input resize-none"
+            placeholder="Nhập thông tin..."
+            rows={5}
+            maxLength={255}
+          ></textarea>
+        </div>
+        <div className="form-input col-span-4">
+          <label htmlFor="video">Link video</label>
+          <input
+            {...register('video')}
+            className="input"
+            placeholder="https://example.com/video"
+            type="text"
+          />
+        </div>
+
+        <div className="col-span-4">
+          <button className="btn float-right">Đăng tin</button>
+        </div>
+      </form>
     </div>
   )
 }

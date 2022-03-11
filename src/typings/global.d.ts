@@ -21,5 +21,12 @@ declare global {
     description: string
     image: string
   }
+
+  interface IAddress {
+    province: number
+    district: number
+    ward: number
+    address: string
+  }
 }
 export {}
