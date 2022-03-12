@@ -10,9 +10,11 @@ type HeaderProps = { collapsed: boolean; onCollapsed: () => void }
 export default memo(function Header({ collapsed, onCollapsed }: HeaderProps) {
   return (
     <div className="w-full h-[88px] sticky top-0 flex justify-around items-center bg-[#5d4954] z-50">
-      <h3 className="text-xl font-semibold text-white tracking-widest">
-        ViaLand
-      </h3>
+      <Link to="/">
+        <h3 className="text-xl font-semibold text-white tracking-widest">
+          ViaLand
+        </h3>
+      </Link>
       <AiOutlineMenu
         className="cursor-pointer block md:hidden"
         color="#fff"

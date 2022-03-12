@@ -20,6 +20,13 @@ declare global {
     architecture: string
     description: string
     image: string
+    createdAt: number
+    province: number
+    ward: number
+    district: number
+    provinceName: string
+    wardName: string
+    districtName: string
   }
 
   interface IAddress {

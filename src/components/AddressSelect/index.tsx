@@ -41,15 +41,19 @@ export default memo(function AddressSelect({
       switch (evtName) {
         case 'province':
           state.district = null
+          state.districtName = ''
           state.ward = null
+          state.wardName = ''
           break
         case 'district':
           state.ward = null
+          state.wardName = ''
           break
         default:
           break
       }
       state[evtName] = val
+      state[evtName + 'Name'] = val
       return state
     })
   }
