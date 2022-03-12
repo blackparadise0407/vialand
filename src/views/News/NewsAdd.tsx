@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
 import { second } from 'assets/images'
-import { AddressSelect, FormError, FormGroup } from 'components'
+import { AddressSelect, FormError, FormGroup, ImageUpload } from 'components'
 import { RETRY_ERROR } from 'constants/message'
 import { db } from 'libs/firebase'
 import { mapAddressData } from 'utils/address'
+import { filesUpload } from 'libs/cloudinary'
 
 type NewsAddForm = {
   address: IAddress
@@ -32,13 +33,21 @@ export default function NewsAdd() {
     formState: { errors },
   } = useForm<NewsAddForm>()
   const [loading, setLoading] = useState(false)
+  const [images, setFileList] = useState<IFile[]>([])
+
+  const resetForm = () => {
+    reset()
+    setFileList([])
+  }
 
   const onSubmit: SubmitHandler<NewsAddForm> = async (data) => {
     setLoading(true)
     try {
+      const imageUrls = (await filesUpload(images)).map((x) => x.secure_url)
       const promise = addDoc(collection(db, 'properties'), {
         ...data,
         ...mapAddressData(data.address),
+        images: imageUrls,
         createdAt: Timestamp.now().seconds,
       })
       toast.promise(promise, {
@@ -46,7 +55,7 @@ export default function NewsAdd() {
         success: 'Đăng tin BDS thành công',
         error: RETRY_ERROR,
       })
-      reset()
+      resetForm()
     } catch (e) {
     } finally {
       setLoading(false)
@@ -59,10 +68,14 @@ export default function NewsAdd() {
     }
   }
 
+  const handleImagesChange = useCallback((fileList: IFile[]) => {
+    setFileList(fileList)
+  }, [])
+
   return (
     <div className="my-5 mx-5 md:mx-20 lg:mx-30 flex gap-5">
       <div
-        className="relative max-w-[50vh] w-full h-[59vh] mx-auto hidden md:block"
+        className="sticky top-[100px] max-w-[50vh] w-full h-[59vh] mx-auto hidden md:block"
         style={{
           background: `url(${second}) center no-repeat`,
           backgroundSize: 'cover',
@@ -233,6 +246,14 @@ export default function NewsAdd() {
           />
         </FormGroup>
         <div className="col-span-4">
+          <label htmlFor="images">Tải lên hình ảnh</label>
+          <ImageUpload
+            onChange={handleImagesChange}
+            className="w-full md:w-[400px]"
+            max={10}
+          />
+        </div>
+        <div className="col-span-4 ">
           <button type="submit" className="btn float-right">
             {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
             Đăng tin
