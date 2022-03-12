@@ -19,7 +19,7 @@ declare global {
     structure: string
     architecture: string
     description: string
-    image: string
+    images: string
     createdAt: number
     province: number
     ward: number
@@ -34,6 +34,18 @@ declare global {
     district: number
     ward: number
     address: string
+  }
+
+  interface IFile extends File {
+    id?: string
+    src?: string
+  }
+
+  interface ICloudinaryResponse {
+    asset_id: string
+    secure_url: 'https://res.cloudinary.com/dig00csrc/image/upload/v1647100311/vialand/1647100310975.jpg'
+    url: 'http://res.cloudinary.com/dig00csrc/image/upload/v1647100311/vialand/1647100310975.jpg'
+    [key: string]: any
   }
 }
 export {}

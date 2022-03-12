@@ -19,5 +19,13 @@ const config = {
     messagingSenderId:
       process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || '664321836803',
   },
+  cloudinary: {
+    cloudName: process.env.REACT_APP_CLOUDINARY_NAME || 'dig00csrc',
+    apiKey: process.env.REACT_APP_CLOUDINARY_API_KEY || '789143575217113',
+    apiSecret:
+      process.env.REACT_APP_CLOUDINARY_API_SECRET ||
+      '7dm3F5Xtb2m4ZZofdwjkNHPMRXY',
+    uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || 'j2tdcxh9',
+  },
 }
 export default config
