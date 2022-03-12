@@ -13,12 +13,14 @@ export default memo(function AddressSelect({
   value,
   onChange,
 }: AddressSelectProps) {
-  const [innerVal, setInnerVal] = useState<IAddress>({
-    ward: null,
-    district: null,
-    province: null,
-    address: '',
-  })
+  const [innerVal, setInnerVal] = useState<IAddress>(
+    value ?? {
+      ward: null,
+      district: null,
+      province: null,
+      address: '',
+    },
+  )
 
   const districtOpts = useMemo(() => {
     return districts.filter(
@@ -73,10 +75,10 @@ export default memo(function AddressSelect({
           name="province"
           onChange={handleSelectChange}
         >
-          <option value={null}>Chọn tỉnh thành</option>
-          {provinces.map(({ id, name }) => (
+          <option value={null}>Chọn tỉnh / thành phố</option>
+          {provinces.map(({ id, name, typeName }) => (
             <option key={id} value={id}>
-              {name}
+              {typeName} {name}
             </option>
           ))}
         </select>
@@ -85,18 +87,18 @@ export default memo(function AddressSelect({
           name="district"
           onChange={handleSelectChange}
         >
-          <option value={null}>Chọn quận</option>
-          {districtOpts.map(({ id, name }) => (
+          <option value={null}>Chọn quận / huyện</option>
+          {districtOpts.map(({ id, name, typeName }) => (
             <option key={id} value={id}>
-              {name}
+              {typeName} {name}
             </option>
           ))}
         </select>
         <select className="select" name="ward" onChange={handleSelectChange}>
-          <option value={null}>Chọn phường</option>
-          {wardOpts.map(({ id, name }) => (
+          <option value={null}>Chọn phường / xã</option>
+          {wardOpts.map(({ id, name, typeName }) => (
             <option key={id} value={id}>
-              {name}
+              {typeName} {name}
             </option>
           ))}
         </select>
