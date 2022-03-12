@@ -11,9 +11,18 @@ import {
   ninth,
 } from 'assets/images'
 import { NewsCard } from 'components'
-import { Fragment, useEffect } from 'react'
-import { collection, getDocs } from 'firebase/firestore/lite'
+import { Fragment, useEffect, useState } from 'react'
 import { db } from 'libs/firebase'
+import {
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  orderBy,
+  limit,
+} from 'firebase/firestore'
+import { toast } from 'react-toastify'
+import { RETRY_ERROR } from 'constants/message'
 
 const settings: Settings = {
   autoplay: true,
@@ -76,15 +85,33 @@ const data: any[] = [
   },
 ]
 export default function LandingPage() {
+  const [propertyList, setPropertyList] = useState<IProperty[]>([])
+
   useEffect(() => {
-    async function eff() {
-      const propertiesCol = collection(db, 'properties')
-      const propertySnapshot = await getDocs(propertiesCol)
-      const propertyList = propertySnapshot.docs.map((doc) => doc.data())
-      console.log(propertyList)
-      return propertyList
+    const q = query(
+      collection(db, 'properties'),
+      orderBy('createdAt', 'desc'),
+      limit(10),
+    )
+    const unsubscribe = onSnapshot(
+      q,
+      (querySnapshot) => {
+        const properties: IProperty[] = []
+        querySnapshot.forEach((doc) => {
+          properties.push({
+            id: doc.id,
+            ...doc.data(),
+          } as any)
+        })
+        setPropertyList(properties)
+      },
+      () => {
+        toast.error(RETRY_ERROR)
+      },
+    )
+    return () => {
+      unsubscribe()
     }
-    eff()
   }, [])
 
   return (
@@ -118,8 +145,8 @@ export default function LandingPage() {
             <p className="text-center">Dự Án Lavender Central Mall</p>
           </div>
         </div>
-        <div className="space-y-10">
-          {data.map((x) => (
+        <div className="space-y-5 w-full xl:w-1/2">
+          {propertyList.map((x) => (
             <NewsCard key={x.id} data={x} />
           ))}
         </div>
