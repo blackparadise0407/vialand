@@ -56,7 +56,7 @@ label {
   }
 
   .btn {
-    @apply bg-[#111] text-white px-5 py-2 rounded;
+    @apply flex items-center gap-2 bg-[#111] text-white px-5 py-2 rounded;
   }
 
   .select {
