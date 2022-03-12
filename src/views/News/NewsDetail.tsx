@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
-import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 import { db } from 'libs/firebase'
-import { Link } from 'react-router-dom'
 import NotFound from 'views/NotFound/NotFound'
 
 export default function NewsDetail() {
@@ -50,7 +49,9 @@ export default function NewsDetail() {
     <div className="">
       <iframe
         title="video"
-        className="mx-auto my-5 max-w-[420px] w-full aspect-video"
+        loading="lazy"
+        allowFullScreen
+        className="mx-auto my-5 max-w-[720px] w-full aspect-video"
         src="https://drive.google.com/file/d/1rW7djnriVVHhR9iNkqG8oCTsru6RRZes/preview"
       ></iframe>
       <div className="my-2 py-2 bg-[#f4f4f4] text-center font-light text-sm space-x-2">
@@ -66,7 +67,7 @@ export default function NewsDetail() {
           {wardName}
         </Link>
       </div>
-      <div className="my-5 flex flex-col mx-5 md:mx-auto space-y-5 items-center">
+      <div className="m-5 flex flex-col space-y-5 items-center">
         <h1 className="font-medium text-center">{subject}</h1>
         <div className="mx-auto font-sans text-justify text-base space-y-5">
           <p>Diện tích: {size} m²</p>
@@ -75,7 +76,6 @@ export default function NewsDetail() {
           <p>
             Vị trí: Hướng {direction}. {address}
           </p>
-
           <p>{description}</p>
           <p>
             Điện thoại liên hệ: {contactNumber} ({contactName})
