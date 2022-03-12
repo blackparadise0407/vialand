@@ -1,28 +1,28 @@
-import Slider, { Settings } from 'react-slick'
-import {
-  first,
-  second,
-  third,
-  fourth,
-  fifth,
-  sixth,
-  seventh,
-  eighth,
-  ninth,
-} from 'assets/images'
-import { NewsCard } from 'components'
 import { Fragment, useEffect, useState } from 'react'
-import { db } from 'libs/firebase'
 import {
   collection,
-  doc,
-  onSnapshot,
-  query,
-  orderBy,
   limit,
+  onSnapshot,
+  orderBy,
+  query,
 } from 'firebase/firestore'
+import Slider, { Settings } from 'react-slick'
 import { toast } from 'react-toastify'
+
+import {
+  eighth,
+  fifth,
+  first,
+  fourth,
+  ninth,
+  second,
+  seventh,
+  sixth,
+  third,
+} from 'assets/images'
+import { NewsCard } from 'components'
 import { RETRY_ERROR } from 'constants/message'
+import { db } from 'libs/firebase'
 
 const settings: Settings = {
   autoplay: true,
@@ -47,43 +47,6 @@ const images = [
   ninth,
 ]
 
-const data: any[] = [
-  {
-    id: '1',
-    subject:
-      'NHÀ BÁN GẤP tại QUẬN 1 - TPHCM giá rẻ, chính chủ, có sổ hồng cập nhật 01/2021...',
-    image: second,
-    description: '',
-  },
-  {
-    id: '2',
-    subject:
-      'NHÀ BÁN GẤP tại QUẬN 1 - TPHCM giá rẻ, chính chủ, có sổ hồng cập nhật 01/2021...',
-    image: second,
-    description: '',
-  },
-  {
-    id: '3',
-    subject:
-      'NHÀ BÁN GẤP tại QUẬN 1 - TPHCM giá rẻ, chính chủ, có sổ hồng cập nhật 01/2021...',
-    image: second,
-    description: '',
-  },
-  {
-    id: '4',
-    subject:
-      'NHÀ BÁN GẤP tại QUẬN 1 - TPHCM giá rẻ, chính chủ, có sổ hồng cập nhật 01/2021...',
-    image: second,
-    description: '',
-  },
-  {
-    id: '5',
-    subject:
-      'NHÀ BÁN GẤP tại QUẬN 1 - TPHCM giá rẻ, chính chủ, có sổ hồng cập nhật 01/2021...',
-    image: second,
-    description: '',
-  },
-]
 export default function LandingPage() {
   const [propertyList, setPropertyList] = useState<IProperty[]>([])
 
