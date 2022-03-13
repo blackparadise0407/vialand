@@ -1,15 +1,16 @@
 import { useCallback, useState } from 'react'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 
 import { second } from 'assets/images'
 import { AddressSelect, FormError, FormGroup, ImageUpload } from 'components'
 import { RETRY_ERROR } from 'constants/message'
+import { filesUpload } from 'libs/cloudinary'
 import { db } from 'libs/firebase'
 import { mapAddressData } from 'utils/address'
-import { filesUpload } from 'libs/cloudinary'
+import { slugify } from 'utils/string'
 
 type NewsAddForm = {
   address: IAddress
@@ -22,6 +23,7 @@ type NewsAddForm = {
   direction: string
   subject: string
   video: string
+  addressLink: string
 }
 
 export default function NewsAdd() {
@@ -47,6 +49,7 @@ export default function NewsAdd() {
       const promise = addDoc(collection(db, 'properties'), {
         ...data,
         ...mapAddressData(data.address),
+        slug: slugify(data.subject) + '-' + Date.now().toString(),
         images: imageUrls,
         createdAt: Timestamp.now().seconds,
       })
@@ -234,6 +237,19 @@ export default function NewsAdd() {
         </FormGroup>
         <FormGroup
           className="col-span-4"
+          htmlFor="addressLink"
+          label="Link google map"
+          error={errors.video}
+        >
+          <input
+            {...register('addressLink')}
+            className="input"
+            placeholder="Nhập link google map..."
+            type="text"
+          />
+        </FormGroup>
+        <FormGroup
+          className="col-span-4"
           htmlFor="video"
           label="Link video"
           error={errors.video}
@@ -241,7 +257,7 @@ export default function NewsAdd() {
           <input
             {...register('video')}
             className="input"
-            placeholder="https://example.com/video"
+            placeholder="Nhập link video..."
             type="text"
           />
         </FormGroup>
