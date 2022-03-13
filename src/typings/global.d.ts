@@ -27,6 +27,9 @@ declare global {
     provinceName: string
     wardName: string
     districtName: string
+    slug: string
+    video: string
+    hidden: boolean
   }
 
   interface IAddress {
@@ -46,6 +49,18 @@ declare global {
     secure_url: 'https://res.cloudinary.com/dig00csrc/image/upload/v1647100311/vialand/1647100310975.jpg'
     url: 'http://res.cloudinary.com/dig00csrc/image/upload/v1647100311/vialand/1647100310975.jpg'
     [key: string]: any
+  }
+
+  interface IAuthContext {
+    isAuth: boolean
+    onLogin: (pwd: string) => void
+    onOpenSignIn: () => void
+  }
+
+  interface IPagination {
+    page?: number
+    pageSize?: number
+    total?: number
   }
 }
 export {}
