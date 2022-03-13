@@ -56,7 +56,7 @@ label {
   }
 
   .btn {
-    @apply flex items-center gap-2 bg-[#111] text-white px-5 py-2 rounded;
+    @apply flex justify-center items-center gap-2 bg-[#111] text-white px-5 py-2 rounded;
   }
 
   .select {
@@ -66,4 +66,25 @@ label {
   .link {
     @apply text-blue-600 hover:text-blue-400 transition-colors;
   }
+}
+
+/* Table style */
+
+table,
+th,
+td {
+  @apply border border-gray-300;
+}
+
+th,
+td {
+  @apply px-5 py-3;
+}
+
+th {
+  @apply font-medium;
+}
+
+td {
+  @apply text-base text-center;
 }
