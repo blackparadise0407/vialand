@@ -10,11 +10,14 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'react-toastify/dist/ReactToastify.css'
 import './index.css'
+import { AuthProvider } from 'contexts/AuthContext'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
       <ToastContainer />
     </BrowserRouter>
   </React.StrictMode>,

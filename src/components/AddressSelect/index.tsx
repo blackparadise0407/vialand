@@ -94,7 +94,7 @@ export default memo(function AddressSelect({
           <option value={null}>Chọn quận / huyện</option>
           {districtOpts.map(({ id, name, typeName }) => (
             <option key={id} value={id}>
-              {typeName} {name}
+              {typeName} {name.startsWith('Quận') ? name.substring(5) : name}
             </option>
           ))}
         </select>

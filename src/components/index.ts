@@ -1,4 +1,7 @@
 export { default as NewsCard } from './NewsCard'
 export { default as AddressSelect } from './AddressSelect'
 export { default as ImageUpload } from './ImageUpload'
+export { default as Backdrop } from './Backdrop'
+export { default as Modal } from './Modal'
+export { default as Pagination } from './Pagination'
 export * from './Form'
