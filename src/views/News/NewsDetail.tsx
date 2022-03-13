@@ -1,12 +1,12 @@
-import { doc, getDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import { Link, useParams } from 'react-router-dom'
 
 import { db } from 'libs/firebase'
 import NotFound from 'views/NotFound/NotFound'
 
 export default function NewsDetail() {
-  const { id } = useParams<{ id: string }>()
+  const { slug } = useParams<{ slug: string }>()
   const [news, setnews] = useState<IProperty>(null)
   const [loading, setLoading] = useState(false)
 
@@ -14,17 +14,19 @@ export default function NewsDetail() {
     async function eff() {
       setLoading(true)
       try {
-        const snapshot = await getDoc(doc(db, 'properties', id))
-        if (snapshot.exists()) {
-          setnews(snapshot.data() as IProperty)
-        }
+        const docRef = collection(db, 'properties')
+        const q = query(docRef, where('slug', '==', slug))
+        const snapshot = await getDocs(q)
+        snapshot.forEach((doc) => {
+          setnews({ id: doc.id, ...doc.data() } as any)
+        })
       } catch (e) {
       } finally {
         setLoading(false)
       }
     }
     eff()
-  }, [id])
+  }, [slug])
 
   if (loading) return <div>Loading...</div>
 
