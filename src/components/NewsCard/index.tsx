@@ -1,19 +1,24 @@
 import { second } from 'assets/images'
+import clsx from 'clsx'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 
 type NewsCardProps = {
+  className?: string
   data: IProperty
 }
 
-export default function NewsCard({ data }: NewsCardProps) {
+export default function NewsCard({ className = '', data }: NewsCardProps) {
   if (!data) return null
 
   const { subject, images, createdAt } = data
 
   return (
-    <Link to={`/nha-dat/${data.slug}`}>
-      <div className="flex gap-5 hover:shadow p-2 cursor-pointer">
+    <Link
+      className={clsx('block hover:shadow', className)}
+      to={`/nha-dat/${data.slug}`}
+    >
+      <div className="flex gap-5 p-2 cursor-pointer h-full">
         <img
           className="w-[128px] aspect-video"
           src={images?.length ? images[0] : second}
