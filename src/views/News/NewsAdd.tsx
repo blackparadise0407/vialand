@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { KeyboardEvent, useCallback, useState } from 'react'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { second } from 'assets/images'
 import { AddressSelect, FormError, FormGroup, ImageUpload } from 'components'
 import { RETRY_ERROR } from 'constants/message'
+import { PropertyTypeOptions } from 'constants/property'
 import { filesUpload } from 'libs/cloudinary'
 import { db } from 'libs/firebase'
 import { mapAddressData } from 'utils/address'
@@ -24,6 +25,7 @@ type NewsAddForm = {
   subject: string
   video: string
   addressLink: string
+  type: number
 }
 
 export default function NewsAdd() {
@@ -50,7 +52,12 @@ export default function NewsAdd() {
         ...data,
         ...mapAddressData(data.address),
         slug: slugify(data.subject) + '-' + Date.now().toString(),
+        hideVideo: false,
         images: imageUrls,
+        subject:
+          PropertyTypeOptions.find((x) => x.value === data.type).name +
+          '-' +
+          data.subject,
         createdAt: Timestamp.now().seconds,
       })
       toast.promise(promise, {
@@ -65,8 +72,8 @@ export default function NewsAdd() {
     }
   }
 
-  const handleNumberInput = (e: any) => {
-    if (!/[0-9]./.test(e.key)) {
+  const handleNumberInput = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (!/[0-9]/.test(e.key)) {
       e.preventDefault()
     }
   }
@@ -98,7 +105,7 @@ export default function NewsAdd() {
           </h1>
         </div>
         <FormGroup
-          className="col-span-4"
+          className="col-span-4 xl:col-span-3"
           htmlFor="subject"
           label="Tiêu đề"
           error={errors.subject}
@@ -110,7 +117,23 @@ export default function NewsAdd() {
             type="text"
           />
         </FormGroup>
-
+        <FormGroup
+          className="col-span-4 xl:col-span-1"
+          htmlFor="type"
+          label="Phân loại"
+          error={errors.type}
+        >
+          <select
+            {...register('type', { required: true, valueAsNumber: true })}
+            className="input"
+          >
+            {PropertyTypeOptions.map((x) => (
+              <option key={x.value} value={x.value}>
+                {x.name}
+              </option>
+            ))}
+          </select>
+        </FormGroup>
         <FormGroup
           className="xl:col-span-1 col-span-2"
           htmlFor="size"
