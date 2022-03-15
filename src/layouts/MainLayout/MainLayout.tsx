@@ -27,7 +27,7 @@ export default function MainLayout() {
   return (
     <div>
       <Header collapsed={collapsed} onCollapsed={handleCollapsed} />
-      <main className="min-h-[calc(100vh-88px-394px)]">
+      <main className="min-h-[calc(100vh-88px-374px)]">
         <Outlet />
       </main>
       <Footer />
