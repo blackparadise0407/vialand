@@ -12,6 +12,6 @@ export enum EPropertyDirection {
 export enum EHouseType {
   house = 1,
   land = 2,
-  premises = 3,
+  apartment = 3,
   businessTransfer = 4,
 }
