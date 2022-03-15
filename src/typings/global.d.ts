@@ -29,7 +29,7 @@ declare global {
     districtName: string
     slug: string
     video: string
-    hidden: boolean
+    hideVideo: boolean
   }
 
   interface IAddress {
