@@ -18,7 +18,7 @@ export default memo(function Pagination({
   onPrev = () => {},
 }: PaginationProps) {
   return (
-    <div className="flex my-2 space-x-2">
+    <div className="flex my-3 space-x-2">
       <button
         className="flex items-center justify-center px-2 py-1 bg-[#111] hover:bg-opacity-70 transition-colors text-white rounded"
         onClick={onFirst}
