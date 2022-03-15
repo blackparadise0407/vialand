@@ -71,7 +71,6 @@ export default function LandingPage() {
         setPropertyList(properties)
       },
       (e) => {
-        console.log(e)
         toast.error(RETRY_ERROR)
       },
     )
