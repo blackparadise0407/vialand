@@ -36,13 +36,13 @@ export default function NewsManagement() {
       const clone = [...newsList]
       const foundNewsIdx = clone.findIndex((x) => x.id === id)
       if (foundNewsIdx > -1) {
-        clone[foundNewsIdx].hidden = !clone[foundNewsIdx].hidden
+        clone[foundNewsIdx].hideVideo = !clone[foundNewsIdx].hideVideo
         setNewsList(clone)
         try {
           const docRef = doc(db, 'properties', id)
           await setDoc(docRef, clone[foundNewsIdx])
         } catch (e) {
-          clone[foundNewsIdx].hidden = !clone[foundNewsIdx].hidden
+          clone[foundNewsIdx].hideVideo = !clone[foundNewsIdx].hideVideo
           setNewsList(clone)
         }
       }
@@ -112,7 +112,7 @@ export default function NewsManagement() {
               <th>Tên</th>
               <th>Ngày đăng</th>
               <th>Link video</th>
-              <th>Hiện tin</th>
+              <th>Hiện video</th>
             </tr>
           </thead>
           <tbody>
@@ -125,7 +125,7 @@ export default function NewsManagement() {
             ) : (
               <>
                 {newsList.map(
-                  ({ id, subject, video, createdAt, hidden }, idx) => (
+                  ({ id, subject, video, createdAt, hideVideo }, idx) => (
                     <tr className="hover:bg-gray-100 cursor-default" key={id}>
                       <td>{idx + 1}</td>
                       <td>{subject}</td>
@@ -136,7 +136,7 @@ export default function NewsManagement() {
                       <td>
                         <input
                           type="checkbox"
-                          checked={!hidden}
+                          checked={!hideVideo}
                           onChange={() => handleHideNews(id)}
                         />
                       </td>
