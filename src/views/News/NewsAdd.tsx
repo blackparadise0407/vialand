@@ -48,16 +48,17 @@ export default function NewsAdd() {
     setLoading(true)
     try {
       const imageUrls = (await filesUpload(images)).map((x) => x.secure_url)
+      const subject =
+        PropertyTypeOptions.find((x) => x.value === data.type).name +
+        ' - ' +
+        data.subject
       const promise = addDoc(collection(db, 'properties'), {
         ...data,
         ...mapAddressData(data.address),
-        slug: slugify(data.subject) + '-' + Date.now().toString(),
+        slug: slugify(subject) + '-' + Date.now().toString(),
         hideVideo: false,
         images: imageUrls,
-        subject:
-          PropertyTypeOptions.find((x) => x.value === data.type).name +
-          '-' +
-          data.subject,
+        subject,
         createdAt: Timestamp.now().seconds,
       })
       toast.promise(promise, {

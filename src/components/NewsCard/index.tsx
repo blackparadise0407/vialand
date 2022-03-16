@@ -16,7 +16,7 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
   return (
     <Link
       className={clsx('block hover:shadow', className)}
-      to={`/nha-dat/${data.slug}`}
+      to={`/${data.slug}`}
     >
       <div className="flex gap-5 p-2 cursor-pointer h-full">
         <img

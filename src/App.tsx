@@ -12,9 +12,9 @@ export default function App() {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<LandingPage />} />
         <Route path="/nha-dat" element={<NewsList />} />
-        <Route path="/nha-dat/:slug" element={<NewsDetail />} />
         <Route path="/cho-thue" element={<NewsList />} />
         <Route path="/dang-tin" element={<NewsAdd />} />
+        <Route path="/:slug" element={<NewsDetail />} />
       </Route>
       <Route path="/quan-tri" element={<AuthLayout />}>
         <Route index element={<NewsManagement />} />

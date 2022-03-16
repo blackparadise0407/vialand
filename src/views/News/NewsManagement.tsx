@@ -20,6 +20,8 @@ import { useCallback } from 'react'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { Pagination } from 'components'
+import { Link } from 'react-router-dom'
+import { BiLinkExternal } from 'react-icons/bi'
 
 const PAGE_LIMIT = 10
 
@@ -132,7 +134,21 @@ export default function NewsManagement() {
                       <td>
                         {dayjs(createdAt * 1000).format('DD/MM/YYYY - HH:mm')}
                       </td>
-                      <td>{video || '---'}</td>
+                      <td>
+                        {video ? (
+                          <a
+                            title="Nhấp để mở đường dẫn đến video"
+                            className="link inline-block"
+                            href={video}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <BiLinkExternal />
+                          </a>
+                        ) : (
+                          '---'
+                        )}
+                      </td>
                       <td>
                         <input
                           type="checkbox"

@@ -5,7 +5,6 @@ import {
   onSnapshot,
   orderBy,
   query,
-  where,
 } from 'firebase/firestore'
 import Slider, { Settings } from 'react-slick'
 import { toast } from 'react-toastify'
@@ -54,7 +53,6 @@ export default function LandingPage() {
   useEffect(() => {
     const q = query(
       collection(db, 'properties'),
-      where('hidden', '==', false),
       orderBy('createdAt', 'desc'),
       limit(10),
     )
