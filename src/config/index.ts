@@ -27,5 +27,9 @@ const config = {
       '7dm3F5Xtb2m4ZZofdwjkNHPMRXY',
     uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || 'j2tdcxh9',
   },
+  google: {
+    clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+    apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+  },
 }
 export default config
