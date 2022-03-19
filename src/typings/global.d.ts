@@ -62,5 +62,13 @@ declare global {
     pageSize?: number
     total?: number
   }
+
+  interface IKeyValue {
+    id: string
+    value: any
+    [key: string]: any
+  }
+
+  type PickerTypeKey = 'images' | 'video' | undefined
 }
 export {}
