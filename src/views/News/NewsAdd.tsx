@@ -1,15 +1,17 @@
-import { KeyboardEvent, useCallback, useState } from 'react'
+import { KeyboardEvent, useEffect, useState } from 'react'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
+import useDrivePicker from 'react-google-drive-picker'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 
 import { second } from 'assets/images'
-import { AddressSelect, FormError, FormGroup, ImageUpload } from 'components'
+import { AddressSelect, FormError, FormGroup } from 'components'
+import config from 'config'
 import { RETRY_ERROR } from 'constants/message'
 import { PropertyTypeOptions } from 'constants/property'
-import { filesUpload } from 'libs/cloudinary'
 import { db } from 'libs/firebase'
+import { getFilesMetadata } from 'libs/google'
 import { mapAddressData } from 'utils/address'
 import { slugify } from 'utils/string'
 
@@ -23,10 +25,13 @@ type NewsAddForm = {
   structure: string
   direction: string
   subject: string
-  video: string
   addressLink: string
   type: number
 }
+
+const {
+  google: { apiKey, clientId },
+} = config
 
 export default function NewsAdd() {
   const {
@@ -36,18 +41,22 @@ export default function NewsAdd() {
     reset,
     formState: { errors },
   } = useForm<NewsAddForm>()
+  const [openPicker, data] = useDrivePicker()
   const [loading, setLoading] = useState(false)
-  const [images, setFileList] = useState<IFile[]>([])
+  const [token, setToken] = useState('')
+  const [imageList, setImageList] = useState<IKeyValue[]>([])
+  const [video, setVideo] = useState('')
+  const [pickerType, setPickerType] = useState<PickerTypeKey>(undefined)
 
   const resetForm = () => {
     reset()
-    setFileList([])
+    setVideo('')
+    setImageList([])
   }
 
   const onSubmit: SubmitHandler<NewsAddForm> = async (data) => {
     setLoading(true)
     try {
-      const imageUrls = (await filesUpload(images)).map((x) => x.secure_url)
       const subject =
         PropertyTypeOptions.find((x) => x.value === data.type).name +
         ' - ' +
@@ -57,7 +66,8 @@ export default function NewsAdd() {
         ...mapAddressData(data.address),
         slug: slugify(subject) + '-' + Date.now().toString(),
         hideVideo: false,
-        images: imageUrls,
+        images: imageList,
+        video,
         subject,
         createdAt: Timestamp.now().seconds,
       })
@@ -79,9 +89,72 @@ export default function NewsAdd() {
     }
   }
 
-  const handleImagesChange = useCallback((fileList: IFile[]) => {
-    setFileList(fileList)
+  const handleOpenPicker = () => {
+    openPicker({
+      clientId,
+      developerKey: apiKey,
+      viewId: 'DOCS_IMAGES_AND_VIDEOS',
+      token,
+      showUploadView: true,
+      showUploadFolders: true,
+      supportDrives: true,
+      multiselect: true,
+    })
+  }
+
+  const handleRemoveImageById = (id: string) => {
+    setImageList((prev) => {
+      const clone = [...prev]
+      const foundIdx = clone.findIndex((x) => x.id === id)
+      if (foundIdx > -1) {
+        clone.splice(foundIdx, 1)
+        return clone
+      }
+      return clone
+    })
+  }
+
+  useEffect(() => {
+    fetch(
+      process.env.REACT_APP_REFRESH_TOKEN_URL ||
+        'http://localhost:5000/auth/refresh',
+      {
+        method: 'GET',
+      },
+    )
+      .then((r) => r.json())
+      .then(({ data }) => setToken(data.access_token))
+      .catch()
   }, [])
+
+  useEffect(() => {
+    async function eff() {
+      if (data) {
+        const { docs } = data
+        const media = await getFilesMetadata(docs, token)
+        switch (pickerType) {
+          case 'video':
+            !!media?.length && setVideo(media[0])
+            break
+          case 'images':
+            setImageList(
+              media.map(
+                (x, idx) =>
+                  ({
+                    id: (Date.now() + idx).toString(),
+                    value: x,
+                  } as IKeyValue),
+              ),
+            )
+            break
+          default:
+            break
+        }
+      }
+    }
+    eff()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
 
   return (
     <div className="my-5 mx-5 md:mx-20 lg:mx-30 flex gap-5">
@@ -263,7 +336,6 @@ export default function NewsAdd() {
           className="col-span-4"
           htmlFor="addressLink"
           label="Link google map"
-          error={errors.video}
         >
           <input
             {...register('addressLink')}
@@ -272,26 +344,61 @@ export default function NewsAdd() {
             type="text"
           />
         </FormGroup>
-        <FormGroup
-          className="col-span-4"
-          htmlFor="video"
-          label="Link video"
-          error={errors.video}
-        >
-          <input
-            {...register('video')}
-            className="input"
-            placeholder="Nhập link video..."
-            type="text"
-          />
+        <FormGroup className="col-span-4" htmlFor="video" label="Link video">
+          <button
+            type="button"
+            className="btn float-right"
+            onClick={() => {
+              handleOpenPicker()
+              setPickerType('video')
+            }}
+          >
+            Tải lên video
+          </button>
         </FormGroup>
-        <div className="col-span-4">
-          <label htmlFor="images">Tải lên hình ảnh</label>
-          <ImageUpload
-            onChange={handleImagesChange}
-            className="w-full md:w-[400px]"
-            max={10}
-          />
+        <div className="col-span-4 flex flex-wrap gap-2">
+          {video && (
+            <div className="relative mx-auto">
+              <iframe
+                className="w-full overflow-hidden aspect-video border"
+                title="video"
+                scrolling="no"
+                src={video}
+              ></iframe>
+              <AiOutlineClose
+                className="absolute bg-white rounded-full shadow md:text-md lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
+                onClick={() => setVideo('')}
+              />
+            </div>
+          )}
+        </div>
+        <FormGroup className="col-span-4" htmlFor="video" label="Link video">
+          <button
+            type="button"
+            className="btn float-right"
+            onClick={() => {
+              handleOpenPicker()
+              setPickerType('images')
+            }}
+          >
+            Tải lên hình ảnh
+          </button>
+        </FormGroup>
+        <div className="col-span-4 flex flex-wrap gap-2">
+          {imageList.map((x) => (
+            <div key={x.id} className="relative">
+              <iframe
+                className="w-[60px] md:w-[80px] lg:w-[96px] overflow-hidden aspect-square border"
+                title={x.id}
+                scrolling="no"
+                src={x.value}
+              ></iframe>
+              <AiOutlineClose
+                className="absolute bg-white rounded-full shadow md:text-md lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
+                onClick={() => handleRemoveImageById(x.id)}
+              />
+            </div>
+          ))}
         </div>
         <div className="col-span-4 ">
           <button type="submit" className="btn float-right">
