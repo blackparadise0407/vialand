@@ -1,4 +1,3 @@
-import { second } from 'assets/images'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
@@ -19,10 +18,11 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
       to={`/${data.slug}`}
     >
       <div className="flex gap-5 p-2 cursor-pointer h-full">
-        <img
+        <iframe
+          title="image"
           className="w-[128px] aspect-video"
-          src={images?.length ? images[0] : second}
-          alt=""
+          scrolling="no"
+          src={images?.length && images[0]}
         />
         <div className="overflow-hidden flex flex-col text-base font-light w-full">
           <p className="truncate">{subject}</p>
