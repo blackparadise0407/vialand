@@ -1,27 +1,25 @@
-import { RETRY_ERROR } from 'constants/message'
+import { useCallback, useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import {
   collection,
   doc,
-  getDocs,
-  query,
-  setDoc,
-  limit,
-  startAfter,
   DocumentData,
-  QueryDocumentSnapshot,
-  orderBy,
   endBefore,
+  getDocs,
+  limit,
+  orderBy,
+  query,
   QueryConstraint,
+  QueryDocumentSnapshot,
+  setDoc,
+  startAfter,
 } from 'firebase/firestore'
-import { db } from 'libs/firebase'
-import { useState } from 'react'
-import { useCallback } from 'react'
-import { useEffect } from 'react'
-import { toast } from 'react-toastify'
-import { Pagination } from 'components'
-import { Link } from 'react-router-dom'
 import { BiLinkExternal } from 'react-icons/bi'
+import { toast } from 'react-toastify'
+
+import { Pagination } from 'components'
+import { RETRY_ERROR } from 'constants/message'
+import { db } from 'libs/firebase'
 
 const PAGE_LIMIT = 10
 
@@ -102,6 +100,7 @@ export default function NewsManagement() {
   // First run
   useEffect(() => {
     fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -136,15 +135,12 @@ export default function NewsManagement() {
                       </td>
                       <td>
                         {video ? (
-                          <a
-                            title="Nhấp để mở đường dẫn đến video"
-                            className="link inline-block"
-                            href={video}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <BiLinkExternal />
-                          </a>
+                          <iframe
+                            className="w-full overflow-hidden aspect-video border"
+                            title="video"
+                            scrolling="no"
+                            src={video}
+                          ></iframe>
                         ) : (
                           '---'
                         )}
