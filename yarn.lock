@@ -7671,6 +7671,11 @@ react-error-overlay@^6.0.10:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.10.tgz#0fe26db4fa85d9dbb8624729580e90e7159a59a6"
   integrity sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==
 
+react-google-drive-picker@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-google-drive-picker/-/react-google-drive-picker-1.1.4.tgz#dc6dfae2cb11d947358d9f8e02a3232632a98ddf"
+  integrity sha512-sXcr3yRD4rqp0JlPge31lrcAgwrsBIERB5IwPu0ZvDNR4RyEHUVLxm2QYRA/wz9lgcaY21oy9Foo96rAxLAbtw==
+
 react-hook-form@^7.27.1:
   version "7.27.1"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.27.1.tgz#fe5fbcb6bf58751f66d9569e998d671480cc57f6"

@@ -15,6 +15,7 @@
     "firebase": "^9.6.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-google-drive-picker": "^1.1.4",
     "react-hook-form": "^7.27.1",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.2",
@@ -27,7 +28,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "SET GENERATE_SOURCEMAP=false && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
