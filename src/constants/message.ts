@@ -1,1 +1,1 @@
-export const RETRY_ERROR = 'Đã có lỗi xảy ra, vui lòng thử lại sau'
+export const RETRY_ERROR = 'Đã có lỗi xảy ra, vui lòng thử lại sau ít phút'
