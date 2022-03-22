@@ -5,6 +5,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  where,
 } from 'firebase/firestore'
 import Slider, { Settings } from 'react-slick'
 import { toast } from 'react-toastify'
@@ -54,6 +55,7 @@ export default function LandingPage() {
     const q = query(
       collection(db, 'properties'),
       orderBy('createdAt', 'desc'),
+      where('published', '==', true),
       limit(10),
     )
     const unsubscribe = onSnapshot(
