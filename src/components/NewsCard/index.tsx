@@ -11,18 +11,16 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
   if (!data) return null
 
   const { subject, images, createdAt } = data
-
   return (
     <Link
       className={clsx('block hover:shadow', className)}
       to={`/${data.slug}`}
     >
       <div className="flex gap-5 p-2 cursor-pointer h-full">
-        <iframe
-          title="image"
+        <img
           className="w-[128px] aspect-video"
-          scrolling="no"
           src={images?.length && images[0]}
+          alt=""
         />
         <div className="overflow-hidden flex flex-col text-base font-light w-full">
           <p className="truncate">{subject}</p>
