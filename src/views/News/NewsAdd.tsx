@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useState } from 'react'
+import { KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import useDrivePicker from 'react-google-drive-picker'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
@@ -6,12 +6,12 @@ import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 
 import { second } from 'assets/images'
-import { AddressSelect, FormError, FormGroup } from 'components'
+import { AddressSelect, FormError, FormGroup, Modal } from 'components'
 import config from 'config'
 import { RETRY_ERROR } from 'constants/message'
 import { PropertyTypeOptions } from 'constants/property'
 import { db } from 'libs/firebase'
-import { getFilesMetadata } from 'libs/google'
+import { getFilesMetadata, removeFileFromDriveById } from 'libs/google'
 import { mapAddressData } from 'utils/address'
 import { slugify } from 'utils/string'
 
@@ -27,6 +27,7 @@ type NewsAddForm = {
   subject: string
   addressLink: string
   type: number
+  paymentImage: string
 }
 
 const {
@@ -45,13 +46,17 @@ export default function NewsAdd() {
   const [loading, setLoading] = useState(false)
   const [token, setToken] = useState('')
   const [imageList, setImageList] = useState<IKeyValue[]>([])
-  const [video, setVideo] = useState('')
+  const [video, setVideo] = useState<IKeyValue>(null)
+  const [paymentImage, setPaymentImage] = useState<IKeyValue>(null)
   const [pickerType, setPickerType] = useState<PickerTypeKey>(undefined)
+  const [open, setOpen] = useState(false)
 
   const resetForm = () => {
     reset()
-    setVideo('')
+    setVideo(null)
     setImageList([])
+    setPaymentImage(null)
+    setOpen(false)
   }
 
   const onSubmit: SubmitHandler<NewsAddForm> = async (data) => {
@@ -65,9 +70,11 @@ export default function NewsAdd() {
         ...data,
         ...mapAddressData(data.address),
         slug: slugify(subject) + '-' + Date.now().toString(),
+        published: false,
         hideVideo: false,
-        images: imageList,
-        video,
+        images: imageList.map((x) => x.value),
+        video: video.value,
+        paymentImage: paymentImage.value,
         subject,
         createdAt: Timestamp.now().seconds,
       })
@@ -89,30 +96,63 @@ export default function NewsAdd() {
     }
   }
 
-  const handleOpenPicker = () => {
+  const handleOpenPicker = (pickerType: PickerTypeKey) => {
     openPicker({
       clientId,
       developerKey: apiKey,
-      viewId: 'DOCS_IMAGES_AND_VIDEOS',
       token,
       showUploadView: true,
       showUploadFolders: true,
       supportDrives: true,
-      multiselect: true,
+      multiselect: pickerType === 'images',
+      disableDefaultView: true,
     })
   }
 
-  const handleRemoveImageById = (id: string) => {
-    setImageList((prev) => {
-      const clone = [...prev]
-      const foundIdx = clone.findIndex((x) => x.id === id)
-      if (foundIdx > -1) {
-        clone.splice(foundIdx, 1)
-        return clone
-      }
-      return clone
-    })
+  const handleRemoveImageById = async (id: string) => {
+    const clone = [...imageList]
+    const foundIdx = clone.findIndex((x) => x.id === id)
+
+    if (
+      foundIdx > -1 &&
+      toast.promise<boolean>(removeFileFromDriveById(id, token), {
+        pending: 'Đang xóa ảnh',
+        success: 'Xóa ảnh thành công',
+        error: RETRY_ERROR,
+      })
+    ) {
+      clone.splice(foundIdx, 1)
+      setImageList(clone)
+    }
   }
+
+  const handleRemoveVideo = async () => {
+    if (
+      toast.promise<boolean>(removeFileFromDriveById(video.id, token), {
+        pending: 'Đang xóa video',
+        success: 'Xóa video thành công',
+        error: RETRY_ERROR,
+      })
+    ) {
+      setVideo(null)
+    }
+  }
+
+  const handleRemovePaymentImage = async () => {
+    if (
+      toast.promise<boolean>(removeFileFromDriveById(paymentImage.id, token), {
+        pending: 'Đang xóa ảnh',
+        success: 'Xóa ảnh thành công',
+        error: RETRY_ERROR,
+      })
+    ) {
+      setPaymentImage(null)
+    }
+  }
+
+  const toggleModal = useCallback(() => {
+    setOpen((prev) => !prev)
+  }, [])
 
   useEffect(() => {
     fetch(
@@ -134,18 +174,27 @@ export default function NewsAdd() {
         const media = await getFilesMetadata(docs, token)
         switch (pickerType) {
           case 'video':
-            !!media?.length && setVideo(media[0])
+            if (!!media?.length) {
+              const { id, embedLink } = media[0]
+              setVideo({ id, value: embedLink })
+            }
             break
           case 'images':
             setImageList(
               media.map(
-                (x, idx) =>
+                ({ thumbnailLink, id }, idx) =>
                   ({
-                    id: (Date.now() + idx).toString(),
-                    value: x,
+                    id,
+                    value: thumbnailLink,
                   } as IKeyValue),
               ),
             )
+            break
+          case 'paymentImage':
+            if (!!media?.length) {
+              const { id, thumbnailLink } = media[0]
+              setPaymentImage({ id, value: thumbnailLink })
+            }
             break
           default:
             break
@@ -169,10 +218,7 @@ export default function NewsAdd() {
           <p className="text-center">Đăng tin bất động sản</p>
         </div>
       </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-4 w-full lg:w-[50%] md:w-[80%] place-content-start gap-5"
-      >
+      <form className="grid grid-cols-4 w-full lg:w-[50%] md:w-[80%] place-content-start gap-5">
         <div className="col-span-4">
           <h1 className="text-2xl font-medium">
             Điền thông tin của bất động sản
@@ -349,25 +395,25 @@ export default function NewsAdd() {
             type="button"
             className="btn float-right"
             onClick={() => {
-              handleOpenPicker()
               setPickerType('video')
+              handleOpenPicker('video')
             }}
           >
             Tải lên video
           </button>
         </FormGroup>
         <div className="col-span-4 flex flex-wrap gap-2">
-          {video && (
+          {!!video && (
             <div className="relative mx-auto">
               <iframe
                 className="w-full overflow-hidden aspect-video border"
                 title="video"
                 scrolling="no"
-                src={video}
+                src={video.value}
               ></iframe>
               <AiOutlineClose
-                className="absolute bg-white rounded-full shadow md:text-md lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
-                onClick={() => setVideo('')}
+                className="absolute bg-white rounded-full shadow md:text-base lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
+                onClick={handleRemoveVideo}
               />
             </div>
           )}
@@ -377,8 +423,8 @@ export default function NewsAdd() {
             type="button"
             className="btn float-right"
             onClick={() => {
-              handleOpenPicker()
               setPickerType('images')
+              handleOpenPicker('images')
             }}
           >
             Tải lên hình ảnh
@@ -394,19 +440,75 @@ export default function NewsAdd() {
                 src={x.value}
               ></iframe>
               <AiOutlineClose
-                className="absolute bg-white rounded-full shadow md:text-md lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
+                className="absolute bg-white rounded-full shadow md:text-base lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
                 onClick={() => handleRemoveImageById(x.id)}
               />
             </div>
           ))}
         </div>
         <div className="col-span-4 ">
-          <button type="submit" className="btn float-right">
+          <button
+            type="button"
+            onClick={toggleModal}
+            className="btn float-right"
+          >
             {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
             Đăng tin
           </button>
         </div>
       </form>
+      <Modal
+        open={open}
+        onClose={toggleModal}
+        title="Vui lòng tiến hành thanh toán để hoàn tất đăng tin"
+      >
+        <div className="grow">
+          <h1 className="text-sm md:text-base font-medium">
+            Hướng dẫn thanh toán
+          </h1>
+          <p className="text-sm md:text-base">
+            Tiến hành quét mã bên dưới để thanh toán. Sau đó tải ảnh chụp hóa
+            đơn thanh toán vào bên dưới và nhấn nút <b>Hoàn tất</b>
+          </p>
+
+          <iframe
+            width="100%"
+            className="h-[500px] overflow-hidden py-2"
+            title="momo payment"
+            scrolling="vertical"
+            src="https://me.momo.vn/qr-page/P2P/QDI6uosnsmiqiJU8UqUO/WPe99g16zvZZeLy"
+          ></iframe>
+          <button
+            type="button"
+            className="btn w-full"
+            onClick={() => {
+              setPickerType('paymentImage')
+              handleOpenPicker('paymentImage')
+            }}
+          >
+            Tải lên ảnh chụp hóa đơn
+          </button>
+          {!!paymentImage && (
+            <div className="relative mx-auto w-[120px] my-2">
+              <img
+                className="w-full overflow-hidden aspect-square border"
+                src={paymentImage.value}
+                alt=""
+              />
+              <AiOutlineClose
+                className="absolute bg-white rounded-full shadow md:text-base lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
+                onClick={handleRemovePaymentImage}
+              />
+            </div>
+          )}
+          <button
+            onClick={() => handleSubmit(onSubmit)()}
+            className="btn w-full mt-5"
+          >
+            Hoàn tất
+          </button>
+        </div>
+      </Modal>
     </div>
   )
 }
