@@ -14,7 +14,6 @@ import {
   setDoc,
   startAfter,
 } from 'firebase/firestore'
-import { BiLinkExternal } from 'react-icons/bi'
 import { toast } from 'react-toastify'
 
 import { Pagination } from 'components'
@@ -31,18 +30,18 @@ export default function NewsManagement() {
   const [newsList, setNewsList] = useState<IProperty[]>([])
   const [loading, setLoading] = useState(false)
 
-  const handleHideNews = useCallback(
-    async (id: string) => {
+  const handleToggleProperties = useCallback(
+    async (id: string, prop: keyof IProperty) => {
       const clone = [...newsList]
       const foundNewsIdx = clone.findIndex((x) => x.id === id)
       if (foundNewsIdx > -1) {
-        clone[foundNewsIdx].hideVideo = !clone[foundNewsIdx].hideVideo
+        ;(clone[foundNewsIdx][prop] as boolean) = !clone[foundNewsIdx][prop]
         setNewsList(clone)
         try {
           const docRef = doc(db, 'properties', id)
           await setDoc(docRef, clone[foundNewsIdx])
         } catch (e) {
-          clone[foundNewsIdx].hideVideo = !clone[foundNewsIdx].hideVideo
+          ;(clone[foundNewsIdx][prop] as boolean) = !clone[foundNewsIdx][prop]
           setNewsList(clone)
         }
       }
@@ -109,11 +108,12 @@ export default function NewsManagement() {
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th>STT</th>
               <th>Tên</th>
               <th>Ngày đăng</th>
+              <th>Ảnh thanh toán</th>
               <th>Link video</th>
               <th>Hiện video</th>
+              <th>Đăng bài</th>
             </tr>
           </thead>
           <tbody>
@@ -126,12 +126,27 @@ export default function NewsManagement() {
             ) : (
               <>
                 {newsList.map(
-                  ({ id, subject, video, createdAt, hideVideo }, idx) => (
+                  (
+                    {
+                      id,
+                      subject,
+                      video,
+                      createdAt,
+                      hideVideo,
+                      published,
+                      paymentImage,
+                    },
+                    idx,
+                  ) => (
                     <tr className="hover:bg-gray-100 cursor-default" key={id}>
-                      <td>{idx + 1}</td>
                       <td>{subject}</td>
                       <td>
                         {dayjs(createdAt * 1000).format('DD/MM/YYYY - HH:mm')}
+                      </td>
+                      <td>
+                        {paymentImage && (
+                          <img className="mx-auto" src={paymentImage} alt="" />
+                        )}
                       </td>
                       <td>
                         {video ? (
@@ -149,7 +164,18 @@ export default function NewsManagement() {
                         <input
                           type="checkbox"
                           checked={!hideVideo}
-                          onChange={() => handleHideNews(id)}
+                          onChange={() =>
+                            handleToggleProperties(id, 'hideVideo')
+                          }
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={published}
+                          onChange={() =>
+                            handleToggleProperties(id, 'published')
+                          }
                         />
                       </td>
                     </tr>
