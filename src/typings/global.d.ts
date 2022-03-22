@@ -29,7 +29,9 @@ declare global {
     districtName: string
     slug: string
     video: string
+    paymentImage: string
     hideVideo: boolean
+    published: boolean
   }
 
   interface IAddress {
@@ -69,6 +71,12 @@ declare global {
     [key: string]: any
   }
 
-  type PickerTypeKey = 'images' | 'video' | undefined
+  type PickerTypeKey = 'images' | 'video' | 'paymentImage' | undefined
+
+  interface IGoogleDocsResponse {
+    id: string
+    embedLink: string
+    thumbnailLink: string
+  }
 }
 export {}
