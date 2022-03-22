@@ -16,7 +16,11 @@ export default function NewsDetail() {
       setLoading(true)
       try {
         const docRef = collection(db, 'properties')
-        const q = query(docRef, where('slug', '==', slug))
+        const q = query(
+          docRef,
+          where('slug', '==', slug),
+          where('published', '==', true),
+        )
         const snapshot = await getDocs(q)
         snapshot.forEach((doc) => {
           setnews({ id: doc.id, ...doc.data() } as any)
