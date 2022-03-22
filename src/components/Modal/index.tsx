@@ -22,7 +22,7 @@ export default memo(function Modal({
     <Backdrop>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded min-w-[200px] w-full max-w-[500px] bg-white">
         <div className="flex p-4">
-          <h1>{title}</h1>
+          <h1 className="text-sm md:text-base">{title}</h1>
           <div className="grow"></div>
           <AiOutlineClose
             size={23}
