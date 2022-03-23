@@ -16,17 +16,20 @@ import {
 } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 
-import { Pagination } from 'components'
+import { CrudButton, Pagination } from 'components'
 import { RETRY_ERROR } from 'constants/message'
 import { db } from 'libs/firebase'
+import { useAuthContext } from 'contexts/AuthContext'
+import { removeFileFromDriveById } from 'libs/google'
 
 const PAGE_LIMIT = 10
 
 export default function NewsManagement() {
+  const { token } = useAuthContext()
+
   const [docPair, setDocPair] = useState<
     [QueryDocumentSnapshot<DocumentData>, QueryDocumentSnapshot<DocumentData>]
   >([null, null])
-
   const [newsList, setNewsList] = useState<IProperty[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -40,6 +43,7 @@ export default function NewsManagement() {
         try {
           const docRef = doc(db, 'properties', id)
           await setDoc(docRef, clone[foundNewsIdx])
+          toast.success('Thao tác thành công')
         } catch (e) {
           ;(clone[foundNewsIdx][prop] as boolean) = !clone[foundNewsIdx][prop]
           setNewsList(clone)
@@ -47,6 +51,42 @@ export default function NewsManagement() {
       }
     },
     [newsList],
+  )
+
+  const handleDeleteNews = useCallback(async (id: string) => {
+    // toast.promise(removeFileFromDriveById(fileId, token), {
+    //   pending: 'Đang xóa bài đăng',
+    //   success: 'Xóa bài đăng thành công',
+    //   error: RETRY_ERROR,
+    // })
+  }, [])
+
+  const handleDeleteNewsVideo = useCallback(
+    async (newsId: string, fileId: string) => {
+      const clone = [...newsList]
+      const foundNewsIdx = clone.findIndex((x) => x.id === newsId)
+      if (foundNewsIdx > -1) {
+        try {
+          clone[foundNewsIdx].video = null
+          const docRef = doc(db, 'properties', newsId)
+          await toast.promise(
+            Promise.all([
+              setDoc(docRef, clone[foundNewsIdx]),
+              removeFileFromDriveById(fileId, token),
+            ]),
+            {
+              pending: 'Đang xóa video',
+              success: 'Xóa video thành công',
+              error: RETRY_ERROR,
+            },
+          )
+          setNewsList(clone)
+        } catch (e) {
+          setNewsList([...newsList])
+        }
+      }
+    },
+    [token, newsList],
   )
 
   const fetchData = useCallback(async (...constraints: QueryConstraint[]) => {
@@ -112,8 +152,8 @@ export default function NewsManagement() {
               <th>Ngày đăng</th>
               <th>Ảnh thanh toán</th>
               <th>Link video</th>
-              <th>Hiện video</th>
-              <th>Đăng bài</th>
+              <th>Thao tác video</th>
+              <th>Thao tác bài đăng</th>
             </tr>
           </thead>
           <tbody>
@@ -144,8 +184,14 @@ export default function NewsManagement() {
                         {dayjs(createdAt * 1000).format('DD/MM/YYYY - HH:mm')}
                       </td>
                       <td>
-                        {paymentImage && (
-                          <img className="mx-auto" src={paymentImage} alt="" />
+                        {paymentImage ? (
+                          <img
+                            className="mx-auto"
+                            src={paymentImage.value}
+                            alt=""
+                          />
+                        ) : (
+                          '---'
                         )}
                       </td>
                       <td>
@@ -154,26 +200,42 @@ export default function NewsManagement() {
                             className="w-full overflow-hidden aspect-video border"
                             title="video"
                             scrolling="no"
-                            src={video}
+                            src={video.value}
                           ></iframe>
                         ) : (
                           '---'
                         )}
                       </td>
                       <td>
-                        <input
+                        {/* <input
                           type="checkbox"
                           checked={!hideVideo}
                           onChange={() =>
                             handleToggleProperties(id, 'hideVideo')
                           }
+                        /> */}
+                        <CrudButton
+                          hideToggle
+                          disableDelete={!video}
+                          booleanVal={hideVideo}
+                          onDelete={() => handleDeleteNewsVideo(id, video.id)}
+                          onToggle={() =>
+                            handleToggleProperties(id, 'hideVideo')
+                          }
                         />
                       </td>
                       <td>
-                        <input
+                        {/* <input
                           type="checkbox"
                           checked={published}
                           onChange={() =>
+                            handleToggleProperties(id, 'published')
+                          }
+                        /> */}
+                        <CrudButton
+                          booleanVal={!published}
+                          onDelete={() => handleDeleteNews(id)}
+                          onToggle={() =>
                             handleToggleProperties(id, 'published')
                           }
                         />
