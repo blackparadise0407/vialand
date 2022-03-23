@@ -4,6 +4,7 @@ import {
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useState,
 } from 'react'
 import { toast } from 'react-toastify'
@@ -14,6 +15,7 @@ type AuthProviderProps = {
 
 const initialValue: IAuthContext = {
   isAuth: false,
+  token: '',
   onLogin: () => {},
   onOpenSignIn: () => {},
 }
@@ -25,6 +27,7 @@ const AuthContext = createContext<IAuthContext>(initialValue)
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [auth, setAuth] = useState(initialValue.isAuth)
   const [open, setOpen] = useState(false)
+  const [token, setToken] = useState('')
 
   const handleLogin = useCallback((password: string) => {
     if (!password) {
@@ -47,10 +50,24 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setOpen(false)
   }, [])
 
+  useEffect(() => {
+    fetch(
+      process.env.REACT_APP_REFRESH_TOKEN_URL ||
+        'http://localhost:5000/auth/refresh',
+      {
+        method: 'GET',
+      },
+    )
+      .then((r) => r.json())
+      .then(({ data }) => setToken(data.access_token))
+      .catch()
+  }, [])
+
   return (
     <AuthContext.Provider
       value={{
         isAuth: auth,
+        token,
         onLogin: handleLogin,
         onOpenSignIn: handleOpenSignIn,
       }}
