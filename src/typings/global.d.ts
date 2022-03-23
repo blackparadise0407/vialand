@@ -19,7 +19,7 @@ declare global {
     structure: string
     architecture: string
     description: string
-    images: string
+    images: IKeyValue[]
     createdAt: number
     province: number
     ward: number
@@ -28,8 +28,8 @@ declare global {
     wardName: string
     districtName: string
     slug: string
-    video: string
-    paymentImage: string
+    video: IKeyValue
+    paymentImage: IKeyValue
     hideVideo: boolean
     published: boolean
   }
@@ -55,6 +55,7 @@ declare global {
 
   interface IAuthContext {
     isAuth: boolean
+    token: string
     onLogin: (pwd: string) => void
     onOpenSignIn: () => void
   }

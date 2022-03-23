@@ -19,7 +19,7 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
       <div className="flex gap-5 p-2 cursor-pointer h-full">
         <img
           className="w-[128px] aspect-video"
-          src={images?.length && images[0]}
+          src={images?.length && images[0].value}
           alt=""
         />
         <div className="overflow-hidden flex flex-col text-base font-light w-full">

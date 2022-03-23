@@ -64,7 +64,7 @@ export default function NewsDetail() {
               loading="lazy"
               allowFullScreen
               className="mx-auto my-5 max-w-[720px] w-full aspect-video"
-              src={video}
+              src={video.value}
             ></iframe>
           ) : (
             <Result title="Video đã bị ẩn do chứa nội dung không phù hợp" />

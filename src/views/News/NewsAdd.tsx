@@ -1,4 +1,4 @@
-import { KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { KeyboardEvent, useCallback, useEffect, useState } from 'react'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import useDrivePicker from 'react-google-drive-picker'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
@@ -9,6 +9,7 @@ import { second } from 'assets/images'
 import { AddressSelect, FormError, FormGroup, Modal } from 'components'
 import config from 'config'
 import { RETRY_ERROR } from 'constants/message'
+import { useAuthContext } from 'contexts/AuthContext'
 import { PropertyTypeOptions } from 'constants/property'
 import { db } from 'libs/firebase'
 import { getFilesMetadata, removeFileFromDriveById } from 'libs/google'
@@ -44,7 +45,7 @@ export default function NewsAdd() {
   } = useForm<NewsAddForm>()
   const [openPicker, data] = useDrivePicker()
   const [loading, setLoading] = useState(false)
-  const [token, setToken] = useState('')
+  const { token } = useAuthContext()
   const [imageList, setImageList] = useState<IKeyValue[]>([])
   const [video, setVideo] = useState<IKeyValue>(null)
   const [paymentImage, setPaymentImage] = useState<IKeyValue>(null)
@@ -72,9 +73,9 @@ export default function NewsAdd() {
         slug: slugify(subject) + '-' + Date.now().toString(),
         published: false,
         hideVideo: false,
-        images: imageList.map((x) => x.value),
-        video: video.value,
-        paymentImage: paymentImage.value,
+        images: imageList,
+        video,
+        paymentImage,
         subject,
         createdAt: Timestamp.now().seconds,
       })
@@ -152,19 +153,6 @@ export default function NewsAdd() {
 
   const toggleModal = useCallback(() => {
     setOpen((prev) => !prev)
-  }, [])
-
-  useEffect(() => {
-    fetch(
-      process.env.REACT_APP_REFRESH_TOKEN_URL ||
-        'http://localhost:5000/auth/refresh',
-      {
-        method: 'GET',
-      },
-    )
-      .then((r) => r.json())
-      .then(({ data }) => setToken(data.access_token))
-      .catch()
   }, [])
 
   useEffect(() => {
