@@ -25,7 +25,7 @@ export default memo(function CrudButton({
   return (
     <div
       className={clsx(
-        'flex items-center justify-evenly text-sm md:text-lg gap-1 flex-wrap',
+        'flex items-center justify-evenly text-sm md:text-lg gap-1',
         className,
       )}
     >
