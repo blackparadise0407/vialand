@@ -9,17 +9,19 @@ type AddressSelectProps = {
   onChange?: (v: IAddress) => void
 }
 
+export const initialAddressSelectValue: IAddress = {
+  ward: undefined,
+  district: undefined,
+  province: undefined,
+  address: '',
+}
+
 export default memo(function AddressSelect({
   value,
   onChange,
 }: AddressSelectProps) {
   const [innerVal, setInnerVal] = useState<IAddress>(
-    value ?? {
-      ward: null,
-      district: null,
-      province: null,
-      address: '',
-    },
+    value ?? initialAddressSelectValue,
   )
 
   const districtOpts = useMemo(() => {
@@ -33,27 +35,25 @@ export default memo(function AddressSelect({
   }, [innerVal.district])
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const val = parseInt(e.target.value, 10)
+    const val = !isNaN(e.target.value as any)
+      ? parseInt(e.target.value, 10)
+      : undefined
     const evtName = e.target.name
 
     setInnerVal((prev) => {
       const state = { ...prev } as any
       switch (evtName) {
         case 'province':
-          state.district = null
-          state.districtName = ''
-          state.ward = null
-          state.wardName = ''
+          state.district = undefined
+          state.ward = undefined
           break
         case 'district':
-          state.ward = null
-          state.wardName = ''
+          state.ward = undefined
           break
         default:
           break
       }
       state[evtName] = val
-      state[evtName + 'Name'] = val
       return state
     })
   }
@@ -77,9 +77,10 @@ export default memo(function AddressSelect({
         <select
           className="select"
           name="province"
+          value={innerVal.province}
           onChange={handleSelectChange}
         >
-          <option value={null}>Chọn tỉnh / thành phố</option>
+          <option value={undefined}>Chọn tỉnh / thành phố</option>
           {provinces.map(({ id, name, typeName }) => (
             <option key={id} value={id}>
               {typeName} {name}
@@ -89,17 +90,23 @@ export default memo(function AddressSelect({
         <select
           className="select"
           name="district"
+          value={innerVal.district}
           onChange={handleSelectChange}
         >
-          <option value={null}>Chọn quận / huyện</option>
+          <option value={undefined}>Chọn quận / huyện</option>
           {districtOpts.map(({ id, name, typeName }) => (
             <option key={id} value={id}>
               {typeName} {name.startsWith('Quận') ? name.substring(5) : name}
             </option>
           ))}
         </select>
-        <select className="select" name="ward" onChange={handleSelectChange}>
-          <option value={null}>Chọn phường / xã</option>
+        <select
+          className="select"
+          name="ward"
+          value={innerVal.ward}
+          onChange={handleSelectChange}
+        >
+          <option value={undefined}>Chọn phường / xã</option>
           {wardOpts.map(({ id, name, typeName }) => (
             <option key={id} value={id}>
               {typeName} {name}
