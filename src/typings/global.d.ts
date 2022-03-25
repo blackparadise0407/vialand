@@ -79,5 +79,7 @@ declare global {
     embedLink: string
     thumbnailLink: string
   }
+
+  type AddressFilter = Omit<IAddress, 'address'>
 }
 export {}
