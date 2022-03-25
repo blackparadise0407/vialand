@@ -20,7 +20,7 @@ const initialValue: IAuthContext = {
   onOpenSignIn: () => {},
 }
 
-const PASSWORD = process.env.PASSWORD || '123456'
+const PASSWORD = process.env.REACT_APP_SECRET || '123456'
 
 const AuthContext = createContext<IAuthContext>(initialValue)
 
@@ -52,10 +52,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     fetch(
-      process.env.REACT_APP_REFRESH_TOKEN_URL ||
+      process.env.REACT_APP_BASE_API + '/auth/refresh' ||
         'http://localhost:5000/auth/refresh',
       {
         method: 'GET',
+        headers: {
+          secret: process.env.REACT_APP_SECRET,
+        },
       },
     )
       .then((r) => r.json())
