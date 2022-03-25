@@ -15,6 +15,7 @@ import { db } from 'libs/firebase'
 import { getFilesMetadata, removeFileFromDriveById } from 'libs/google'
 import { mapAddressData } from 'utils/address'
 import { slugify } from 'utils/string'
+import { initialAddressSelectValue } from 'components/AddressSelect'
 
 type NewsAddForm = {
   address: IAddress
@@ -67,26 +68,44 @@ export default function NewsAdd() {
         PropertyTypeOptions.find((x) => x.value === data.type).name +
         ' - ' +
         data.subject
-      const promise = addDoc(collection(db, 'properties'), {
-        ...data,
-        ...mapAddressData(data.address),
-        slug: slugify(subject) + '-' + Date.now().toString(),
-        published: false,
-        hideVideo: false,
-        images: imageList,
-        video,
-        paymentImage,
-        subject,
-        createdAt: Timestamp.now().seconds,
-      })
-      toast.promise(promise, {
+      const slug = slugify(subject) + '-' + Date.now().toString()
+      const promises = [
+        addDoc(collection(db, 'properties'), {
+          ...data,
+          ...mapAddressData(data.address),
+          slug,
+          published: false,
+          hideVideo: false,
+          images: imageList,
+          video,
+          paymentImage,
+          subject,
+          createdAt: Timestamp.now().seconds,
+        }),
+        fetch(
+          process.env.REACT_APP_BASE_API + '/news-submission' ||
+            'http://localhost:5000/news-submission',
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              secret: process.env.REACT_APP_SECRET,
+            },
+            method: 'POST',
+            body: JSON.stringify({
+              name: subject,
+              link: window.location.origin + `/quan-tri?slug=${slug}`,
+            }),
+          },
+        ),
+      ]
+      toast.promise(Promise.all(promises), {
         pending: 'Đang đăng tin',
         success: 'Đăng tin BDS thành công',
         error: RETRY_ERROR,
       })
-      resetForm()
     } catch (e) {
     } finally {
+      resetForm()
       setLoading(false)
     }
   }
@@ -154,6 +173,14 @@ export default function NewsAdd() {
   const toggleModal = useCallback(() => {
     setOpen((prev) => !prev)
   }, [])
+
+  const handleSubmitNews = () => {
+    if (!paymentImage) {
+      toast.warn('Vui lòng tải lên ảnh chụp hóa đơn để đăng bài')
+      return
+    }
+    handleSubmit(onSubmit)()
+  }
 
   useEffect(() => {
     async function eff() {
@@ -306,6 +333,7 @@ export default function NewsAdd() {
           <Controller
             control={control}
             name="address"
+            defaultValue={initialAddressSelectValue}
             rules={{
               required: true,
               validate: (value) => {
@@ -489,10 +517,7 @@ export default function NewsAdd() {
               />
             </div>
           )}
-          <button
-            onClick={() => handleSubmit(onSubmit)()}
-            className="btn w-full mt-5"
-          >
+          <button onClick={handleSubmitNews} className="btn w-full mt-5">
             Hoàn tất
           </button>
         </div>
