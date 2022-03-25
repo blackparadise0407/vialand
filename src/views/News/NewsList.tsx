@@ -15,22 +15,35 @@ import {
 import { useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import { NewsCard, Pagination, Result } from 'components'
+import { Filter, NewsCard, Pagination, Result } from 'components'
 import { PAGE_LIMIT } from 'constants/common'
 import { RETRY_ERROR } from 'constants/message'
 import { EHouseType } from 'enums'
 import { db } from 'libs/firebase'
 
+const initialFilter: AddressFilter = {
+  ward: undefined,
+  district: undefined,
+  province: undefined,
+}
+
 export default function NewsList() {
   const { pathname } = useLocation()
   const [newsList, setNewsList] = useState<IProperty[]>([])
+  const [fetched, setFetched] = useState(false)
   const [docPair, setDocPair] = useState<
     [QueryDocumentSnapshot<DocumentData>, QueryDocumentSnapshot<DocumentData>]
   >([null, null])
   const [loading, setLoading] = useState(false)
+  const [constraint, setConstraint] = useState<QueryConstraint[]>([])
+  const [filter, setFilter] = useState<AddressFilter>(initialFilter)
 
   const releaseState = () => {
     setNewsList([])
+    setDocPair([null, null])
+    setFetched(false)
+    setConstraint([])
+    setFilter(initialFilter)
   }
 
   const fetchData = useCallback(
@@ -44,9 +57,11 @@ export default function NewsList() {
         const q = query(
           docsRef,
           where('type', 'in', houseTypeArr),
+          where('published', '==', true),
           orderBy('createdAt', 'desc'),
           limit(PAGE_LIMIT),
           ...constraints,
+          ...constraint,
         )
 
         const snapshot = await getDocs(q)
@@ -63,17 +78,42 @@ export default function NewsList() {
             ...doc.data(),
           } as any)
         })
-        if (!newsList.length) {
-          toast.warning('Đã hết data')
-        } else setNewsList(newsList)
+        setNewsList(newsList)
       } catch (e) {
         toast.error(RETRY_ERROR)
       } finally {
         setLoading(false)
+        setFetched(true)
       }
     },
-    [pathname],
+    [pathname, constraint],
   )
+
+  const handleFilter = useCallback((v: AddressFilter) => {
+    setFilter(v)
+    if (Object.entries(v).every(([, v]) => !v)) setConstraint([])
+    if (v.ward) {
+      setConstraint([where('ward', '==', v.ward)])
+      return
+    }
+
+    if (v.district) {
+      setConstraint([where('district', '==', v.district)])
+      return
+    }
+
+    if (v.province) {
+      setConstraint([where('province', '==', v.province)])
+      return
+    }
+  }, [])
+
+  const handleClearFilter = useCallback(() => {
+    if (Object.entries(filter).some(([, v]) => !!v)) {
+      setFilter(initialFilter)
+      setConstraint([])
+    }
+  }, [filter])
 
   const handleChangePage = useCallback(
     async (next: boolean = false) => {
@@ -84,62 +124,43 @@ export default function NewsList() {
       } else {
         if (first) constraint = endBefore(first)
       }
-      try {
-        constraint && (await fetchData(constraint))
-      } catch (e) {}
+      constraint && fetchData(constraint)
     },
     [docPair, fetchData],
   )
 
-  // useEffect(() => {
-  //   setLoading(true)
-  //   const houseTypeArr = pathname.startsWith('/nha-dat')
-  //     ? [EHouseType.apartment, EHouseType.house, EHouseType.land]
-  //     : [EHouseType.businessTransfer]
-  //   const q = query(
-  //     collection(db, 'properties'),
-  //     where('type', 'in', houseTypeArr),
-  //     orderBy('createdAt', 'desc'),
-  //     limit(10),
-  //   )
-  //   const unsub = onSnapshot(q, (querySnapshot) => {
-  //     const properties: IProperty[] = []
-  //     querySnapshot.forEach((doc) => {
-  //       properties.push({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       } as any)
-  //     })
-  //     setNewsList(properties)
-  //     setLoading(false)
-  //   })
-
-  //   return () => {
-  //     releaseState()
-  //     unsub()
-  //   }
-  // }, [pathname])
+  useEffect(() => {
+    setFetched(false)
+  }, [constraint, pathname])
 
   // First run
   useEffect(() => {
-    fetchData()
+    !fetched && fetchData()
+  }, [fetched])
+
+  useEffect(() => {
     return () => {
       releaseState()
     }
-  }, [pathname, fetchData])
+  }, [pathname])
 
   if (loading) return <Result title="Đang lấy thông tin..." />
 
-  if (!newsList.length) return <Result title="Không có thông tin" />
-
   return (
     <div className="p-5 flex items-center flex-col">
+      <Filter
+        value={filter}
+        onFilter={handleFilter}
+        onClear={handleClearFilter}
+      />
+      {!newsList.length && <Result title="Không có thông tin" />}
       <div className="max-w-[1000px] w-full">
         {newsList.map((x) => (
           <NewsCard className="h-[150px]" key={x.id} data={x} />
         ))}
       </div>
       <Pagination
+        hideNavigation={!newsList.length}
         onFirst={() => fetchData()}
         onPrev={() => handleChangePage()}
         onNext={() => handleChangePage(true)}
