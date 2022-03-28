@@ -1,14 +1,15 @@
-import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 type FooterSectionProps = {
-  className?: string;
-  title: string;
-  children: ReactNode;
-};
+  className?: string
+  title: string
+  children: ReactNode
+}
 
 function FooterSection({
-  className = "",
+  className = '',
   title,
   children,
 }: FooterSectionProps) {
@@ -19,48 +20,43 @@ function FooterSection({
       </h2>
       <div className="text-[#999]">{children}</div>
     </div>
-  );
+  )
 }
 
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
     <div className="bg-[#111]">
       <footer className="p-[40px] md:py-[50px] md:px-[100px] flex justify-between flex-wrap space-x-[30px]">
         <FooterSection className="md:w-[40%]" title="Vialand">
-          <p className="text-[#999]">
-            Mua bán cho thuê nhà đất TPHCM giá rẻ, vị trí thuận tiện đa dạng
-            diện tích hỗ trợ ngân hàng trả góp. Thông tin bất động sản chính chủ
-            tất cả loại hình từ biệt thự, nhà phố, đất nền, căn hộ chung cư cao
-            cấp cho đến các dự án bất động sản lớn. Giao dịch chuyển nhượng tài
-            sản uy tín, rõ ràng, sổ đỏ đầy đủ pháp lý cập nhập liên tục thường
-            xuyên mới nhất năm 2022.
-          </p>
+          <p className="text-[#999]">{t('footer.description')}</p>
         </FooterSection>
         <FooterSection className="hidden md:block" title="Quick Links">
           <ul className="flex flex-col space-y-4">
             <li>
               <Link className="hover:text-white" to="/">
-                Trung tâm trợ giúp
+                {t('footer.help_center')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-white" to="/">
-                An toàn mua bán
+                {t('footer.trade_safety')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-white" to="/">
-                Quy định cần biết
+                {t('footer.rules_to_know')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-white" to="/">
-                Quy chế quyền riêng tư
+                {t('footer.privacy_policy')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-white" to="/">
-                Liên hệ hỗ trợ
+                {t('footer.contact_help')}
               </Link>
             </li>
           </ul>
@@ -69,27 +65,27 @@ export default function Footer() {
           <ul className="flex flex-col space-y-4">
             <li>
               <Link className="hover:text-white" to="/">
-                Giới thiệu
+                {t('footer.about')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-white" to="/">
-                Tuyển dụng
+                {t('footer.career')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-white" to="/">
-                Tin tức
+                {t('footer.news')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-white" to="/">
-                Truyền thông
+                {t('footer.media')}
               </Link>
             </li>
             <li>
               <Link className="hover:text-white" to="/">
-                Blog
+                {t('footer.blog')}
               </Link>
             </li>
           </ul>
@@ -101,5 +97,5 @@ export default function Footer() {
         </p>
       </div>
     </div>
-  );
+  )
 }

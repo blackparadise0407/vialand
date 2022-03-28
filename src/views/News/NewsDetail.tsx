@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { Link, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import { db } from 'libs/firebase'
 import NotFound from 'views/NotFound/NotFound'
 import { Result } from 'components'
 
 export default function NewsDetail() {
+  const { t } = useTranslation()
   const { slug } = useParams<{ slug: string }>()
   const [news, setnews] = useState<IProperty>(null)
   const [loading, setLoading] = useState(false)
@@ -52,6 +54,7 @@ export default function NewsDetail() {
     address,
     video,
     hideVideo,
+    price,
   } = news
 
   return (
@@ -86,16 +89,23 @@ export default function NewsDetail() {
       </div>
       <div className="m-5 flex flex-col space-y-5 items-center overflow-hidden">
         <h1 className="font-medium text-center">{subject}</h1>
+        {price && <b className="font-medium text-red-500">{price} tỷ</b>}
         <div className="mx-auto font-sans text-justify text-base space-y-5">
-          <p>Diện tích: {size} m²</p>
-          <p>Kết cấu: {structure}</p>
-          <p>Kiến trúc: {architecture}</p>
           <p>
-            Vị trí: Hướng {direction}. {address}
+            {t('size')}: {size} m²
+          </p>
+          <p>
+            {t('structure')}: {structure}
+          </p>
+          <p>
+            {t('architecture')}: {architecture}
+          </p>
+          <p>
+            {t('location')}: {t('direction')} {direction}. {address}
           </p>
           <p>{description}</p>
           <p>
-            Điện thoại liên hệ: {contactNumber} ({contactName})
+            {t('contact_phone')}: {contactNumber} ({contactName})
           </p>
         </div>
       </div>
