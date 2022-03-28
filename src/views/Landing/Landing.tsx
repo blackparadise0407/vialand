@@ -24,10 +24,12 @@ import {
 import { NewsCard } from 'components'
 import { RETRY_ERROR } from 'constants/message'
 import { db } from 'libs/firebase'
+import { useTranslation } from 'react-i18next'
 
 const settings: Settings = {
   autoplay: true,
-  dots: false,
+  dots: true,
+  fade: true,
   infinite: true,
   speed: 500,
   slidesToShow: 1,
@@ -49,6 +51,7 @@ const images = [
 ]
 
 export default function LandingPage() {
+  const { t } = useTranslation()
   const [propertyList, setPropertyList] = useState<IProperty[]>([])
 
   useEffect(() => {
@@ -71,6 +74,7 @@ export default function LandingPage() {
         setPropertyList(properties)
       },
       (e) => {
+        console.log(e)
         toast.error(RETRY_ERROR)
       },
     )
@@ -81,10 +85,7 @@ export default function LandingPage() {
 
   return (
     <Fragment>
-      <Slider
-        className="h-[30vh] md:h-[56vh] w-full overflow-hidden"
-        {...settings}
-      >
+      <Slider className="h-[30vh] md:h-[56vh] w-full" {...settings}>
         {images.map((x, idx) => (
           <div key={idx}>
             <div
@@ -107,7 +108,7 @@ export default function LandingPage() {
           }}
         >
           <div className="absolute bottom-0 left-0 w-full text-white text-xl p-[20px] bg-black bg-opacity-50">
-            <p className="text-center">Dự Án Lavender Central Mall</p>
+            <p className="text-center">{t('lavender_project')}</p>
           </div>
         </div>
         <div className="space-y-5 w-full xl:w-1/2">

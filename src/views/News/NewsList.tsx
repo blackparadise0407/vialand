@@ -80,6 +80,7 @@ export default function NewsList() {
         })
         setNewsList(newsList)
       } catch (e) {
+        console.log(e)
         toast.error(RETRY_ERROR)
       } finally {
         setLoading(false)
