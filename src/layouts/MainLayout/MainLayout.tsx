@@ -15,7 +15,7 @@ export default function MainLayout() {
   }, [])
 
   useEffect(() => {
-    if (w > 720 && collapsed) {
+    if (w > 768 && collapsed) {
       setCollapsed(false)
     }
   }, [w, collapsed])
