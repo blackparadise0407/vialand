@@ -1,4 +1,3 @@
-import { Modal } from 'components'
 import {
   createContext,
   ReactNode,
@@ -8,6 +7,9 @@ import {
   useState,
 } from 'react'
 import { toast } from 'react-toastify'
+
+import { Modal } from 'components'
+import config from 'config'
 
 type AuthProviderProps = {
   children: ReactNode
@@ -20,7 +22,7 @@ const initialValue: IAuthContext = {
   onOpenSignIn: () => {},
 }
 
-const PASSWORD = process.env.REACT_APP_SECRET || '123456'
+const PASSWORD = config.common.secret
 
 const AuthContext = createContext<IAuthContext>(initialValue)
 
@@ -51,18 +53,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [])
 
   useEffect(() => {
-    fetch(
-      process.env.REACT_APP_BASE_API + '/auth/refresh' ||
-        'http://localhost:5000/auth/refresh',
-      {
-        method: 'GET',
-        headers: {
-          secret: process.env.REACT_APP_SECRET,
-        },
+    fetch(config.common.baseApiUrl + '/auth/refresh', {
+      method: 'GET',
+      headers: {
+        secret: config.common.secret,
       },
-    )
+    })
       .then((r) => r.json())
-      .then(({ data }) => setToken(data.access_token))
+      .then(({ data }) => {
+        if (!data.error) {
+          setToken(data.access_token)
+        }
+      })
       .catch()
   }, [])
 
