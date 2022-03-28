@@ -19,17 +19,18 @@ const config = {
     messagingSenderId:
       process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || '664321836803',
   },
-  cloudinary: {
-    cloudName: process.env.REACT_APP_CLOUDINARY_NAME || 'dig00csrc',
-    apiKey: process.env.REACT_APP_CLOUDINARY_API_KEY || '789143575217113',
-    apiSecret:
-      process.env.REACT_APP_CLOUDINARY_API_SECRET ||
-      '7dm3F5Xtb2m4ZZofdwjkNHPMRXY',
-    uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || 'j2tdcxh9',
-  },
   google: {
     clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-    apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    apiKey:
+      process.env.REACT_APP_GOOGLE_API_KEY ||
+      'AIzaSyCji9pss6rGTdPqSK-qeGHrn66CjM_fiTg',
+  },
+  common: {
+    secret: process.env.REACT_APP_SECRET || '123456',
+    paymentLink:
+      process.env.REACT_APP_PAYMENT_LINK ||
+      'https://me.momo.vn/qr-page/P2P/QDI6uosnsmiqiJU8UqUO/WPe99g16zvZZeLy',
+    baseApiUrl: process.env.REACT_APP_BASE_API || 'http://localhost:5000',
   },
 }
 export default config
