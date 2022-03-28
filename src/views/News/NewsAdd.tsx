@@ -30,6 +30,7 @@ type NewsAddForm = {
   addressLink: string
   type: number
   paymentImage: string
+  price: number
 }
 
 const {
@@ -82,21 +83,17 @@ export default function NewsAdd() {
           subject,
           createdAt: Timestamp.now().seconds,
         }),
-        fetch(
-          process.env.REACT_APP_BASE_API + '/news-submission' ||
-            'http://localhost:5000/news-submission',
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              secret: process.env.REACT_APP_SECRET,
-            },
-            method: 'POST',
-            body: JSON.stringify({
-              name: subject,
-              link: window.location.origin + `/quan-tri?slug=${slug}`,
-            }),
+        fetch(common.baseApiUrl + '/news-submission', {
+          headers: {
+            'Content-Type': 'application/json',
+            secret: common.secret,
           },
-        ),
+          method: 'POST',
+          body: JSON.stringify({
+            name: subject,
+            link: window.location.origin + `/quan-tri?slug=${slug}`,
+          }),
+        }),
       ]
       toast.promise(Promise.all(promises), {
         pending: 'Đang đăng tin',
@@ -220,6 +217,8 @@ export default function NewsAdd() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
 
+  const { common } = config
+
   return (
     <div className="my-5 mx-5 md:mx-20 lg:mx-30 flex gap-5">
       <div
@@ -240,7 +239,7 @@ export default function NewsAdd() {
           </h1>
         </div>
         <FormGroup
-          className="col-span-4 xl:col-span-3"
+          className="col-span-4"
           htmlFor="subject"
           label="Tiêu đề"
           error={errors.subject}
@@ -253,7 +252,7 @@ export default function NewsAdd() {
           />
         </FormGroup>
         <FormGroup
-          className="col-span-4 xl:col-span-1"
+          className="col-span-2 xl:col-span-1"
           htmlFor="type"
           label="Phân loại"
           error={errors.type}
@@ -268,6 +267,41 @@ export default function NewsAdd() {
               </option>
             ))}
           </select>
+        </FormGroup>
+        <FormGroup
+          className="col-span-2 xl:col-span-1"
+          htmlFor="price"
+          label="Giá (tỷ đồng)"
+          error={errors.price}
+        >
+          <input
+            {...register('price', {
+              valueAsNumber: true,
+              required: true,
+              min: 0,
+              max: 10000,
+            })}
+            className="input"
+            placeholder="Nhập giá..."
+            type="number"
+            step="0.01"
+            min={0}
+            max={10000}
+          />
+        </FormGroup>
+
+        <FormGroup
+          className="xl:col-span-1 col-span-2"
+          htmlFor="direction"
+          label="Hướng"
+          error={errors.direction}
+        >
+          <input
+            {...register('direction', { required: true })}
+            className="input"
+            placeholder="Nhập hướng"
+            type="text"
+          />
         </FormGroup>
         <FormGroup
           className="xl:col-span-1 col-span-2"
@@ -291,7 +325,7 @@ export default function NewsAdd() {
           />
         </FormGroup>
         <FormGroup
-          className="xl:col-span-1 col-span-2"
+          className="xl:col-span-2 col-span-4"
           htmlFor="structure"
           label="Kết cấu"
           error={errors.structure}
@@ -304,7 +338,7 @@ export default function NewsAdd() {
           />
         </FormGroup>
         <FormGroup
-          className="xl:col-span-1 col-span-2"
+          className="xl:col-span-2 col-span-4"
           htmlFor="architecture"
           label="Kiến trúc"
           error={errors.architecture}
@@ -316,19 +350,7 @@ export default function NewsAdd() {
             type="text"
           />
         </FormGroup>
-        <FormGroup
-          className="xl:col-span-1 col-span-2"
-          htmlFor="direction"
-          label="Hướng"
-          error={errors.direction}
-        >
-          <input
-            {...register('direction', { required: true })}
-            className="input"
-            placeholder="Nhập hướng"
-            type="text"
-          />
-        </FormGroup>
+
         <FormGroup className="col-span-4" htmlFor="address" label="Địa chỉ">
           <Controller
             control={control}
@@ -492,7 +514,7 @@ export default function NewsAdd() {
             className="h-[500px] overflow-hidden py-2"
             title="momo payment"
             scrolling="vertical"
-            src="https://me.momo.vn/qr-page/P2P/QDI6uosnsmiqiJU8UqUO/WPe99g16zvZZeLy"
+            src={common.paymentLink}
           ></iframe>
           <button
             type="button"
