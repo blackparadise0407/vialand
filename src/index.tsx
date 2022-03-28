@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
+import { AuthProvider } from 'contexts/AuthContext'
+import 'libs/i18n'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
@@ -10,15 +12,16 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'react-toastify/dist/ReactToastify.css'
 import './index.css'
-import { AuthProvider } from 'contexts/AuthContext'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-      <ToastContainer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+        <ToastContainer />
+      </Suspense>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
