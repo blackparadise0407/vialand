@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next'
 
 const settings: Settings = {
   autoplay: true,
-  dots: true,
+  dots: false,
   fade: true,
   infinite: true,
   speed: 500,
@@ -85,7 +85,10 @@ export default function LandingPage() {
 
   return (
     <Fragment>
-      <Slider className="h-[30vh] md:h-[56vh] w-full" {...settings}>
+      <Slider
+        className="h-[30vh] md:h-[56vh] w-full overflow-hidden"
+        {...settings}
+      >
         {images.map((x, idx) => (
           <div key={idx}>
             <div
