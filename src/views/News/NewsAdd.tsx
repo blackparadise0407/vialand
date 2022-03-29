@@ -429,6 +429,9 @@ export default function NewsAdd() {
           />
         </FormGroup>
         <FormGroup className="col-span-4" htmlFor="video" label="Link video">
+          <small>
+            Maximum file size limit is 300Mb.(Video Length 12-13 Minutes)
+          </small>
           <button
             type="button"
             className="btn float-right"
@@ -456,7 +459,7 @@ export default function NewsAdd() {
             </div>
           )}
         </div>
-        <FormGroup className="col-span-4" htmlFor="video" label="Link video">
+        <FormGroup className="col-span-4" htmlFor="video" label="Hình ảnh">
           <button
             type="button"
             className="btn float-right"
