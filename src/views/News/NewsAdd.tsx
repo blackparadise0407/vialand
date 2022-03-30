@@ -5,7 +5,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 
-import { second } from 'assets/images'
+import { qr, second } from 'assets/images'
 import { AddressSelect, FormError, FormGroup, Modal } from 'components'
 import config from 'config'
 import { RETRY_ERROR } from 'constants/message'
@@ -511,14 +511,7 @@ export default function NewsAdd() {
             Tiến hành quét mã bên dưới để thanh toán. Sau đó tải ảnh chụp hóa
             đơn thanh toán vào bên dưới và nhấn nút <b>Hoàn tất</b>
           </p>
-
-          <iframe
-            width="100%"
-            className="h-[500px] overflow-hidden py-2"
-            title="momo payment"
-            scrolling="vertical"
-            src={common.paymentLink}
-          ></iframe>
+          <img className="w-[259px] h-[259px] mx-auto my-5" src={qr} alt="" />
           <button
             type="button"
             className="btn w-full"
