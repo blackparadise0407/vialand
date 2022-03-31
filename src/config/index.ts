@@ -31,6 +31,7 @@ const config = {
       process.env.REACT_APP_PAYMENT_LINK ||
       'https://me.momo.vn/qr-page/P2P/QDI6uosnsmiqiJU8UqUO/WPe99g16zvZZeLy',
     baseApiUrl: process.env.REACT_APP_BASE_API || 'http://localhost:5000',
+    isDev: process.env.NODE_ENV === 'development',
   },
 }
 export default config

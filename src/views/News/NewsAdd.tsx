@@ -35,6 +35,7 @@ type NewsAddForm = {
 
 const {
   google: { apiKey, clientId },
+  common,
 } = config
 
 export default function NewsAdd() {
@@ -121,6 +122,9 @@ export default function NewsAdd() {
       showUploadView: true,
       showUploadFolders: true,
       supportDrives: true,
+      setParentFolder: common.isDev
+        ? undefined
+        : '1Kq2bMWqgsyRY_02SitoGwSwBMmuq23De',
       multiselect: pickerType === 'images',
       disableDefaultView: true,
     })
@@ -216,8 +220,6 @@ export default function NewsAdd() {
     eff()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
-
-  const { common } = config
 
   return (
     <div className="my-5 mx-5 md:mx-20 lg:mx-30 flex gap-5">
