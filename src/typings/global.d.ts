@@ -1,4 +1,4 @@
-import { EPropertyDirection, EHouseType } from 'enums'
+import { EPropertyDirection, EHouseType, EAction } from 'enums'
 
 declare global {
   interface IKeyValue {
@@ -33,6 +33,9 @@ declare global {
     hideVideo: boolean
     published: boolean
     price: number
+    length: number
+    width: number
+    action: EAction
   }
 
   interface IAddress {
@@ -72,6 +75,7 @@ declare global {
     id: string
     embedLink: string
     thumbnailLink: string
+    webViewLink: string
   }
 
   type AddressFilter = Omit<IAddress, 'address'>

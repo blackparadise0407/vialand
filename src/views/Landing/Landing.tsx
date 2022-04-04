@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import {
   collection,
   limit,
@@ -9,6 +9,7 @@ import {
 } from 'firebase/firestore'
 import Slider, { Settings } from 'react-slick'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 
 import {
   eighth,
@@ -24,7 +25,8 @@ import {
 import { NewsCard } from 'components'
 import { RETRY_ERROR } from 'constants/message'
 import { db } from 'libs/firebase'
-import { useTranslation } from 'react-i18next'
+import { useWindowSize } from 'hooks/useWindowSize'
+import { ProjectCard } from './Projects'
 
 const settings: Settings = {
   autoplay: true,
@@ -53,6 +55,23 @@ const images = [
 export default function LandingPage() {
   const { t } = useTranslation()
   const [propertyList, setPropertyList] = useState<IProperty[]>([])
+  const [w] = useWindowSize()
+  const projectSettings = useMemo<Settings>(() => {
+    let slidesToShow = 3
+    if (w > 768 && w < 1024) slidesToShow = 2
+    else if (w < 768) slidesToShow = 1
+
+    return {
+      autoplay: true,
+      fade: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow,
+      slidesToScroll: 1,
+      arrows: true,
+      accessibility: true,
+    }
+  }, [w])
 
   useEffect(() => {
     const q = query(
@@ -85,6 +104,7 @@ export default function LandingPage() {
 
   return (
     <Fragment>
+      {/* Image carousel */}
       <Slider
         className="h-[30vh] md:h-[56vh] w-full overflow-hidden"
         {...settings}
@@ -101,6 +121,20 @@ export default function LandingPage() {
           </div>
         ))}
       </Slider>
+
+      {/* Project carousel */}
+      <div className="my-5 mx-2 md:mx-20 space-y-2">
+        <div className="flex items-center">
+          <h1 className="font-bold text-xl">{t('real_estate_project')}</h1>
+          <div className="flex-grow"></div>
+          <button className="btn btn--secondary">{t('see_all')}</button>
+        </div>
+        <Slider className="w-full" {...projectSettings}>
+          {images.map((x, idx) => (
+            <ProjectCard key={idx} />
+          ))}
+        </Slider>
+      </div>
 
       <div className="flex flex-col xl:flex-row gap-16 m-5 md:m-10">
         <div

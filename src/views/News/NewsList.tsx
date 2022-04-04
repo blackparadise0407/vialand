@@ -18,7 +18,7 @@ import { toast } from 'react-toastify'
 import { Filter, NewsCard, Pagination, Result } from 'components'
 import { PAGE_LIMIT } from 'constants/common'
 import { RETRY_ERROR } from 'constants/message'
-import { EHouseType } from 'enums'
+import { EAction } from 'enums'
 import { db } from 'libs/firebase'
 
 const initialFilter: AddressFilter = {
@@ -49,14 +49,16 @@ export default function NewsList() {
   const fetchData = useCallback(
     async (...constraints: QueryConstraint[]) => {
       setLoading(true)
-      const houseTypeArr = pathname.startsWith('/nha-dat')
-        ? [EHouseType.apartment, EHouseType.house, EHouseType.land]
-        : [EHouseType.businessTransfer]
+      const action = pathname.startsWith('/mua-ban')
+        ? EAction.trade
+        : EAction.rent
+
+      console.log(action)
       try {
         const docsRef = collection(db, 'properties')
         const q = query(
           docsRef,
-          where('type', 'in', houseTypeArr),
+          where('action', '==', action),
           where('published', '==', true),
           orderBy('createdAt', 'desc'),
           limit(PAGE_LIMIT),
@@ -157,7 +159,7 @@ export default function NewsList() {
       {!newsList.length && <Result title="Không có thông tin" />}
       <div className="max-w-[1000px] w-full">
         {newsList.map((x) => (
-          <NewsCard className="h-[150px]" key={x.id} data={x} />
+          <NewsCard className="min-h-[150px]" key={x.id} data={x} />
         ))}
       </div>
       <Pagination

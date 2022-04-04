@@ -4,14 +4,14 @@ import { Login } from 'views/Auth'
 import { NewsAdd, NewsDetail, NewsList, NewsManagement } from 'views/News'
 import NotFound from 'views/NotFound/NotFound'
 import { MainLayout } from './layouts/MainLayout'
-import LandingPage from './views/Landing/Landing'
+import { Landing } from './views/Landing'
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route index element={<LandingPage />} />
-        <Route path="/nha-dat" element={<NewsList />} />
+        <Route index element={<Landing />} />
+        <Route path="/mua-ban" element={<NewsList />} />
         <Route path="/cho-thue" element={<NewsList />} />
         <Route path="/dang-tin" element={<NewsAdd />} />
         <Route path="/:slug" element={<NewsDetail />} />

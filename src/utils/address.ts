@@ -10,8 +10,8 @@ export const mapAddressData = (address: IAddress) => {
 
   return {
     ...address,
-    provinceName: foundProvince?.name,
-    districtName: foundDistrict?.name,
+    provinceName: `${foundProvince.typeName} ${foundProvince?.name}`,
+    districtName: `${foundDistrict.typeName} ${foundDistrict?.name}`,
     wardName: foundWard?.name,
   }
 }

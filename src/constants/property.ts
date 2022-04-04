@@ -1,20 +1,43 @@
-import { EHouseType } from 'enums'
+import { EAction, EHouseType } from 'enums'
 
 export const PropertyTypeOptions = [
   {
-    name: 'Nhà ở',
+    name: 'house',
     value: EHouseType.house,
   },
   {
-    name: 'Đất',
+    name: 'land',
     value: EHouseType.land,
   },
   {
-    name: 'Căn hộ chung cư',
+    name: 'apartment',
     value: EHouseType.apartment,
   },
   {
-    name: 'Mặt bằng, sang nhượng kinh doanh',
-    value: EHouseType.businessTransfer,
+    name: 'villa',
+    value: EHouseType.villa,
+  },
+  {
+    name: 'resort',
+    value: EHouseType.resort,
+  },
+  {
+    name: 'factory',
+    value: EHouseType.factory,
+  },
+  {
+    name: 'plan',
+    value: EHouseType.plan,
+  },
+]
+
+export const PropertyActionOptions = [
+  {
+    name: 'trading',
+    value: EAction.trade,
+  },
+  {
+    name: 'rent',
+    value: EAction.rent,
   },
 ]

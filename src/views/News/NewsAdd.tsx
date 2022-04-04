@@ -1,21 +1,27 @@
-import { KeyboardEvent, useCallback, useEffect, useState } from 'react'
+import { KeyboardEvent, useEffect, useState } from 'react'
+import { t as translate } from 'i18next'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import useDrivePicker from 'react-google-drive-picker'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 
 import { qr, second } from 'assets/images'
-import { AddressSelect, FormError, FormGroup, Modal } from 'components'
+import { AddressSelect, FormError, FormGroup } from 'components'
+import { initialAddressSelectValue } from 'components/AddressSelect'
 import config from 'config'
 import { RETRY_ERROR } from 'constants/message'
 import { useAuthContext } from 'contexts/AuthContext'
-import { PropertyTypeOptions } from 'constants/property'
+import { PropertyActionOptions, PropertyTypeOptions } from 'constants/property'
 import { db } from 'libs/firebase'
-import { getFilesMetadata, removeFileFromDriveById } from 'libs/google'
+import {
+  getEmbedGoogleMediaLink,
+  getFilesMetadata,
+  removeFileFromDriveById,
+} from 'libs/google'
 import { mapAddressData } from 'utils/address'
 import { slugify } from 'utils/string'
-import { initialAddressSelectValue } from 'components/AddressSelect'
 
 type NewsAddForm = {
   address: IAddress
@@ -28,9 +34,12 @@ type NewsAddForm = {
   direction: string
   subject: string
   addressLink: string
-  type: number
+  houseType: number
   paymentImage: string
   price: number
+  action: number
+  length: number
+  width: number
 }
 
 const {
@@ -38,7 +47,28 @@ const {
   common,
 } = config
 
+const contructNewsSubject = (property: Partial<IProperty>) => {
+  const { action, houseType, width, length, address } = property
+
+  let area: any = width * length
+  area = Number.isInteger(area) ? area : area.toFixed(2)
+
+  const {
+    address: inputAddress,
+    wardName,
+    districtName,
+    provinceName,
+  } = mapAddressData(address as any)
+
+  return `${translate(
+    PropertyActionOptions.find((x) => x.value === action).name,
+  )} ${translate(
+    PropertyTypeOptions.find((x) => x.value === houseType).name,
+  )} ${area}m² (${width} x ${length}m) - Số ${inputAddress}, ${wardName}, ${districtName}, ${provinceName}`
+}
+
 export default function NewsAdd() {
+  const { t } = useTranslation()
   const {
     control,
     register,
@@ -47,29 +77,25 @@ export default function NewsAdd() {
     formState: { errors },
   } = useForm<NewsAddForm>()
   const [openPicker, data] = useDrivePicker()
+
   const [loading, setLoading] = useState(false)
   const { token } = useAuthContext()
   const [imageList, setImageList] = useState<IKeyValue[]>([])
   const [video, setVideo] = useState<IKeyValue>(null)
   const [paymentImage, setPaymentImage] = useState<IKeyValue>(null)
   const [pickerType, setPickerType] = useState<PickerTypeKey>(undefined)
-  const [open, setOpen] = useState(false)
 
   const resetForm = () => {
     reset()
     setVideo(null)
     setImageList([])
     setPaymentImage(null)
-    setOpen(false)
   }
 
   const onSubmit: SubmitHandler<NewsAddForm> = async (data) => {
     setLoading(true)
     try {
-      const subject =
-        PropertyTypeOptions.find((x) => x.value === data.type).name +
-        ' - ' +
-        data.subject
+      const subject = contructNewsSubject(data as any)
       const slug = slugify(subject) + '-' + Date.now().toString()
       const promises = [
         addDoc(collection(db, 'properties'), {
@@ -171,16 +197,14 @@ export default function NewsAdd() {
     }
   }
 
-  const toggleModal = useCallback(() => {
-    setOpen((prev) => !prev)
-  }, [])
-
   const handleSubmitNews = () => {
-    if (!paymentImage) {
-      toast.warn('Vui lòng tải lên ảnh chụp hóa đơn để đăng bài')
-      return
-    }
-    handleSubmit(onSubmit)()
+    handleSubmit((form) => {
+      if (!paymentImage) {
+        toast.warn('Vui lòng tải lên ảnh chụp hóa đơn để đăng bài')
+        return
+      }
+      onSubmit(form)
+    })()
   }
 
   useEffect(() => {
@@ -191,14 +215,15 @@ export default function NewsAdd() {
         switch (pickerType) {
           case 'video':
             if (!!media?.length) {
-              const { id, embedLink } = media[0]
+              const { id, webViewLink } = media[0]
+              const embedLink = await getEmbedGoogleMediaLink(webViewLink)
               setVideo({ id, value: embedLink })
             }
             break
           case 'images':
             setImageList(
               media.map(
-                ({ thumbnailLink, id }, idx) =>
+                ({ thumbnailLink, id }) =>
                   ({
                     id,
                     value: thumbnailLink,
@@ -222,7 +247,7 @@ export default function NewsAdd() {
   }, [data])
 
   return (
-    <div className="my-5 mx-5 md:mx-20 lg:mx-30 flex gap-5">
+    <div className="my-5 mx-5 md:mx-20 lg:mx-30 flex gap-5 text-xs sm:text-sm md:text-base">
       <div
         className="sticky top-[100px] max-w-[50vh] w-full h-[59vh] mx-auto hidden md:block"
         style={{
@@ -235,41 +260,93 @@ export default function NewsAdd() {
         </div>
       </div>
       <form className="grid grid-cols-4 w-full lg:w-[50%] md:w-[80%] place-content-start gap-5">
-        <div className="col-span-4">
-          <h1 className="text-2xl font-medium">
+        <div className="col-span-4 xl:col-span-2">
+          <h1 className="text-base md:text-xl xl:text-2xl font-medium">
             Điền thông tin của bất động sản
           </h1>
         </div>
         <FormGroup
-          className="col-span-4"
+          className="col-span-4 xl:col-span-2"
           htmlFor="subject"
-          label="Tiêu đề"
+          label="Danh mục"
           error={errors.subject}
         >
-          <input
-            {...register('subject', { required: true })}
+          <select
+            {...register('action', { required: true, valueAsNumber: true })}
             className="input"
-            placeholder="Nhập tiêu đề..."
-            type="text"
-          />
+          >
+            {PropertyActionOptions.map((x) => (
+              <option key={x.value} value={x.value}>
+                {t(x.name)}
+              </option>
+            ))}
+          </select>
         </FormGroup>
         <FormGroup
           className="col-span-2 xl:col-span-1"
           htmlFor="type"
           label="Phân loại"
-          error={errors.type}
+          error={errors.houseType}
         >
           <select
-            {...register('type', { required: true, valueAsNumber: true })}
+            {...register('houseType', { required: true, valueAsNumber: true })}
             className="input"
           >
             {PropertyTypeOptions.map((x) => (
               <option key={x.value} value={x.value}>
-                {x.name}
+                {t(x.name)}
               </option>
             ))}
           </select>
         </FormGroup>
+
+        {/* Length */}
+        <FormGroup
+          className="col-span-2 xl:col-span-1"
+          htmlFor="length"
+          label="Chiều dài (m)"
+          error={errors.length}
+        >
+          <input
+            {...register('length', {
+              valueAsNumber: true,
+              required: true,
+              min: 0,
+              max: 10000,
+            })}
+            className="input"
+            placeholder="Nhập chiều dài"
+            type="number"
+            step="0.01"
+            min={0}
+            max={10000}
+          />
+        </FormGroup>
+
+        {/* Width */}
+        <FormGroup
+          className="col-span-2 xl:col-span-1"
+          htmlFor="width"
+          label="Chiều ngang (m)"
+          error={errors.width}
+        >
+          <input
+            {...register('width', {
+              valueAsNumber: true,
+              required: true,
+              min: 0,
+              max: 10000,
+            })}
+            className="input"
+            placeholder="Nhập chiều ngang"
+            type="number"
+            step="0.01"
+            min={0}
+            max={10000}
+          />
+        </FormGroup>
+
+        {/* Price */}
         <FormGroup
           className="col-span-2 xl:col-span-1"
           htmlFor="price"
@@ -293,7 +370,36 @@ export default function NewsAdd() {
         </FormGroup>
 
         <FormGroup
-          className="xl:col-span-1 col-span-2"
+          className="xl:col-span-2 col-span-4"
+          htmlFor="structure"
+          label="Kết cấu"
+          error={errors.structure}
+        >
+          <input
+            {...register('structure', { required: true })}
+            className="input"
+            placeholder="VD: 1 trệt 1 lửng 1 lầu"
+            type="text"
+          />
+        </FormGroup>
+
+        {/* Architecture */}
+        <FormGroup
+          className="xl:col-span-1 col-span-4"
+          htmlFor="architecture"
+          label="Kiến trúc"
+          error={errors.architecture}
+        >
+          <input
+            {...register('architecture', { required: true })}
+            className="input"
+            placeholder="VD: 2PN 1WC"
+            type="text"
+          />
+        </FormGroup>
+
+        <FormGroup
+          className="xl:col-span-1 col-span-4"
           htmlFor="direction"
           label="Hướng"
           error={errors.direction}
@@ -305,7 +411,9 @@ export default function NewsAdd() {
             type="text"
           />
         </FormGroup>
-        <FormGroup
+
+        {/* Size */}
+        {/* <FormGroup
           className="xl:col-span-1 col-span-2"
           htmlFor="size"
           label="Diện tích (m²)"
@@ -325,33 +433,7 @@ export default function NewsAdd() {
             min={0}
             max={10000}
           />
-        </FormGroup>
-        <FormGroup
-          className="xl:col-span-2 col-span-4"
-          htmlFor="structure"
-          label="Kết cấu"
-          error={errors.structure}
-        >
-          <input
-            {...register('structure', { required: true })}
-            className="input"
-            placeholder="VD: 1 trệt 1 lửng 1 lầu"
-            type="text"
-          />
-        </FormGroup>
-        <FormGroup
-          className="xl:col-span-2 col-span-4"
-          htmlFor="architecture"
-          label="Kiến trúc"
-          error={errors.architecture}
-        >
-          <input
-            {...register('architecture', { required: true })}
-            className="input"
-            placeholder="VD: 2PN 1WC"
-            type="text"
-          />
-        </FormGroup>
+        </FormGroup> */}
 
         <FormGroup className="col-span-4" htmlFor="address" label="Địa chỉ">
           <Controller
@@ -418,6 +500,8 @@ export default function NewsAdd() {
             maxLength={255}
           ></textarea>
         </FormGroup>
+
+        {/* AddressLink */}
         <FormGroup
           className="col-span-4"
           htmlFor="addressLink"
@@ -430,66 +514,133 @@ export default function NewsAdd() {
             type="text"
           />
         </FormGroup>
-        <FormGroup className="col-span-4" htmlFor="video" label="Link video">
-          <small>
-            Maximum file size limit is 300Mb.(Video Length 12-13 Minutes)
-          </small>
+
+        <div className="col-span-4">
+          <h1 className="text-sm md:text-base font-medium">
+            Vui lòng tiến hành thanh toán để đăng tin
+          </h1>
+          <p>Hướng dẫn thanh toán</p>
+          <p>Chuyển tiền qua ví momo</p>
+          <p>Số tiền 20.000đ</p>
+          <p>Người nhận 0966883331</p>
+          <p>
+            Sau đó tải ảnh chụp hóa đơn đã thanh toán lên vào ô bên dưới rồi bấm
+            nút <b>Hoàn tất</b>
+          </p>
+
+          <img
+            className="w-[175px] md:w-[259px] h-[175px] md:h-[259px] mx-auto my-5"
+            src={qr}
+            alt=""
+          />
           <button
             type="button"
-            className="btn float-right"
+            className="btn w-full"
             onClick={() => {
-              setPickerType('video')
-              handleOpenPicker('video')
+              setPickerType('paymentImage')
+              handleOpenPicker('paymentImage')
             }}
           >
-            Tải lên video
+            Tải lên ảnh chụp hóa đơn
           </button>
-        </FormGroup>
-        <div className="col-span-4 flex flex-wrap gap-2">
-          {!!video && (
-            <div className="relative mx-auto">
-              <iframe
-                className="w-full overflow-hidden aspect-video border"
-                title="video"
-                scrolling="no"
-                src={video.value}
-              ></iframe>
+          {!!paymentImage && (
+            <div className="relative mx-auto w-[120px] my-2">
+              <img
+                className="w-full overflow-hidden aspect-square border"
+                src={paymentImage.value}
+                alt=""
+              />
               <AiOutlineClose
                 className="absolute bg-white rounded-full shadow md:text-base lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
-                onClick={handleRemoveVideo}
+                onClick={handleRemovePaymentImage}
               />
             </div>
           )}
         </div>
-        <FormGroup className="col-span-4" htmlFor="video" label="Hình ảnh">
+
+        {!!paymentImage && (
+          <>
+            {/* Video */}
+            <FormGroup
+              className="col-span-4"
+              htmlFor="video"
+              label="Link video"
+            >
+              <small>
+                Maximum file size limit is 300Mb.(Video Length 12-13 Minutes)
+              </small>
+              <button
+                type="button"
+                className="btn float-right"
+                onClick={() => {
+                  setPickerType('video')
+                  handleOpenPicker('video')
+                }}
+              >
+                Tải lên video
+              </button>
+            </FormGroup>
+            <div className="col-span-4 flex flex-wrap gap-2">
+              {!!video && (
+                <div className="relative mx-auto">
+                  <iframe
+                    className="w-full overflow-hidden aspect-video border"
+                    title="video"
+                    scrolling="no"
+                    src={video.value}
+                  ></iframe>
+                  <AiOutlineClose
+                    className="absolute bg-white rounded-full shadow md:text-base lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
+                    onClick={handleRemoveVideo}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Images */}
+            <FormGroup className="col-span-4" htmlFor="images" label="Hình ảnh">
+              <button
+                type="button"
+                className="btn float-right"
+                onClick={() => {
+                  setPickerType('images')
+                  handleOpenPicker('images')
+                }}
+              >
+                Tải lên hình ảnh
+              </button>
+            </FormGroup>
+            <div className="col-span-4 flex flex-wrap gap-2">
+              {imageList.map((x) => (
+                <div key={x.id} className="relative">
+                  <iframe
+                    className="w-[60px] md:w-[80px] lg:w-[96px] overflow-hidden aspect-square border"
+                    title={x.id}
+                    scrolling="no"
+                    src={x.value}
+                  ></iframe>
+                  <AiOutlineClose
+                    className="absolute bg-white rounded-full shadow md:text-base lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
+                    onClick={() => handleRemoveImageById(x.id)}
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        <div className="col-span-4 ">
           <button
             type="button"
-            className="btn float-right"
-            onClick={() => {
-              setPickerType('images')
-              handleOpenPicker('images')
-            }}
+            onClick={handleSubmitNews}
+            className="btn w-full mt-5"
           >
-            Tải lên hình ảnh
+            {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
+            Hoàn tất
           </button>
-        </FormGroup>
-        <div className="col-span-4 flex flex-wrap gap-2">
-          {imageList.map((x) => (
-            <div key={x.id} className="relative">
-              <iframe
-                className="w-[60px] md:w-[80px] lg:w-[96px] overflow-hidden aspect-square border"
-                title={x.id}
-                scrolling="no"
-                src={x.value}
-              ></iframe>
-              <AiOutlineClose
-                className="absolute bg-white rounded-full shadow md:text-base lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
-                onClick={() => handleRemoveImageById(x.id)}
-              />
-            </div>
-          ))}
         </div>
-        <div className="col-span-4 ">
+
+        {/* <div className="col-span-4 ">
           <button
             type="button"
             onClick={toggleModal}
@@ -498,9 +649,9 @@ export default function NewsAdd() {
             {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
             Đăng tin
           </button>
-        </div>
+        </div> */}
       </form>
-      <Modal
+      {/* <Modal
         open={open}
         onClose={toggleModal}
         title="Vui lòng tiến hành thanh toán để hoàn tất đăng tin"
@@ -541,7 +692,7 @@ export default function NewsAdd() {
             Hoàn tất
           </button>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   )
 }

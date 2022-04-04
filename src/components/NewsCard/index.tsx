@@ -20,9 +20,13 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
       to={`/${data.slug}`}
     >
       <div className="flex gap-5 p-2 cursor-pointer h-full">
-        <img className="w-[128px] aspect-video" src={second} alt="" />
+        <img
+          className="w-[128px] max-h-[100px] aspect-video"
+          src={second}
+          alt=""
+        />
         <div className="overflow-hidden flex flex-col text-base font-light w-full">
-          <p className="truncate">{subject}</p>
+          <p>{subject}</p>
           {price && (
             <b className="font-medium text-red-500">
               {price} {t('billion')} {t('currency')}

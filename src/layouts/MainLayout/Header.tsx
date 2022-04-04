@@ -36,7 +36,7 @@ export default memo(function Header({ collapsed, onCollapsed }: HeaderProps) {
           <Link to="/">{t('home_page')}</Link>
         </li>
         <li>
-          <Link to="/nha-dat">{t('land')}</Link>
+          <Link to="/mua-ban">{t('trading')}</Link>
         </li>
         <li>
           <Link to="/cho-thue">{t('rent')}</Link>

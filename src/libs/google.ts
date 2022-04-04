@@ -1,6 +1,9 @@
 import { CallbackDoc } from 'react-google-drive-picker/dist/typeDefs'
 
-export const getFilesMetadata = (files: CallbackDoc[], token: string) => {
+export const getFilesMetadata = (
+  files: CallbackDoc[],
+  token: string,
+): Promise<IGoogleDocsResponse[]> => {
   return Promise.all(
     files.map((file) =>
       fetch(
@@ -17,11 +20,12 @@ export const getFilesMetadata = (files: CallbackDoc[], token: string) => {
     .then((responses) =>
       Promise.all(responses.map((response) => response.json())).then((data) =>
         data.map(
-          ({ id, thumbnailLink, embedLink }) =>
+          ({ id, thumbnailLink, embedLink, webViewLink }) =>
             ({
               id,
               thumbnailLink,
               embedLink,
+              webViewLink,
             } as IGoogleDocsResponse),
         ),
       ),
@@ -41,4 +45,16 @@ export const removeFileFromDriveById = (
   })
     .then(() => true)
     .catch(() => false)
+}
+
+export const getEmbedGoogleMediaLink = (selfLink: string): Promise<string> => {
+  return fetch(
+    `https://gdriveplayer.to/embed2.php?link=${selfLink}&subtitle=&poster=&jsonsubtitle=&encrypt=yes`,
+  )
+    .then((r) => r.text())
+    .then((data) => {
+      const regex = new RegExp(/(?<=src=")(.*?)(?=\")/g)
+      return data.match(regex)[0]
+    })
+    .catch(() => undefined)
 }

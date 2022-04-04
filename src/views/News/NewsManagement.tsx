@@ -219,18 +219,15 @@ export default function NewsManagement() {
             ) : (
               <>
                 {newsList.map(
-                  (
-                    {
-                      id,
-                      subject,
-                      video,
-                      createdAt,
-                      hideVideo,
-                      published,
-                      paymentImage,
-                    },
-                    idx,
-                  ) => (
+                  ({
+                    id,
+                    subject,
+                    video,
+                    createdAt,
+                    hideVideo,
+                    published,
+                    paymentImage,
+                  }) => (
                     <tr className="hover:bg-gray-100 cursor-default" key={id}>
                       <td>{subject}</td>
                       <td>

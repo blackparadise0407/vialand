@@ -28,6 +28,16 @@ slick-track {
   height: auto;
 }
 
+.slick-prev {
+  left: 1% !important;
+  z-index: 1;
+}
+
+.slick-next {
+  right: 1% !important;
+  z-index: 1;
+}
+
 label {
   @apply font-medium;
 }
@@ -65,11 +75,15 @@ iframe {
   }
 
   .btn {
-    @apply flex justify-center items-center gap-2 bg-[#111] text-white px-5 py-2 rounded;
+    @apply flex justify-center items-center gap-2 bg-[#1a73e8] text-white px-5 py-2 rounded;
   }
 
   .btn--disabled {
     @apply pointer-events-none bg-[#a5a5a5] text-white;
+  }
+
+  .btn--secondary {
+    @apply bg-transparent text-[#1a73e8] border border-[#1a73e8] font-medium;
   }
 
   .select {

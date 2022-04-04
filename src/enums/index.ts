@@ -13,5 +13,13 @@ export enum EHouseType {
   house = 1,
   land = 2,
   apartment = 3,
-  businessTransfer = 4,
+  villa = 4,
+  resort = 5,
+  factory = 6,
+  plan = 7,
+}
+
+export enum EAction {
+  trade = 1,
+  rent = 2,
 }

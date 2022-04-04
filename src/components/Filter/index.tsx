@@ -75,7 +75,7 @@ export default memo(function Filter({
     <div
       className="grid max-w-full gap-5 my-5"
       style={{
-        gridTemplateColumns: `repeat(auto-fit, minmax(10rem, 4fr))`,
+        gridTemplateColumns: 'repeat(auto-fit, minmax(20rem, 4fr))',
       }}
     >
       <select
@@ -121,7 +121,7 @@ export default memo(function Filter({
           ))}
         </select>
       )}
-      <div className="flex gap-2">
+      <div className="flex gap-2 ">
         <button
           className={clsx(
             'btn justify-self-center',
@@ -134,7 +134,7 @@ export default memo(function Filter({
         </button>
         <button className="btn justify-self-center" onClick={onClear}>
           <AiOutlineClose />
-          <span>Bỏ lọc</span>
+          <span>Xóa bộ lọc</span>
         </button>
       </div>
     </div>
