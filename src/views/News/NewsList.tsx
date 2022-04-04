@@ -53,7 +53,6 @@ export default function NewsList() {
         ? EAction.trade
         : EAction.rent
 
-      console.log(action)
       try {
         const docsRef = collection(db, 'properties')
         const q = query(
