@@ -131,7 +131,9 @@ export default function LandingPage() {
         </div>
         <Slider className="w-full" {...projectSettings}>
           {images.map((x, idx) => (
-            <ProjectCard key={idx} />
+            <div className="px-2" key={idx}>
+              <ProjectCard key={idx} />
+            </div>
           ))}
         </Slider>
       </div>
