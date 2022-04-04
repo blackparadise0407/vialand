@@ -2,6 +2,7 @@
     "english": "English",
     "vietnamese": "Vietnamese",
     "home_page": "Home",
+    "trading": "Trading",
     "land": "House land",
     "rent": "Rent",
     "post_news": "Free news posting",
@@ -15,6 +16,7 @@
     "location": "Location",
     "direction": "Direction",
     "contact_phone": "Contact number",
+    "see_all": "See all",
     "footer": {
         "description": "Buy, sell, rent real estate in Ho Chi Minh City with cheap price, convenient location, diversified area, support bank installment. Real estate information of all types from villas, townhouses, land plots, luxury apartments to large real estate projects. Prestigious, clear asset transfer transaction, full legal red book, updated continuously, latest in 2022.",
         "help_center": "Help center",
