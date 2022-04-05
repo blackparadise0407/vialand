@@ -61,9 +61,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     })
       .then((r) => r.json())
       .then(({ data }) => {
-        if (!data.error) {
-          setToken(data.access_token)
-        }
+        if (data.error) {
+          toast.warn(data?.error_description)
+        } else setToken(data.access_token)
       })
       .catch()
   }, [])
