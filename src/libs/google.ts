@@ -47,14 +47,14 @@ export const removeFileFromDriveById = (
     .catch(() => false)
 }
 
-export const getEmbedGoogleMediaLink = (selfLink: string): Promise<string> => {
-  return fetch(
-    `https://gdriveplayer.to/embed2.php?link=${selfLink}&subtitle=&poster=&jsonsubtitle=&encrypt=yes`,
-  )
-    .then((r) => r.text())
-    .then((data) => {
-      const regex = new RegExp(/(?<=src=")(.*?)(?=\")/g)
-      return data.match(regex)[0]
-    })
-    .catch(() => undefined)
-}
+// export const getEmbedGoogleMediaLink = (selfLink: string): Promise<string> => {
+//   return fetch(
+//     `https://gdriveplayer.to/embed2.php?link=${selfLink}&subtitle=&poster=&jsonsubtitle=&encrypt=yes`,
+//   )
+//     .then((r) => r.text())
+//     .then((data) => {
+//       const regex = new RegExp(/(?<=src=")(.*?)(?=\")/g)
+//       return data.match(regex)[0]
+//     })
+//     .catch(() => undefined)
+// }
