@@ -1,15 +1,8 @@
 import { Fragment, useEffect, useMemo, useState } from 'react'
-import {
-  collection,
-  limit,
-  onSnapshot,
-  orderBy,
-  query,
-  where,
-} from 'firebase/firestore'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import Slider, { Settings } from 'react-slick'
 import { toast } from 'react-toastify'
-import { useTranslation } from 'react-i18next'
 
 import {
   eighth,
@@ -24,8 +17,16 @@ import {
 } from 'assets/images'
 import { NewsCard } from 'components'
 import { RETRY_ERROR } from 'constants/message'
-import { db } from 'libs/firebase'
+import {
+  collection,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from 'firebase/firestore'
 import { useWindowSize } from 'hooks/useWindowSize'
+import { db } from 'libs/firebase'
 import { ProjectCard } from './Projects'
 
 const settings: Settings = {
@@ -124,13 +125,15 @@ export default function LandingPage() {
         ))}
       </Slider>
 
-      <div className="mx-10">
+      <div className="mx-5 md:mx-10">
         {/* Project carousel */}
         <div className="my-12">
           <div className="flex items-center">
             <h1 className="font-bold text-xl">{t('real_estate_project')}</h1>
             <div className="flex-grow"></div>
-            <button className="btn btn--secondary">{t('post_news')}</button>
+            <Link to="/dang-tin">
+              <button className="btn btn--secondary">{t('post_news')}</button>
+            </Link>
           </div>
           <Slider
             className="w-[calc(100%+2rem)] -left-4 mx-auto mt-5"
