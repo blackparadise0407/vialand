@@ -42,7 +42,7 @@ export default memo(function Header({ collapsed, onCollapsed }: HeaderProps) {
           <Link to="/cho-thue">{t('rent')}</Link>
         </li>
         <li>
-          <Link to="/dang-tin">{t('post_news')}</Link>
+          <Link to="/dang-tin">{t('post_trading_news')}</Link>
         </li>
       </ul>
       <div className="flex items-center gap-5">

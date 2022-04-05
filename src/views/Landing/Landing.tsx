@@ -30,6 +30,7 @@ import { ProjectCard } from './Projects'
 
 const settings: Settings = {
   autoplay: true,
+  autoplaySpeed: 5000,
   dots: false,
   fade: true,
   infinite: true,
@@ -63,6 +64,7 @@ export default function LandingPage() {
 
     return {
       autoplay: true,
+      autoplaySpeed: 5000,
       fade: false,
       infinite: true,
       speed: 500,
@@ -122,38 +124,43 @@ export default function LandingPage() {
         ))}
       </Slider>
 
-      {/* Project carousel */}
-      <div className="my-5 mx-2 md:mx-20 space-y-2">
-        <div className="flex items-center">
-          <h1 className="font-bold text-xl">{t('real_estate_project')}</h1>
-          <div className="flex-grow"></div>
-          <button className="btn btn--secondary">{t('see_all')}</button>
-        </div>
-        <Slider className="w-full" {...projectSettings}>
-          {images.map((x, idx) => (
-            <div className="px-2" key={idx}>
-              <ProjectCard key={idx} />
-            </div>
-          ))}
-        </Slider>
-      </div>
-
-      <div className="flex flex-col xl:flex-row gap-16 m-5 md:m-10">
-        <div
-          className="relative max-w-[89vh] w-full h-[59vh] mx-auto"
-          style={{
-            background: `url(${eighth}) center no-repeat`,
-            backgroundSize: 'cover',
-          }}
-        >
-          <div className="absolute bottom-0 left-0 w-full text-white text-xl p-[20px] bg-black bg-opacity-50">
-            <p className="text-center">{t('lavender_project')}</p>
+      <div className="mx-10">
+        {/* Project carousel */}
+        <div className="my-12">
+          <div className="flex items-center">
+            <h1 className="font-bold text-xl">{t('real_estate_project')}</h1>
+            <div className="flex-grow"></div>
+            <button className="btn btn--secondary">{t('post_news')}</button>
           </div>
+          <Slider
+            className="w-[calc(100%+2rem)] -left-4 mx-auto mt-5"
+            {...projectSettings}
+          >
+            {images.map((x, idx) => (
+              <div className="px-4" key={idx}>
+                <ProjectCard key={idx} />
+              </div>
+            ))}
+          </Slider>
         </div>
-        <div className="space-y-5 w-full xl:w-1/2">
-          {propertyList.map((x) => (
-            <NewsCard key={x.id} data={x} />
-          ))}
+
+        <div className="flex flex-col xl:flex-row gap-16 my-5">
+          <div
+            className="relative max-w-[89vh] w-full h-[59vh] mx-auto"
+            style={{
+              background: `url(${eighth}) center no-repeat`,
+              backgroundSize: 'cover',
+            }}
+          >
+            <div className="absolute bottom-0 left-0 w-full text-white text-xl p-[20px] bg-black bg-opacity-50">
+              <p className="text-center">{t('lavender_project')}</p>
+            </div>
+          </div>
+          <div className="space-y-5 w-full xl:w-1/2 h-auto xl:h-[59vh] overflow-y-auto">
+            {propertyList.map((x) => (
+              <NewsCard key={x.id} data={x} />
+            ))}
+          </div>
         </div>
       </div>
     </Fragment>

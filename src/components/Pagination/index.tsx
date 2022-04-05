@@ -17,7 +17,7 @@ export default memo(function Pagination({
   return (
     <div className="flex my-3 space-x-2">
       <button
-        className="flex items-center justify-center px-2 py-1 bg-[#1a73e8] hover:bg-opacity-70 transition-colors text-white rounded"
+        className="flex items-center justify-center px-2 py-1 bg-[#111] hover:bg-opacity-70 transition-colors text-white rounded"
         onClick={onFirst}
       >
         <span>Trang đầu</span>
@@ -26,14 +26,14 @@ export default memo(function Pagination({
       {!hideNavigation && (
         <>
           <button
-            className="flex items-center justify-center px-2 py-1 bg-[#1a73e8] hover:bg-opacity-70 transition-colors text-white rounded"
+            className="flex items-center justify-center px-2 py-1 bg-[#111] hover:bg-opacity-70 transition-colors text-white rounded"
             onClick={onPrev}
           >
             <HiChevronDoubleLeft />
             <span>Trước</span>
           </button>
           <button
-            className="flex items-center justify-center px-2 py-1 bg-[#1a73e8] hover:bg-opacity-70 transition-colors text-white rounded"
+            className="flex items-center justify-center px-2 py-1 bg-[#111] hover:bg-opacity-70 transition-colors text-white rounded"
             onClick={onNext}
           >
             <span>Sau</span>

@@ -5,5 +5,9 @@ type FormLabelProps = {
 } & HTMLProps<HTMLLabelElement>
 
 export default memo(function FormLabel({ title, ...rest }: FormLabelProps) {
-  return <label {...rest}>{title}</label>
+  return (
+    <label className="truncate" {...rest}>
+      {title}
+    </label>
+  )
 })

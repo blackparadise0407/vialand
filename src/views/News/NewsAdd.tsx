@@ -260,15 +260,15 @@ export default function NewsAdd() {
         </div>
       </div>
       <form className="grid grid-cols-4 w-full lg:w-[50%] md:w-[80%] place-content-start gap-5">
-        <div className="col-span-4 xl:col-span-2">
+        <div className="col-span-4 xl:col-span-3">
           <h1 className="text-base md:text-xl xl:text-2xl font-medium">
-            Điền thông tin của bất động sản
+            Điền thông tin bất động sản
           </h1>
         </div>
         <FormGroup
-          className="col-span-4 xl:col-span-2"
+          className="col-span-4 xl:col-span-1"
           htmlFor="subject"
-          label="Danh mục"
+          label="Bán/Cho thuê"
           error={errors.subject}
         >
           <select
@@ -300,29 +300,6 @@ export default function NewsAdd() {
           </select>
         </FormGroup>
 
-        {/* Length */}
-        <FormGroup
-          className="col-span-2 xl:col-span-1"
-          htmlFor="length"
-          label="Chiều dài (m)"
-          error={errors.length}
-        >
-          <input
-            {...register('length', {
-              valueAsNumber: true,
-              required: true,
-              min: 0,
-              max: 10000,
-            })}
-            className="input"
-            placeholder="Nhập chiều dài"
-            type="number"
-            step="0.01"
-            min={0}
-            max={10000}
-          />
-        </FormGroup>
-
         {/* Width */}
         <FormGroup
           className="col-span-2 xl:col-span-1"
@@ -339,6 +316,29 @@ export default function NewsAdd() {
             })}
             className="input"
             placeholder="Nhập chiều ngang"
+            type="number"
+            step="0.01"
+            min={0}
+            max={10000}
+          />
+        </FormGroup>
+
+        {/* Length */}
+        <FormGroup
+          className="col-span-2 xl:col-span-1"
+          htmlFor="length"
+          label="Chiều dài (m)"
+          error={errors.length}
+        >
+          <input
+            {...register('length', {
+              valueAsNumber: true,
+              required: true,
+              min: 0,
+              max: 10000,
+            })}
+            className="input"
+            placeholder="Nhập chiều dài"
             type="number"
             step="0.01"
             min={0}
@@ -495,7 +495,7 @@ export default function NewsAdd() {
           <textarea
             {...register('description', { required: true, maxLength: 255 })}
             className="input resize-none"
-            placeholder="Nhập thông tin..."
+            placeholder="VD: Gần chợ, trường học..."
             rows={5}
             maxLength={255}
           ></textarea>
@@ -516,7 +516,7 @@ export default function NewsAdd() {
         </FormGroup>
 
         <div className="col-span-4">
-          <h1 className="text-sm md:text-base font-medium">
+          <h1 className="text-sm md:text-base font-medium mb-5">
             Vui lòng tiến hành thanh toán để đăng tin
           </h1>
           <p>Hướng dẫn thanh toán</p>
@@ -535,7 +535,7 @@ export default function NewsAdd() {
           />
           <button
             type="button"
-            className="btn w-full"
+            className="btn w-full md:w-[259px] mx-auto"
             onClick={() => {
               setPickerType('paymentImage')
               handleOpenPicker('paymentImage')
@@ -633,7 +633,7 @@ export default function NewsAdd() {
           <button
             type="button"
             onClick={handleSubmitNews}
-            className="btn w-full mt-5"
+            className="btn w-full md:w-[259px] mx-auto mt-5"
           >
             {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
             Hoàn tất

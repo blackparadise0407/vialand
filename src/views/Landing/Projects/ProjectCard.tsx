@@ -7,7 +7,7 @@ type ProjectCardProps = {}
 
 export default function ProjectCard({}: ProjectCardProps) {
   return (
-    <div className="relative w-full mx-auto rounded shadow bg-white overflow-hidden">
+    <div className="relative w-full mx-auto rounded-2xl shadow bg-white overflow-hidden">
       <div className="relative">
         <div className="relative w-full aspect-video overflow-hidden">
           <img
