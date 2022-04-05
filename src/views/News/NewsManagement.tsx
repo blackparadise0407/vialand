@@ -235,11 +235,12 @@ export default function NewsManagement() {
                       </td>
                       <td>
                         {paymentImage ? (
-                          <img
-                            className="mx-auto"
+                          <iframe
+                            className="w-full overflow-hidden aspect-square border"
+                            title="paymentImage"
+                            scrolling="no"
                             src={paymentImage.value}
-                            alt=""
-                          />
+                          ></iframe>
                         ) : (
                           '---'
                         )}

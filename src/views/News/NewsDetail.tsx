@@ -69,9 +69,7 @@ export default function NewsDetail() {
               loading="lazy"
               allowFullScreen
               className="mx-auto my-5 max-w-[720px] w-full aspect-video"
-              src={
-                '//gdriveplayer.to/embed2.php?link=XeLxw%252BXNR0jzZdlv1UFBBwP%252BDzW8HLlv9vW2pezSgQvU4%252BXNimMRGnhajexsanezDmG4D8OuloDnQYByZMh%252F9NwUtp5GIO%252BpUlsOpTym5oGRCfi8palzhzE2T%252BUiT5Oiz8NuhFBtC1k1%252Fyale4hIizptv4v0P7LkcYfPXitOh%252BZbRcVpWfD%252B%252F7zvC94QyK8IqtVhSP4roDSFyqjeH8lw39IDFsKvjzUhuNeR09HjF0lXPzKw3KSAVvU1djpQ62hjs%253D'
-              }
+              src={video.value}
             ></iframe>
           ) : (
             <Result title="Video đã bị ẩn do chứa nội dung không phù hợp" />

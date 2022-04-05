@@ -15,11 +15,7 @@ import { RETRY_ERROR } from 'constants/message'
 import { useAuthContext } from 'contexts/AuthContext'
 import { PropertyActionOptions, PropertyTypeOptions } from 'constants/property'
 import { db } from 'libs/firebase'
-import {
-  getEmbedGoogleMediaLink,
-  getFilesMetadata,
-  removeFileFromDriveById,
-} from 'libs/google'
+import { getFilesMetadata, removeFileFromDriveById } from 'libs/google'
 import { mapAddressData } from 'utils/address'
 import { slugify } from 'utils/string'
 
@@ -215,26 +211,25 @@ export default function NewsAdd() {
         switch (pickerType) {
           case 'video':
             if (!!media?.length) {
-              const { id, webViewLink } = media[0]
-              const embedLink = await getEmbedGoogleMediaLink(webViewLink)
+              const { id, embedLink } = media[0]
               setVideo({ id, value: embedLink })
             }
             break
           case 'images':
             setImageList(
               media.map(
-                ({ thumbnailLink, id }) =>
+                ({ embedLink, id }) =>
                   ({
                     id,
-                    value: thumbnailLink,
+                    value: embedLink,
                   } as IKeyValue),
               ),
             )
             break
           case 'paymentImage':
             if (!!media?.length) {
-              const { id, thumbnailLink } = media[0]
-              setPaymentImage({ id, value: thumbnailLink })
+              const { id, embedLink } = media[0]
+              setPaymentImage({ id, value: embedLink })
             }
             break
           default:
@@ -285,7 +280,7 @@ export default function NewsAdd() {
         <FormGroup
           className="col-span-2 xl:col-span-1"
           htmlFor="type"
-          label="Phân loại"
+          label="Loại hình"
           error={errors.houseType}
         >
           <select
@@ -545,10 +540,10 @@ export default function NewsAdd() {
           </button>
           {!!paymentImage && (
             <div className="relative mx-auto w-[120px] my-2">
-              <img
+              <iframe
+                title="Payment image"
                 className="w-full overflow-hidden aspect-square border"
                 src={paymentImage.value}
-                alt=""
               />
               <AiOutlineClose
                 className="absolute bg-white rounded-full shadow md:text-base lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
@@ -571,7 +566,7 @@ export default function NewsAdd() {
               </small>
               <button
                 type="button"
-                className="btn float-right"
+                className="btn w-full md:w-[259px] mx-auto"
                 onClick={() => {
                   setPickerType('video')
                   handleOpenPicker('video')
@@ -601,7 +596,7 @@ export default function NewsAdd() {
             <FormGroup className="col-span-4" htmlFor="images" label="Hình ảnh">
               <button
                 type="button"
-                className="btn float-right"
+                className="btn w-full md:w-[259px] mx-auto"
                 onClick={() => {
                   setPickerType('images')
                   handleOpenPicker('images')
