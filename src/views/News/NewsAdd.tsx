@@ -137,19 +137,21 @@ export default function NewsAdd() {
   }
 
   const handleOpenPicker = (pickerType: PickerTypeKey) => {
-    openPicker({
-      clientId,
-      developerKey: apiKey,
-      token,
-      showUploadView: true,
-      showUploadFolders: true,
-      supportDrives: true,
-      setParentFolder: common.isDev
-        ? undefined
-        : '1Kq2bMWqgsyRY_02SitoGwSwBMmuq23De',
-      multiselect: pickerType === 'images',
-      disableDefaultView: true,
-    })
+    if (token) {
+      openPicker({
+        clientId,
+        developerKey: apiKey,
+        token,
+        showUploadView: true,
+        showUploadFolders: true,
+        supportDrives: true,
+        setParentFolder: common.isDev
+          ? undefined
+          : '1Kq2bMWqgsyRY_02SitoGwSwBMmuq23De',
+        multiselect: pickerType === 'images',
+        disableDefaultView: true,
+      })
+    } else toast.error(RETRY_ERROR)
   }
 
   const handleRemoveImageById = async (id: string) => {
