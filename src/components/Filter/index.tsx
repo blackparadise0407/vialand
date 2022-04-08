@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useMemo, useState } from 'react'
+import { ChangeEvent, memo, useEffect, useMemo, useState } from 'react'
 
 import wards from 'constants/wards.json'
 import provinces from 'constants/provinces.json'
@@ -14,17 +14,15 @@ type FilterProps = {
 }
 
 export default memo(function Filter({
-  value,
+  value = {
+    district: undefined,
+    ward: undefined,
+    province: undefined,
+  },
   onFilter = () => {},
   onClear = () => {},
 }: FilterProps) {
-  const [innerVal, setInnerVal] = useState<AddressFilter>(
-    value ?? {
-      district: undefined,
-      ward: undefined,
-      province: undefined,
-    },
-  )
+  const [innerVal, setInnerVal] = useState<AddressFilter>(value)
 
   const disabledFilter = useMemo(
     () => Object.entries(innerVal).every(([, v]) => !v),
@@ -70,6 +68,10 @@ export default memo(function Filter({
       onFilter(innerVal)
     }
   }
+
+  // useEffect(() => {
+  //   setInnerVal(value)
+  // }, [value])
 
   return (
     <div
