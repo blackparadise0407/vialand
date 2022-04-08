@@ -79,5 +79,16 @@ declare global {
   }
 
   type AddressFilter = Omit<IAddress, 'address'>
+
+  interface IAppResponse<T> {
+    data: T
+    message: string
+    status: number
+  }
+
+  interface ICommonQuery {
+    page?: number
+    limit?: number
+  }
 }
 export {}
