@@ -298,14 +298,14 @@ export default function NewsManagement() {
             )}
           </tbody>
         </table>
-        <Pagination
+        {/* <Pagination
           onFirst={() => {
             setConstraint([])
             fetchData()
           }}
           onPrev={() => handleChangePage()}
           onNext={() => handleChangePage(true)}
-        />
+        /> */}
       </div>
     </div>
   )
