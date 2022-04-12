@@ -5,9 +5,9 @@ const BASE_URL = process.env.REACT_APP_BASE_API
 const NEWS_API = BASE_URL + '/news'
 
 export interface IGetNewsQuery extends ICommonQuery {
-  ward?: number
-  province?: number
-  district?: number
+  ward?: string | number
+  province?: string | number
+  district?: string | number
   published?: boolean
   action?: EAction
 }
