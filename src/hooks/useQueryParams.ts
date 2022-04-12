@@ -1,14 +1,21 @@
-import { useLocation } from 'react-router-dom'
+import { useCallback, useMemo } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import qs from 'query-string'
 
-export function useQueryParams<T>(): T {
-  const { search } = useLocation()
+export function useQueryParams<T>(): [T, (updateParams: Partial<T>) => void] {
+  const { pathname, search } = useLocation()
+  const navigate = useNavigate()
 
-  const entries = search.substring(1).split('&')
-  return entries.reduce((res, curr) => {
-    const [key, val] = curr.split('=')
-    if (!res[key]) {
-      res[key] = val
-    }
-    return res
-  }, {} as any) as T
+  const params = useMemo(() => qs.parse(search) as unknown as T, [search])
+
+  const updateQuery = useCallback(
+    (updateParams: Partial<T>): void => {
+      navigate(pathname + '?' + qs.stringify(updateParams), {
+        replace: true,
+      })
+    },
+    [pathname, navigate],
+  )
+
+  return [params, updateQuery]
 }
