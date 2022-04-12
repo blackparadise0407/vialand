@@ -39,9 +39,9 @@ declare global {
   }
 
   interface IAddress {
-    province: number
-    district: number
-    ward: number
+    province: number | string
+    district: number | string
+    ward: number | string
     address: string
   }
 
