@@ -19,7 +19,7 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
       className={clsx('block hover:shadow', className)}
       to={`/${data.slug}`}
     >
-      <div className="flex gap-5 p-2 cursor-pointer h-full">
+      <div className="flex gap-5 p-2 cursor-pointer h-full min-h-[150px]">
         <img
           className="w-[128px] max-h-[100px] aspect-video"
           src={second}
