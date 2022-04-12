@@ -1,24 +1,11 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
-import { AiOutlineSearch } from 'react-icons/ai'
-import { toast } from 'react-toastify'
 import dayjs from 'dayjs'
-import {
-  collection,
-  deleteDoc,
-  doc,
-  DocumentData,
-  endBefore,
-  getDocs,
-  limit,
-  orderBy,
-  query,
-  QueryConstraint,
-  QueryDocumentSnapshot,
-  setDoc,
-  startAfter,
-  where,
-} from 'firebase/firestore'
+import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai'
+import { deleteDoc, doc, setDoc } from 'firebase/firestore'
+import { useLocation } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
+import { getNews } from 'apis'
 import { CrudButton, Pagination } from 'components'
 import { PAGE_LIMIT } from 'constants/common'
 import { RETRY_ERROR } from 'constants/message'
@@ -29,41 +16,47 @@ import { removeFileFromDriveById } from 'libs/google'
 
 export default function NewsManagement() {
   const { token } = useAuthContext()
-  const { slug } = useQueryParams<{ slug: string }>()
+  const [query, updateQuery] = useQueryParams<{ slug: string; page: number }>()
+  const { search } = useLocation()
 
-  const [docPair, setDocPair] = useState<
-    [QueryDocumentSnapshot<DocumentData>, QueryDocumentSnapshot<DocumentData>]
-  >([null, null])
-  const [newsList, setNewsList] = useState<IProperty[]>([])
   const [loading, setLoading] = useState(false)
-  const [constraint, setConstraint] = useState<QueryConstraint[]>([])
-  const [fetched, setFetched] = useState(false)
+  const [state, setState] = useState<{
+    data: IProperty[]
+    limit: number
+    total: number
+    fetched: boolean
+  }>({
+    data: [],
+    limit: PAGE_LIMIT,
+    total: 0,
+    fetched: false,
+  })
 
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleToggleProperties = useCallback(
     async (id: string, prop: keyof IProperty) => {
-      const clone = [...newsList]
+      const clone = [...state.data]
       const foundNewsIdx = clone.findIndex((x) => x.id === id)
       if (foundNewsIdx > -1) {
         ;(clone[foundNewsIdx][prop] as boolean) = !clone[foundNewsIdx][prop]
-        setNewsList(clone)
+        setState((prev) => ({ ...prev, data: clone }))
         try {
           const docRef = doc(db, 'properties', id)
           await setDoc(docRef, clone[foundNewsIdx])
           toast.success('Thao tác thành công')
         } catch (e) {
           ;(clone[foundNewsIdx][prop] as boolean) = !clone[foundNewsIdx][prop]
-          setNewsList(clone)
+          setState((prev) => ({ ...prev, data: clone }))
         }
       }
     },
-    [newsList],
+    [state.data],
   )
 
   const handleDeleteNews = useCallback(
     async (id: string) => {
-      const clone = [...newsList]
+      const clone = [...state.data]
       const foundNewsIdx = clone.findIndex((x) => x.id === id)
       if (foundNewsIdx > -1) {
         const docRef = doc(db, 'properties', id)
@@ -73,15 +66,15 @@ export default function NewsManagement() {
           error: RETRY_ERROR,
         })
         clone.splice(foundNewsIdx, 1)
-        setNewsList(clone)
+        setState((prev) => ({ ...prev, data: clone }))
       }
     },
-    [newsList],
+    [state.data],
   )
 
   const handleDeleteNewsVideo = useCallback(
     async (newsId: string, fileId: string) => {
-      const clone = [...newsList]
+      const clone = [...state.data]
       const foundNewsIdx = clone.findIndex((x) => x.id === newsId)
       if (foundNewsIdx > -1) {
         try {
@@ -98,89 +91,90 @@ export default function NewsManagement() {
               error: RETRY_ERROR,
             },
           )
-          setNewsList(clone)
+          setState((prev) => ({ ...prev, data: clone }))
         } catch (e) {
-          setNewsList([...newsList])
+          setState((prev) => ({ ...prev }))
         }
       }
     },
-    [token, newsList],
+    [token, state.data],
   )
 
-  const fetchData = useCallback(
-    async (...constraints: QueryConstraint[]) => {
-      setLoading(true)
-      try {
-        const docsRef = collection(db, 'properties')
-        const q = query(
-          docsRef,
-          orderBy('createdAt', 'desc'),
-          limit(PAGE_LIMIT),
-          ...constraints,
-          ...constraint,
-        )
-        const snapshot = await getDocs(q)
-        snapshot.docs?.length &&
-          setDocPair([
-            snapshot.docs[0],
-            snapshot.docs[snapshot.docs.length - 1],
-          ])
-
-        const newsList: IProperty[] = []
-        snapshot.forEach((doc) => {
-          newsList.push({
-            id: doc.id,
-            ...doc.data(),
-          } as any)
-        })
-        if (!newsList.length) {
-          toast.warning('Đã hết data')
-        } else setNewsList(newsList)
-      } catch (e) {
-        console.log(e)
-        toast.error(RETRY_ERROR)
-      } finally {
-        setLoading(false)
-        setFetched(true)
-      }
+  const handlePageChange = useCallback(
+    (nextPage: number) => {
+      updateQuery({ ...query, page: nextPage })
     },
-    [constraint],
+    [query, updateQuery],
   )
 
-  const handleChangePage = useCallback(
-    async (next: boolean = false) => {
-      const [first, last] = docPair
-      let constraint: QueryConstraint
-      if (next) {
-        if (last) constraint = startAfter(last)
-      } else {
-        if (first) constraint = endBefore(first)
-      }
-      try {
-        constraint && (await fetchData(constraint))
-      } catch (e) {}
-    },
-    [docPair, fetchData],
-  )
+  const skip = (query.page - 1) * state.limit
 
   const handleSearchById = (e: MouseEvent<HTMLButtonElement>) => {
     if (inputRef.current.value) {
-      setConstraint([where('slug', '==', inputRef.current.value)])
-    } else setConstraint([])
+      updateQuery({
+        ...query,
+        slug: inputRef.current.value,
+      })
+    } else {
+      updateQuery({
+        page: query.page,
+      })
+    }
+  }
+
+  const handleClearSearch = () => {
+    updateQuery({
+      page: query.page,
+    })
+    if (inputRef.current) {
+      inputRef.current.value = ''
+    }
   }
 
   // First run
   useEffect(() => {
-    !fetched && fetchData()
-  }, [fetched])
+    async function eff() {
+      setLoading(true)
+      const { limit } = state
+      const { data, status } = await getNews({
+        ...query,
+        limit,
+      })
+      if (status === 200) {
+        setState((prev) => ({
+          ...prev,
+          data: data.news,
+          limit: data.limit,
+          total: data.total,
+          fetched: true,
+        }))
+      } else {
+        toast.error(RETRY_ERROR)
+        setState((prev) => ({
+          ...prev,
+          fetched: true,
+        }))
+      }
+      setLoading(false)
+    }
+    !state.fetched && eff()
+  }, [state.fetched])
 
   useEffect(() => {
-    setFetched(false)
-  }, [constraint])
+    setState((prev) => ({ ...prev, fetched: false }))
+  }, [search])
 
   useEffect(() => {
-    if (slug) inputRef.current.value = slug
-  }, [slug])
+    const page = query.page ?? 1
+    updateQuery({
+      ...query,
+      page,
+    })
+  }, [])
+
+  useEffect(() => {
+    if (query.slug) inputRef.current.value = query.slug
+  }, [query.slug])
 
   return (
     <div className="min-h-screen p-5">
@@ -197,10 +191,15 @@ export default function NewsManagement() {
             <AiOutlineSearch />
             <span>Tra cứu</span>
           </button>
+          <button onClick={handleClearSearch} className="btn btn--secondary">
+            <AiOutlineClose />
+            <span>Xóa</span>
+          </button>
         </div>
         <table className="table-auto w-full">
           <thead>
             <tr>
+              <th>STT</th>
               <th>Tên</th>
               <th>Ngày đăng</th>
               <th>Ảnh thanh toán</th>
@@ -210,7 +209,7 @@ export default function NewsManagement() {
             </tr>
           </thead>
           <tbody>
-            {!newsList.length ? (
+            {!state.data.length ? (
               <tr className="text-center">
                 <td colSpan={100}>
                   {loading ? 'Loading...' : 'Không có data'}
@@ -218,17 +217,21 @@ export default function NewsManagement() {
               </tr>
             ) : (
               <>
-                {newsList.map(
-                  ({
-                    id,
-                    subject,
-                    video,
-                    createdAt,
-                    hideVideo,
-                    published,
-                    paymentImage,
-                  }) => (
+                {state.data.map(
+                  (
+                    {
+                      id,
+                      subject,
+                      video,
+                      createdAt,
+                      hideVideo,
+                      published,
+                      paymentImage,
+                    },
+                    idx,
+                  ) => (
                     <tr className="hover:bg-gray-100 cursor-default" key={id}>
+                      <td>{skip + idx + 1}</td>
                       <td>{subject}</td>
                       <td>
                         {dayjs(createdAt * 1000).format('DD/MM/YYYY - HH:mm')}
@@ -298,14 +301,12 @@ export default function NewsManagement() {
             )}
           </tbody>
         </table>
-        {/* <Pagination
-          onFirst={() => {
-            setConstraint([])
-            fetchData()
-          }}
-          onPrev={() => handleChangePage()}
-          onNext={() => handleChangePage(true)}
-        /> */}
+        <Pagination
+          total={state.total}
+          page={parseInt(query.page as any, 10)}
+          limit={state.limit}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   )
