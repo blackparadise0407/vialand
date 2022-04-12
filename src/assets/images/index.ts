@@ -7,7 +7,7 @@ import sixth from './06.jpg'
 import seventh from './07.jpg'
 import eighth from './08.jpg'
 import ninth from './09.jpg'
-import qr from './qr.png'
+import qr from './qr.jpg'
 
 export {
   first,
