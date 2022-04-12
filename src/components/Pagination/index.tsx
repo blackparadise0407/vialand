@@ -47,6 +47,7 @@ export default memo(function Pagination({
       {totalPage > 0 && (
         <>
           <button
+            title="Trang trước"
             className={clsx(
               'flex items-center justify-center w-[30px] h-[30px] px-2 py-1 bg-[#111] hover:bg-opacity-70 border border-transparent transition-colors text-white rounded',
               page === 1 && 'pointer-events-none bg-[#aeaeae]',
@@ -68,6 +69,7 @@ export default memo(function Pagination({
               )
             return (
               <button
+                title={`Trang ${x}`}
                 key={x}
                 className={clsx(
                   'flex items-center justify-center w-[30px] h-[30px] px-2 py-1 hover:bg-opacity-70 border transition-colors rounded',
@@ -82,9 +84,10 @@ export default memo(function Pagination({
             )
           })}
           <button
+            title="Trang sau"
             className={clsx(
               'flex items-center justify-center w-[30px] h-[30px] px-2 py-1 bg-[#111] hover:bg-opacity-70 border border-transparent transition-colors text-white rounded',
-              page >= totalPage && 'pointer-events-none bg-[#aeaeae]',
+              page > totalPage && 'pointer-events-none bg-[#aeaeae]',
             )}
             onClick={handleChangeNextPage}
           >
