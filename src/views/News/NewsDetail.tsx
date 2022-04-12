@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import qs from 'query-string'
 
 import { Result } from 'components'
 import { EAction } from 'enums'
@@ -57,6 +58,9 @@ export default function NewsDetail() {
     hideVideo,
     price,
     action,
+    province,
+    ward,
+    district,
   } = news
 
   return (
@@ -81,6 +85,9 @@ export default function NewsDetail() {
           className="link"
           to={{
             pathname: action === EAction.trade ? '/mua-ban' : '/cho-thue',
+            search: qs.stringify({
+              province,
+            }),
           }}
         >
           {provinceName}
@@ -90,6 +97,10 @@ export default function NewsDetail() {
           className="link"
           to={{
             pathname: action === EAction.trade ? '/mua-ban' : '/cho-thue',
+            search: qs.stringify({
+              district,
+              province,
+            }),
           }}
         >
           {districtName}
@@ -99,6 +110,11 @@ export default function NewsDetail() {
           className="link"
           to={{
             pathname: action === EAction.trade ? '/mua-ban' : '/cho-thue',
+            search: qs.stringify({
+              province,
+              ward,
+              district,
+            }),
           }}
         >
           {wardName}
