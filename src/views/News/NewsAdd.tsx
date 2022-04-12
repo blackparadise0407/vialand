@@ -246,7 +246,7 @@ export default function NewsAdd() {
   return (
     <div className="my-5 mx-5 md:mx-20 lg:mx-30 flex gap-5 text-xs sm:text-sm md:text-base">
       <div
-        className="sticky top-[100px] max-w-[50vh] w-full h-[59vh] mx-auto hidden md:block"
+        className="sticky top-[100px] w-full h-[80vh] mx-auto hidden md:block"
         style={{
           background: `url(${second}) center no-repeat`,
           backgroundSize: 'cover',
@@ -256,7 +256,7 @@ export default function NewsAdd() {
           <p className="text-center">Đăng tin bất động sản</p>
         </div>
       </div>
-      <form className="grid grid-cols-4 w-full lg:w-[50%] md:w-[80%] place-content-start gap-5">
+      <form className="grid grid-cols-4 w-full lg:w-[75%] md:w-[80%] place-content-start gap-5">
         <div className="col-span-4 xl:col-span-3">
           <h1 className="text-base md:text-xl xl:text-2xl font-medium">
             Điền thông tin bất động sản
@@ -265,7 +265,7 @@ export default function NewsAdd() {
         <FormGroup
           className="col-span-4 xl:col-span-1"
           htmlFor="subject"
-          label="Bán/Cho thuê"
+          label="Bán / Cho thuê"
           error={errors.subject}
         >
           <select
@@ -358,7 +358,7 @@ export default function NewsAdd() {
               max: 10000,
             })}
             className="input"
-            placeholder="Nhập giá..."
+            placeholder="VD: 0.35"
             type="number"
             step="0.01"
             min={0}
@@ -513,13 +513,13 @@ export default function NewsAdd() {
         </FormGroup>
 
         <div className="col-span-4">
-          <h1 className="text-sm md:text-base font-medium mb-5">
+          <h1 className="text-base md:text-xl xl:text-2xl font-medium mb-5">
             Vui lòng tiến hành thanh toán để đăng tin
           </h1>
           <p>Hướng dẫn thanh toán</p>
           <p>Chuyển tiền qua ví momo</p>
           <p>Số tiền 20.000đ</p>
-          <p>Người nhận 0966883331</p>
+          <p>Người nhận 0966885501</p>
           <p>
             Sau đó tải ảnh chụp hóa đơn đã thanh toán lên vào ô bên dưới rồi bấm
             nút <b>Hoàn tất</b>
