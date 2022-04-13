@@ -67,10 +67,10 @@ export default function NewsAdd() {
   const { t } = useTranslation()
   const {
     control,
+    formState: { errors },
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm<NewsAddForm>()
   const [openPicker, data] = useDrivePicker()
 
@@ -441,7 +441,32 @@ export default function NewsAdd() {
               required: true,
               validate: (value) => {
                 const entries = Object.entries(value)
-                return entries.every(([, v]) => !!v)
+                let error: string
+                let action = 'chọn'
+                entries.forEach(([k, v]) => {
+                  if (!v) {
+                    switch (k) {
+                      case 'ward':
+                        error = 'phường / xã'
+                        return
+                      case 'district':
+                        error = 'quận / huyện'
+                        return
+                      case 'province':
+                        error = 'tỉnh / thành'
+                        return
+                      case 'address':
+                        error = 'địa chỉ'
+                        action = 'nhập'
+                        return
+                      default:
+                        break
+                    }
+                    return
+                  }
+                })
+                if (!error) return true
+                return `Vui lòng ${action} ${error}`
               },
             }}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
