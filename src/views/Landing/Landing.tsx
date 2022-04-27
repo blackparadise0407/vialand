@@ -129,7 +129,7 @@ export default function LandingPage() {
         {/* Project carousel */}
         <div className="my-12">
           <div className="flex items-center">
-            <h1 className="font-bold text-xl">{t('real_estate_project')}</h1>
+            <h1 className="font-bold md:text-xl">{t('real_estate_project')}</h1>
             <div className="flex-grow"></div>
             <Link to="/dang-tin">
               <button className="btn btn--secondary">{t('post_news')}</button>

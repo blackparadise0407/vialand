@@ -67,10 +67,10 @@ export default function NewsAdd() {
   const { t } = useTranslation()
   const {
     control,
+    formState: { errors },
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm<NewsAddForm>()
   const [openPicker, data] = useDrivePicker()
 
@@ -244,7 +244,7 @@ export default function NewsAdd() {
   }, [data])
 
   return (
-    <div className="my-5 mx-5 md:mx-20 lg:mx-30 flex gap-5 text-xs sm:text-sm md:text-base">
+    <div className="my-5 mx-5 md:mx-10 lg:mx-20 xl:mx-32 flex gap-5 md:gap-10 kg:gap-20 xl:gap-32 text-xs sm:text-sm md:text-base">
       <div
         className="sticky top-[100px] w-full h-[80vh] mx-auto hidden md:block"
         style={{
@@ -256,7 +256,7 @@ export default function NewsAdd() {
           <p className="text-center">Đăng tin bất động sản</p>
         </div>
       </div>
-      <form className="grid grid-cols-4 w-full lg:w-[75%] md:w-[80%] place-content-start gap-5">
+      <form className="grid grid-cols-4 w-full place-content-start gap-5">
         <div className="col-span-4 xl:col-span-3">
           <h1 className="text-base md:text-xl xl:text-2xl font-medium">
             Điền thông tin bất động sản
@@ -265,7 +265,7 @@ export default function NewsAdd() {
         <FormGroup
           className="col-span-4 xl:col-span-1"
           htmlFor="subject"
-          label="Bán / Cho thuê"
+          label="Bán - Cho thuê"
           error={errors.subject}
         >
           <select
@@ -441,7 +441,32 @@ export default function NewsAdd() {
               required: true,
               validate: (value) => {
                 const entries = Object.entries(value)
-                return entries.every(([, v]) => !!v)
+                let error: string
+                let action = 'chọn'
+                entries.forEach(([k, v]) => {
+                  if (!v) {
+                    switch (k) {
+                      case 'ward':
+                        error = 'phường / xã'
+                        return
+                      case 'district':
+                        error = 'quận / huyện'
+                        return
+                      case 'province':
+                        error = 'tỉnh / thành'
+                        return
+                      case 'address':
+                        error = 'địa chỉ'
+                        action = 'nhập'
+                        return
+                      default:
+                        break
+                    }
+                    return
+                  }
+                })
+                if (!error) return true
+                return `Vui lòng ${action} ${error}`
               },
             }}
             render={({ field: { value, onChange }, fieldState: { error } }) => (

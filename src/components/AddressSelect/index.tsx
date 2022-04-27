@@ -33,9 +33,11 @@ export default memo(function AddressSelect({
   }, [innerVal.district])
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const val = !isNaN(e.target.value as any)
-      ? parseInt(e.target.value, 10)
-      : ''
+    let val: number | string = e.target.value
+
+    if (!isNaN(e.target.value as any) && val !== '')
+      val = parseInt(e.target.value, 10)
+
     const evtName = e.target.name
 
     setInnerVal((prev) => {
