@@ -68,13 +68,19 @@ export default function NewsDetail() {
       {video ? (
         <>
           {!hideVideo ? (
-            <iframe
-              title="video"
+            // <iframe
+            //   title="video"
+            //   loading="lazy"
+            //   allowFullScreen
+            //   className="mx-auto my-5 max-w-[720px] w-full aspect-video"
+            //   src={video.value}
+            // ></iframe>
+            <img
               loading="lazy"
-              allowFullScreen
               className="mx-auto my-5 max-w-[720px] w-full aspect-video"
-              src={video.value}
-            ></iframe>
+              src={`https://lh3.googleusercontent.com/d/${video.id}`}
+              alt=""
+            />
           ) : (
             <Result title="Video đã bị ẩn do chứa nội dung không phù hợp" />
           )}

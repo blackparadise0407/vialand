@@ -238,12 +238,17 @@ export default function NewsManagement() {
                       </td>
                       <td>
                         {paymentImage ? (
-                          <iframe
+                          // <iframe
+                          //   className="w-full overflow-hidden aspect-square border"
+                          //   title="paymentImage"
+                          //   scrolling="no"
+                          //   src={paymentImage.id}
+                          // ></iframe>
+                          <img
                             className="w-full overflow-hidden aspect-square border"
-                            title="paymentImage"
-                            scrolling="no"
-                            src={paymentImage.value}
-                          ></iframe>
+                            src={`https://lh3.googleusercontent.com/d/${paymentImage.id}`}
+                            alt=""
+                          />
                         ) : (
                           '---'
                         )}
@@ -254,7 +259,7 @@ export default function NewsManagement() {
                             className="w-full overflow-hidden aspect-video border"
                             title="video"
                             scrolling="no"
-                            src={video.value}
+                            src={`https://lh3.googleusercontent.com/d/${video.id}`}
                           ></iframe>
                         ) : (
                           '---'
