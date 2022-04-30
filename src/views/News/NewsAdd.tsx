@@ -114,7 +114,7 @@ export default function NewsAdd() {
           method: 'POST',
           body: JSON.stringify({
             name: subject,
-            link: window.location.origin + `/quan-tri?slug=${slug}`,
+            link: window.location.origin + `/lien-he?slug=${slug}`,
           }),
         }),
       ]

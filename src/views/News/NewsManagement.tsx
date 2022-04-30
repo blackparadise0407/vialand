@@ -245,7 +245,7 @@ export default function NewsManagement() {
                           //   src={paymentImage.id}
                           // ></iframe>
                           <img
-                            className="w-full overflow-hidden aspect-square border"
+                            className="w-[192px] overflow-hidden aspect-square border"
                             src={`https://lh3.googleusercontent.com/d/${paymentImage.id}`}
                             alt=""
                           />
@@ -259,7 +259,7 @@ export default function NewsManagement() {
                             className="w-full overflow-hidden aspect-video border"
                             title="video"
                             scrolling="no"
-                            src={`https://lh3.googleusercontent.com/d/${video.id}`}
+                            src={video.value}
                           ></iframe>
                         ) : (
                           '---'

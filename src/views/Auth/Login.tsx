@@ -14,7 +14,7 @@ export default function Login() {
   }
 
   useEffect(() => {
-    if (isAuth) navigate('/quan-tri')
+    if (isAuth) navigate('/lien-he')
   }, [isAuth])
 
   return (

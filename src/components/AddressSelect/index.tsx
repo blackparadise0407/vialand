@@ -116,7 +116,8 @@ export default memo(function AddressSelect({
       </div>
       <input
         className="input"
-        placeholder="Nhập địa chỉ là số từ 1-1000 đường"
+        maxLength={50}
+        placeholder="Số nhà, thôn, tổ, tên đường (<50 ký tự)"
         onChange={handleInputChange}
       />
     </div>

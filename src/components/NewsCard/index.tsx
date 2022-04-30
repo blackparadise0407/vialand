@@ -22,7 +22,11 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
       <div className="flex gap-5 p-2 cursor-pointer h-full min-h-[150px]">
         <img
           className="w-[128px] max-h-[100px] aspect-video"
-          src={`https://lh3.googleusercontent.com/d/${images[0]?.id}` ?? second}
+          src={
+            images[0]?.id
+              ? `https://lh3.googleusercontent.com/d/${images[0].id}`
+              : second
+          }
           alt=""
         />
         <div className="overflow-hidden flex flex-col text-base font-light w-full">

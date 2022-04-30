@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { getNews } from 'apis'
-import { Filter, NewsCard, Pagination, Result } from 'components'
+import { Alert, Filter, NewsCard, Pagination, Result } from 'components'
 import { PAGE_LIMIT } from 'constants/common'
 import { RETRY_ERROR } from 'constants/message'
 import { EAction } from 'enums'
@@ -95,6 +95,8 @@ export default function NewsList() {
 
   return (
     <div className="p-5 flex items-center flex-col">
+      <Alert title="Vui lòng tải Chrome trên Android hoặc iOS để xem" />
+
       <Filter
         value={{ province, district, ward }}
         onFilter={handleChangeFilter}
