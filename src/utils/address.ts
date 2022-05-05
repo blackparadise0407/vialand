@@ -8,10 +8,16 @@ export const mapAddressData = (address: IAddress) => {
   const foundDistrict = districts.find((x) => parseInt(x.id, 10) === district)
   const foundWard = wards.find((x) => parseInt(x.id, 10) === ward)
 
+  const districtName = `${foundDistrict.typeName} ${
+    foundDistrict.name.startsWith('Quận')
+      ? foundDistrict.name.substring(5)
+      : foundDistrict.name
+  }`
+
   return {
     ...address,
     provinceName: `${foundProvince.typeName} ${foundProvince?.name}`,
-    districtName: `${foundDistrict.typeName} ${foundDistrict?.name}`,
+    districtName,
     wardName: foundWard?.name,
   }
 }
