@@ -33,12 +33,17 @@ const _renderVideo = ({
     return <Result title="Video đã bị ẩn do chứa nội dung không phù hợp" />
   }
 
-  console.log(vidSrc)
-
   if (isMobile) {
     return (
       <div className="relative w-full">
-        <img src={fbImg ?? second} alt="" />
+        <img
+          src={fbImg ?? second}
+          alt=""
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null
+            currentTarget.src = second
+          }}
+        />
         <a href={vidSrc} target="_blank" rel="noreferrer">
           <FaPlay className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl shadow text-white" />
         </a>
