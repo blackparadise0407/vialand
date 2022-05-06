@@ -161,16 +161,16 @@ export default function NewsManagement() {
   }, [state.fetched])
 
   useEffect(() => {
-    setState((prev) => ({ ...prev, fetched: false }))
-  }, [search])
-
-  useEffect(() => {
     const page = query.page ?? 1
     updateQuery({
       ...query,
       page,
     })
   }, [])
+
+  useEffect(() => {
+    setState((prev) => ({ ...prev, fetched: false }))
+  }, [search])
 
   useEffect(() => {
     if (query.slug) inputRef.current.value = query.slug

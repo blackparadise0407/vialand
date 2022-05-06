@@ -1,12 +1,13 @@
 import { FormGroup } from 'components'
 import { useAuthContext } from 'contexts/AuthContext'
 import { useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function Login() {
   const navigate = useNavigate()
   const { isAuth, onLogin } = useAuthContext()
   const inputRef = useRef<HTMLInputElement>(null)
+  const { state } = useLocation()
 
   const handleLogin = () => {
     const pwd = inputRef.current?.value
@@ -14,7 +15,10 @@ export default function Login() {
   }
 
   useEffect(() => {
-    if (isAuth) navigate('/quan-tri')
+    if (isAuth)
+      navigate('/chothue', {
+        state,
+      })
   }, [isAuth])
 
   return (

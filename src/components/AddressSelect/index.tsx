@@ -17,12 +17,15 @@ export const initialAddressSelectValue: IAddress = {
 }
 
 export default memo(function AddressSelect({
-  value,
+  value = {
+    ward: '',
+    district: '',
+    province: '',
+    address: '',
+  },
   onChange,
 }: AddressSelectProps) {
-  const [innerVal, setInnerVal] = useState<IAddress>(
-    value ?? initialAddressSelectValue,
-  )
+  const [innerVal, setInnerVal] = useState<IAddress>(value)
 
   const districtOpts = useMemo(() => {
     return districts.filter((x) => x.parentId === innerVal.province?.toString())

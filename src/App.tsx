@@ -16,7 +16,7 @@ export default function App() {
         <Route path="/dang-tin" element={<NewsAdd />} />
         <Route path="/:slug" element={<NewsDetail />} />
       </Route>
-      <Route path="/quan-tri" element={<AuthLayout />}>
+      <Route path="/chothue" element={<AuthLayout />}>
         <Route index element={<NewsManagement />} />
       </Route>
       <Route path="/dang-nhap" element={<Login />} />
