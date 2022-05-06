@@ -13,7 +13,7 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
   const { t } = useTranslation()
   if (!data) return null
 
-  const { subject, price, createdAt } = data
+  const { subject, price, createdAt, images } = data
   return (
     <Link
       className={clsx('block hover:shadow', className)}
@@ -22,7 +22,16 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
       <div className="flex gap-5 p-2 cursor-pointer h-full min-h-[150px]">
         <img
           className="w-[128px] max-h-[100px] aspect-video"
-          src={second}
+          loading="lazy"
+          src={
+            images[0]?.id
+              ? `https://lh3.googleusercontent.com/d/${images[0].id}`
+              : second
+          }
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null // prevents looping
+            currentTarget.src = second
+          }}
           alt=""
         />
         <div className="overflow-hidden flex flex-col text-base font-light w-full">

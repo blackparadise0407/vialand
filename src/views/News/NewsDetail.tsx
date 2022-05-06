@@ -43,7 +43,6 @@ export default function NewsDetail() {
 
   const {
     subject,
-    size,
     structure,
     architecture,
     wardName,
@@ -61,7 +60,12 @@ export default function NewsDetail() {
     province,
     ward,
     district,
+    length,
+    width,
   } = news
+
+  let area: any = width * length
+  area = Number.isInteger(area) ? area : area.toFixed(2)
 
   return (
     <div className="">
@@ -79,7 +83,9 @@ export default function NewsDetail() {
             <Result title="Video đã bị ẩn do chứa nội dung không phù hợp" />
           )}
         </>
-      ) : null}
+      ) : (
+        <Result title="Video hiện không khả dụng" />
+      )}
       <div className="my-2 py-2 bg-[#f4f4f4] text-center font-light text-sm space-x-2">
         <Link
           className="link"
@@ -121,13 +127,13 @@ export default function NewsDetail() {
         </Link>
       </div>
       <div className="m-5 flex flex-col space-y-5 items-center overflow-hidden">
-        <span>
-          <h1 className="font-medium text-center">{subject}</h1>
+        <span className="text-center">
+          <h1 className="font-medium">{subject}</h1>
           {price && <b className="font-medium text-red-500">{price} tỷ</b>}
         </span>
         <div className="mx-auto font-sans text-justify text-base space-y-5">
           <p>
-            {t('size')}: {size} m²
+            {t('size')}: {area}m² ({width} x {length}m)
           </p>
           <p>
             {t('structure')}: {structure}

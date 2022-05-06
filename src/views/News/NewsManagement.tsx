@@ -238,12 +238,17 @@ export default function NewsManagement() {
                       </td>
                       <td>
                         {paymentImage ? (
-                          <iframe
-                            className="w-full overflow-hidden aspect-square border"
-                            title="paymentImage"
-                            scrolling="no"
-                            src={paymentImage.value}
-                          ></iframe>
+                          // <iframe
+                          //   className="w-full overflow-hidden aspect-square border"
+                          //   title="paymentImage"
+                          //   scrolling="no"
+                          //   src={paymentImage.id}
+                          // ></iframe>
+                          <img
+                            className="w-[192px] overflow-hidden aspect-square border"
+                            src={`https://lh3.googleusercontent.com/d/${paymentImage.id}`}
+                            alt=""
+                          />
                         ) : (
                           '---'
                         )}

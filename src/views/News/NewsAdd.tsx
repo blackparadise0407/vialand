@@ -147,7 +147,7 @@ export default function NewsAdd() {
         supportDrives: true,
         setParentFolder: common.isDev
           ? undefined
-          : '1Kq2bMWqgsyRY_02SitoGwSwBMmuq23De',
+          : '1ffWn9rpAhl7KOkaEzIcFhuT8k_GvHbfS',
         multiselect: pickerType === 'images',
         disableDefaultView: true,
       })
@@ -246,7 +246,7 @@ export default function NewsAdd() {
   return (
     <div className="my-5 mx-5 md:mx-10 lg:mx-20 xl:mx-32 flex gap-5 md:gap-10 kg:gap-20 xl:gap-32 text-xs sm:text-sm md:text-base">
       <div
-        className="sticky top-[100px] w-full h-[80vh] mx-auto hidden md:block"
+        className="sticky top-[100px] w-full h-[80vh] mx-auto hidden lg:block"
         style={{
           background: `url(${second}) center no-repeat`,
           backgroundSize: 'cover',

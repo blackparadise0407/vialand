@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+
 import { AuthLayout } from 'layouts/AuthLayout'
 import { Login } from 'views/Auth'
 import { NewsAdd, NewsDetail, NewsList, NewsManagement } from 'views/News'
