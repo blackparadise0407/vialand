@@ -1,5 +1,7 @@
+import { ReactNode } from 'react'
+
 type ResultProps = {
-  title: string
+  title: ReactNode
 }
 
 export default function Result({ title }: ResultProps) {

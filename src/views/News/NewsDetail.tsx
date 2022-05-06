@@ -3,11 +3,58 @@ import { collection, getDocs, query, where } from 'firebase/firestore'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import qs from 'query-string'
+import { FaPlay } from 'react-icons/fa'
 
+import { second } from 'assets/images'
 import { Result } from 'components'
 import { EAction } from 'enums'
 import { db } from 'libs/firebase'
 import NotFound from 'views/NotFound/NotFound'
+import { isMobile } from 'utils/common'
+
+const _renderVideo = ({
+  vidId,
+  vidSrc,
+  hideVideo,
+  isMobile,
+  fbImg,
+}: {
+  vidId: string
+  vidSrc: string
+  hideVideo: boolean
+  isMobile: boolean
+  fbImg: string
+}): JSX.Element => {
+  if (!vidSrc) {
+    return <Result title="Video hiện không khả dụng" />
+  }
+
+  if (hideVideo) {
+    return <Result title="Video đã bị ẩn do chứa nội dung không phù hợp" />
+  }
+
+  console.log(vidSrc)
+
+  if (isMobile) {
+    return (
+      <div className="relative w-full">
+        <img src={fbImg ?? second} alt="" />
+        <a href={vidSrc} target="_blank" rel="noreferrer">
+          <FaPlay className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl shadow text-white" />
+        </a>
+      </div>
+    )
+  }
+  return (
+    <iframe
+      title="video"
+      loading="lazy"
+      allowFullScreen
+      className="mx-auto my-5 max-w-[720px] w-full aspect-video"
+      src={vidSrc}
+    ></iframe>
+  )
+}
 
 export default function NewsDetail() {
   const { t } = useTranslation()
@@ -62,6 +109,7 @@ export default function NewsDetail() {
     district,
     length,
     width,
+    images,
   } = news
 
   let area: any = width * length
@@ -69,9 +117,9 @@ export default function NewsDetail() {
 
   return (
     <div className="">
-      {video ? (
+      {/* {video ? (
         <>
-          {!hideVideo ? (
+          {!hideVideo && !isMobile() ? (
             <iframe
               title="video"
               loading="lazy"
@@ -85,7 +133,14 @@ export default function NewsDetail() {
         </>
       ) : (
         <Result title="Video hiện không khả dụng" />
-      )}
+      )} */}
+      {_renderVideo({
+        vidId: video?.id,
+        vidSrc: video?.value,
+        hideVideo,
+        isMobile: isMobile(),
+        fbImg: images[0]?.value,
+      })}
       <div className="my-2 py-2 bg-[#f4f4f4] text-center font-light text-sm space-x-2">
         <Link
           className="link"

@@ -8,6 +8,7 @@ import { PAGE_LIMIT } from 'constants/common'
 import { RETRY_ERROR } from 'constants/message'
 import { EAction } from 'enums'
 import { useQueryParams } from 'hooks/useQueryParams'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 export default function NewsList() {
   const { pathname, search } = useLocation()
@@ -105,7 +106,14 @@ export default function NewsList() {
       {!loading && !state.data.length && <Result title="Không có thông tin" />}
       <div className="max-w-[1000px] w-full">
         {loading ? (
-          <Result title="Đang lấy thông tin..." />
+          <Result
+            title={
+              <div className="flex items-center gap-2">
+                <AiOutlineLoading3Quarters className="animate-spin" /> Đang lấy
+                thông tin...
+              </div>
+            }
+          />
         ) : (
           <>
             {state.data.map((x) => (
