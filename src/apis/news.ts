@@ -22,3 +22,7 @@ export const getNews = (queries: IGetNewsQuery) => {
     }>
   >('GET', NEWS_API, queries)
 }
+
+export const renewToken = () => {
+  return request<IAppResponse<string>>('GET', BASE_URL + '/renew')
+}

@@ -15,7 +15,7 @@ import {
   sixth,
   third,
 } from 'assets/images'
-import { Alert, NewsCard } from 'components'
+import { NewsCard } from 'components'
 import { RETRY_ERROR } from 'constants/message'
 import {
   collection,
@@ -81,7 +81,7 @@ export default function LandingPage() {
       collection(db, 'properties'),
       orderBy('createdAt', 'desc'),
       where('published', '==', true),
-      limit(10),
+      limit(15),
     )
     const unsubscribe = onSnapshot(
       q,
@@ -124,7 +124,6 @@ export default function LandingPage() {
           </div>
         ))}
       </Slider>
-      <Alert title="Vui lòng tải Chrome trên Android hoặc iOS để xem" />
       <div className="mx-5 md:mx-10">
         {/* Project carousel */}
         <div className="my-12">

@@ -5,7 +5,7 @@ type Method = 'GET' | 'POST' | 'PATCH' | 'DELETE'
 export default async function request<T>(
   method: Method,
   url: string,
-  data: any,
+  data?: any,
 ): Promise<T | undefined> {
   let config: RequestInit = {
     method,
@@ -16,10 +16,12 @@ export default async function request<T>(
   }
   let _url = url
 
-  if (method === 'GET') {
-    const queries = qs.stringify(data)
-    _url += '?' + queries
-  } else config.body = JSON.stringify(data)
+  if (data) {
+    if (method === 'GET') {
+      const queries = qs.stringify(data)
+      _url += '?' + queries
+    } else config.body = JSON.stringify(data)
+  }
 
   const response = await fetch(_url, config)
   if (response.ok) {

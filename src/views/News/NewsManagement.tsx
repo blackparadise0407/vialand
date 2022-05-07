@@ -1,11 +1,11 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
 import dayjs from 'dayjs'
-import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineClose, AiOutlineSearch, AiOutlineSync } from 'react-icons/ai'
 import { deleteDoc, doc, setDoc } from 'firebase/firestore'
 import { useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import { getNews } from 'apis'
+import { getNews, renewToken } from 'apis'
 import { CrudButton, Pagination } from 'components'
 import { PAGE_LIMIT } from 'constants/common'
 import { RETRY_ERROR } from 'constants/message'
@@ -176,6 +176,19 @@ export default function NewsManagement() {
     if (query.slug) inputRef.current.value = query.slug
   }, [query.slug])
 
+  const handleRenew = async () => {
+    try {
+      const { data, status } = await renewToken()
+      if (status === 200) {
+        window.open(
+          data,
+          '_blank',
+          'resizable=yes,top=200,left=200,width=480,height=640',
+        )
+      }
+    } catch (e) {}
+  }
+
   return (
     <div className="min-h-screen p-5">
       <h1>Quản trị</h1>
@@ -194,6 +207,11 @@ export default function NewsManagement() {
           <button onClick={handleClearSearch} className="btn btn--secondary">
             <AiOutlineClose />
             <span>Xóa</span>
+          </button>
+          <div className="flex-grow"></div>
+          <button onClick={handleRenew} className="btn">
+            <AiOutlineSync />
+            <span>Làm mới token</span>
           </button>
         </div>
         <table className="table-auto w-full">
