@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import qs from 'query-string'
 import { FaPlay } from 'react-icons/fa'
 
-import { second } from 'assets/images'
 import { Result } from 'components'
 import { EAction } from 'enums'
 import { db } from 'libs/firebase'
@@ -35,15 +34,7 @@ const _renderVideo = ({
 
   if (isMobile) {
     return (
-      <div className="relative w-full">
-        <img
-          src={fbImg ?? second}
-          alt=""
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null
-            currentTarget.src = second
-          }}
-        />
+      <div className="relative max-w-[768px] mx-auto w-full aspect-video bg-black">
         <a href={vidSrc} target="_blank" rel="noreferrer">
           <FaPlay className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl shadow text-white" />
         </a>

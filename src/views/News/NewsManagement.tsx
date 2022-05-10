@@ -1,8 +1,13 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
 import dayjs from 'dayjs'
-import { AiOutlineClose, AiOutlineSearch, AiOutlineSync } from 'react-icons/ai'
+import {
+  AiOutlineClose,
+  AiOutlineHome,
+  AiOutlineSearch,
+  AiOutlineSync,
+} from 'react-icons/ai'
 import { deleteDoc, doc, setDoc } from 'firebase/firestore'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { getNews, renewToken } from 'apis'
@@ -15,9 +20,10 @@ import { db } from 'libs/firebase'
 import { removeFileFromDriveById } from 'libs/google'
 
 export default function NewsManagement() {
+  const navigate = useNavigate()
+  const { search } = useLocation()
   const { token } = useAuthContext()
   const [query, updateQuery] = useQueryParams<{ slug: string; page: number }>()
-  const { search } = useLocation()
 
   const [loading, setLoading] = useState(false)
   const [state, setState] = useState<{
@@ -209,6 +215,10 @@ export default function NewsManagement() {
             <span>Xóa</span>
           </button>
           <div className="flex-grow"></div>
+          <button onClick={() => navigate('/')} className="btn btn--secondary">
+            <AiOutlineHome />
+            <span>Về trang chủ</span>
+          </button>
           <button onClick={handleRenew} className="btn">
             <AiOutlineSync />
             <span>Làm mới token</span>

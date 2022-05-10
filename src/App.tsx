@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
 import { AuthLayout } from 'layouts/AuthLayout'
-import { Login } from 'views/Auth'
 import { NewsAdd, NewsDetail, NewsList, NewsManagement } from 'views/News'
 import NotFound from 'views/NotFound/NotFound'
 import { MainLayout } from './layouts/MainLayout'
@@ -20,8 +19,6 @@ export default function App() {
       <Route path="/chothue" element={<AuthLayout />}>
         <Route index element={<NewsManagement />} />
       </Route>
-      <Route path="/dang-nhap" element={<Login />} />
-
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
