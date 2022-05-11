@@ -12,17 +12,13 @@ import NotFound from 'views/NotFound/NotFound'
 import { isMobile } from 'utils/common'
 
 const _renderVideo = ({
-  vidId,
   vidSrc,
   hideVideo,
   isMobile,
-  fbImg,
 }: {
-  vidId: string
   vidSrc: string
   hideVideo: boolean
   isMobile: boolean
-  fbImg: string
 }): JSX.Element => {
   if (!vidSrc) {
     return <Result title="Video hiện không khả dụng" />
@@ -34,7 +30,8 @@ const _renderVideo = ({
 
   if (isMobile) {
     return (
-      <div className="relative max-w-[768px] mx-auto w-full aspect-video bg-black">
+      <div className="relative max-w-[768px] h-full mx-auto w-full ">
+        <div className="aspect-vid bg-black"></div>
         <a href={vidSrc} target="_blank" rel="noreferrer">
           <FaPlay className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl shadow text-white" />
         </a>
@@ -105,11 +102,12 @@ export default function NewsDetail() {
     district,
     length,
     width,
-    images,
   } = news
 
   let area: any = width * length
   area = Number.isInteger(area) ? area : area.toFixed(2)
+
+  const unitTransKey = action === EAction.trade ? 'billion' : 'million'
 
   return (
     <div className="">
@@ -131,11 +129,9 @@ export default function NewsDetail() {
         <Result title="Video hiện không khả dụng" />
       )} */}
       {_renderVideo({
-        vidId: video?.id,
         vidSrc: video?.value,
         hideVideo,
         isMobile: isMobile(),
-        fbImg: images[0]?.value,
       })}
       <div className="my-2 py-2 bg-[#f4f4f4] text-center font-light text-sm space-x-2">
         <Link
@@ -180,7 +176,11 @@ export default function NewsDetail() {
       <div className="m-5 flex flex-col space-y-5 items-center overflow-hidden">
         <span className="text-center">
           <h1 className="font-medium">{subject}</h1>
-          {price && <b className="font-medium text-red-500">{price} tỷ</b>}
+          {price && (
+            <b className="font-medium text-red-500">
+              {price} {t(unitTransKey)}
+            </b>
+          )}
         </span>
         <div className="mx-auto font-sans text-justify text-base space-y-5">
           <p>

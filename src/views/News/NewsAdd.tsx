@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useState } from 'react'
+import { KeyboardEvent, useEffect, useMemo, useState } from 'react'
 import { t as translate } from 'i18next'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import useDrivePicker from 'react-google-drive-picker'
@@ -14,6 +14,7 @@ import config from 'config'
 import { RETRY_ERROR } from 'constants/message'
 import { useAuthContext } from 'contexts/AuthContext'
 import { PropertyActionOptions, PropertyTypeOptions } from 'constants/property'
+import { EAction } from 'enums'
 import { db } from 'libs/firebase'
 import { getFilesMetadata, removeFileFromDriveById } from 'libs/google'
 import { mapAddressData } from 'utils/address'
@@ -71,6 +72,7 @@ export default function NewsAdd() {
     register,
     handleSubmit,
     reset,
+    watch,
   } = useForm<NewsAddForm>()
   const [openPicker, data] = useDrivePicker()
 
@@ -80,6 +82,13 @@ export default function NewsAdd() {
   const [video, setVideo] = useState<IKeyValue>(null)
   const [paymentImage, setPaymentImage] = useState<IKeyValue>(null)
   const [pickerType, setPickerType] = useState<PickerTypeKey>(undefined)
+
+  const watchAction = watch('action')
+
+  const unitTransKey = useMemo(
+    () => (watchAction === EAction.trade ? 'billion' : 'million'),
+    [watchAction],
+  )
 
   const resetForm = () => {
     reset()
@@ -347,7 +356,7 @@ export default function NewsAdd() {
         <FormGroup
           className="col-span-2 xl:col-span-1"
           htmlFor="price"
-          label="Giá (tỷ đồng)"
+          label={`Giá (${t(unitTransKey)} đồng)`}
           error={errors.price}
         >
           <input
