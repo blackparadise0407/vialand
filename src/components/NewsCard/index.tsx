@@ -1,8 +1,10 @@
-import { second } from 'assets/images'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+
+import { second } from 'assets/images'
+import { EAction } from 'enums'
 
 type NewsCardProps = {
   className?: string
@@ -13,7 +15,10 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
   const { t } = useTranslation()
   if (!data) return null
 
-  const { subject, price, createdAt, images } = data
+  const { subject, price, createdAt, images, action } = data
+
+  const unitTransKey = action === EAction.trade ? 'billion' : 'million'
+
   return (
     <Link
       className={clsx('block hover:shadow', className)}
@@ -38,7 +43,7 @@ export default function NewsCard({ className = '', data }: NewsCardProps) {
           <p>{subject}</p>
           {price && (
             <b className="font-medium text-red-500">
-              {price} {t('billion')} {t('currency')}
+              {price} {t(unitTransKey)} VND
             </b>
           )}
           <div className="grow"></div>
