@@ -20,6 +20,7 @@ const initialValue: IAuthContext = {
   token: '',
   onLogin: () => {},
   onOpenSignIn: () => {},
+  onLogout: () => {},
 }
 
 const PASSWORD = config.common.secret
@@ -52,6 +53,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setOpen(false)
   }, [])
 
+  const handleSignOut = useCallback(() => {
+    setAuth(false)
+  }, [])
+
   useEffect(() => {
     fetch(config.common.baseApiUrl + '/auth/refresh', {
       method: 'GET',
@@ -75,6 +80,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         token,
         onLogin: handleLogin,
         onOpenSignIn: handleOpenSignIn,
+        onLogout: handleSignOut,
       }}
     >
       {children}

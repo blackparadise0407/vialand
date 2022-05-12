@@ -3,6 +3,8 @@ import dayjs from 'dayjs'
 import {
   AiOutlineClose,
   AiOutlineHome,
+  AiOutlineLoading3Quarters,
+  AiOutlineReload,
   AiOutlineSearch,
   AiOutlineSync,
 } from 'react-icons/ai'
@@ -10,6 +12,7 @@ import { deleteDoc, doc, setDoc } from 'firebase/firestore'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+import { placeholder } from 'assets/images'
 import { getNews, renewToken } from 'apis'
 import { CrudButton, Pagination } from 'components'
 import { PAGE_LIMIT } from 'constants/common'
@@ -17,12 +20,12 @@ import { RETRY_ERROR } from 'constants/message'
 import { useAuthContext } from 'contexts/AuthContext'
 import { useQueryParams } from 'hooks/useQueryParams'
 import { db } from 'libs/firebase'
-import { removeFileFromDriveById } from 'libs/google'
+import { removeFileFromDriveById, removeNewsAssets } from 'libs/google'
 
 export default function NewsManagement() {
   const navigate = useNavigate()
   const { search } = useLocation()
-  const { token } = useAuthContext()
+  const { token, onLogout } = useAuthContext()
   const [query, updateQuery] = useQueryParams<{ slug: string; page: number }>()
 
   const [loading, setLoading] = useState(false)
@@ -66,13 +69,19 @@ export default function NewsManagement() {
       const foundNewsIdx = clone.findIndex((x) => x.id === id)
       if (foundNewsIdx > -1) {
         const docRef = doc(db, 'properties', id)
-        toast.promise(deleteDoc(docRef), {
+        const promises = Promise.all(
+          [deleteDoc(docRef)].concat(
+            removeNewsAssets(clone[foundNewsIdx], token),
+          ),
+        )
+        toast.promise(promises, {
           pending: 'Đang xóa bài đăng',
           success: 'Xóa bài đăng thành công',
           error: RETRY_ERROR,
         })
         clone.splice(foundNewsIdx, 1)
         setState((prev) => ({ ...prev, data: clone }))
+        console.log()
       }
     },
     [state.data],
@@ -137,6 +146,23 @@ export default function NewsManagement() {
     }
   }
 
+  const handleRenew = async () => {
+    try {
+      const { data, status } = await renewToken()
+      if (status === 200) {
+        window.open(
+          data,
+          '_blank',
+          'resizable=yes,top=200,left=200,width=480,height=640',
+        )
+      }
+    } catch (e) {}
+  }
+
+  const handleRefresh = () => {
+    setState((prev) => ({ ...prev, fetched: false }))
+  }
+
   // First run
   useEffect(() => {
     async function eff() {
@@ -182,18 +208,11 @@ export default function NewsManagement() {
     if (query.slug) inputRef.current.value = query.slug
   }, [query.slug])
 
-  const handleRenew = async () => {
-    try {
-      const { data, status } = await renewToken()
-      if (status === 200) {
-        window.open(
-          data,
-          '_blank',
-          'resizable=yes,top=200,left=200,width=480,height=640',
-        )
-      }
-    } catch (e) {}
-  }
+  useEffect(() => {
+    return () => {
+      onLogout()
+    }
+  }, [])
 
   return (
     <div className="min-h-screen p-5">
@@ -215,6 +234,10 @@ export default function NewsManagement() {
             <span>Xóa</span>
           </button>
           <div className="flex-grow"></div>
+          <button onClick={handleRefresh} className="btn">
+            <AiOutlineReload />
+            <span>Refresh</span>
+          </button>
           <button onClick={() => navigate('/')} className="btn btn--secondary">
             <AiOutlineHome />
             <span>Về trang chủ</span>
@@ -224,7 +247,7 @@ export default function NewsManagement() {
             <span>Làm mới token</span>
           </button>
         </div>
-        <table className="table-auto w-full">
+        <table className="table-auto w-full min-w-[1024px] overflow-y-auto">
           <thead>
             <tr>
               <th>STT</th>
@@ -273,9 +296,13 @@ export default function NewsManagement() {
                           //   src={paymentImage.id}
                           // ></iframe>
                           <img
-                            className="w-[192px] overflow-hidden aspect-sqr border"
+                            className="w-[192px] overflow-hidden border"
                             src={`https://lh3.googleusercontent.com/d/${paymentImage.id}`}
                             alt=""
+                            onError={(e) => {
+                              e.currentTarget.onerror = null
+                              e.currentTarget.src = placeholder
+                            }}
                           />
                         ) : (
                           '---'
@@ -284,7 +311,7 @@ export default function NewsManagement() {
                       <td>
                         {video ? (
                           <iframe
-                            className="w-full overflow-hidden aspect-video border"
+                            className="w-full min-w-[192px] max-w-[192px] overflow-hidden aspect-video border"
                             title="video"
                             scrolling="no"
                             src={video.value}

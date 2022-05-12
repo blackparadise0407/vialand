@@ -560,7 +560,7 @@ export default function NewsAdd() {
           </p>
 
           <img
-            className="w-[175px] md:w-[259px] h-[175px] md:h-[259px] mx-auto my-5"
+            className="w-[175px] md:w-[259px] h-[175px] md:h-[259px] mx-auto my-5 shadow"
             src={qr}
             alt=""
           />

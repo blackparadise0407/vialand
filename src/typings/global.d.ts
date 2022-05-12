@@ -55,6 +55,7 @@ declare global {
     token: string
     onLogin: (pwd: string) => void
     onOpenSignIn: () => void
+    onLogout: () => void
   }
 
   interface IPagination {

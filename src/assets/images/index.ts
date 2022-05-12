@@ -8,6 +8,7 @@ import seventh from './07.jpg'
 import eighth from './08.jpg'
 import ninth from './09.jpg'
 import qr from './qr.jpg'
+import placeholder from './placeholder.png'
 
 export {
   first,
@@ -20,4 +21,5 @@ export {
   eighth,
   ninth,
   qr,
+  placeholder,
 }

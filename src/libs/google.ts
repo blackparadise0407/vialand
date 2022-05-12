@@ -47,6 +47,30 @@ export const removeFileFromDriveById = (
     .catch(() => false)
 }
 
+export const removeNewsAssets = (news: IProperty, token: string) => {
+  const deleteAssetsKey: Array<keyof IProperty> = [
+    'video',
+    'images',
+    'paymentImage',
+  ]
+  const promises: Array<Promise<any>> = []
+  deleteAssetsKey.forEach((key) => {
+    const data = news[key] as IKeyValue
+    if (data) {
+      if (Array.isArray(data)) {
+        data.forEach((item) =>
+          promises.push(removeFileFromDriveById(item.id, token)),
+        )
+      } else {
+        if (Object.keys(data).length && data?.id) {
+          promises.push(removeFileFromDriveById(data?.id, token))
+        }
+      }
+    }
+  })
+  return promises
+}
+
 // export const getEmbedGoogleMediaLink = (selfLink: string): Promise<string> => {
 //   return fetch(
 //     `https://gdriveplayer.to/embed2.php?link=${selfLink}&subtitle=&poster=&jsonsubtitle=&encrypt=yes`,
