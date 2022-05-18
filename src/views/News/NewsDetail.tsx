@@ -193,7 +193,7 @@ export default function NewsDetail() {
             {t('architecture')}: {architecture}
           </p>
           <p>
-            {t('location')}: {t('direction')} {direction}. {address}
+            {t('location')}: {t('direction')} {direction}
           </p>
           <p>{description}</p>
           <p>
