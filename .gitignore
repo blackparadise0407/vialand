@@ -30,5 +30,5 @@ yarn-error.log*
 .netlify
 
 # Lock files
-yarn.Lock
+yarn.lock
 package-lock.json
