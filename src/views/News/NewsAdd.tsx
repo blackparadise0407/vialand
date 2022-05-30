@@ -171,6 +171,7 @@ export default function NewsAdd() {
           : '1ffWn9rpAhl7KOkaEzIcFhuT8k_GvHbfS',
         multiselect: pickerType === 'images',
         disableDefaultView: true,
+        // @ts-ignore
         callbackFunction: async (data) => {
           const action = data.action as PickerCallbackAction
           if (action === 'cancel') {
