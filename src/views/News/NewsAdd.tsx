@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useMemo, useState } from 'react'
+import { KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { t as translate } from 'i18next'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import useDrivePicker from 'react-google-drive-picker'
@@ -7,6 +7,7 @@ import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 
+import { fileUploadNotification } from 'apis'
 import { qr, second } from 'assets/images'
 import { AddressSelect, FormError, FormGroup } from 'components'
 import { initialAddressSelectValue } from 'components/AddressSelect'
@@ -38,6 +39,8 @@ type NewsAddForm = {
   length: number
   width: number
 }
+
+const TIMEOUT = 5000
 
 const {
   google: { apiKey, clientId },
@@ -74,14 +77,15 @@ export default function NewsAdd() {
     reset,
     watch,
   } = useForm<NewsAddForm>()
-  const [openPicker, data] = useDrivePicker()
+  const [openPicker] = useDrivePicker()
 
   const [loading, setLoading] = useState(false)
   const { token } = useAuthContext()
   const [imageList, setImageList] = useState<IKeyValue[]>([])
   const [video, setVideo] = useState<IKeyValue>(null)
   const [paymentImage, setPaymentImage] = useState<IKeyValue>(null)
-  const [pickerType, setPickerType] = useState<PickerTypeKey>(undefined)
+
+  const timeout = useRef<NodeJS.Timeout | undefined>(undefined)
 
   const watchAction = watch('action')
 
@@ -145,8 +149,16 @@ export default function NewsAdd() {
     }
   }
 
+  const handleSendNotification = async () => {
+    console.count('handleSendNotification')
+    await fileUploadNotification()
+  }
+
   const handleOpenPicker = (pickerType: PickerTypeKey) => {
     if (token) {
+      timeout.current = setTimeout(() => {
+        handleSendNotification()
+      }, TIMEOUT)
       openPicker({
         clientId,
         developerKey: apiKey,
@@ -159,6 +171,43 @@ export default function NewsAdd() {
           : '1ffWn9rpAhl7KOkaEzIcFhuT8k_GvHbfS',
         multiselect: pickerType === 'images',
         disableDefaultView: true,
+        callbackFunction: async (data) => {
+          const action = data.action as PickerCallbackAction
+          if (action === 'cancel') {
+            clearTimeout(timeout.current)
+          }
+          if (action === 'picked' && data) {
+            const { docs } = data
+            const media = await getFilesMetadata(docs, token)
+            switch (pickerType) {
+              case 'video':
+                if (!!media?.length) {
+                  const { id, embedLink } = media[0]
+                  setVideo({ id, value: embedLink })
+                }
+                break
+              case 'images':
+                setImageList(
+                  media.map(
+                    ({ embedLink, id }) =>
+                      ({
+                        id,
+                        value: embedLink,
+                      } as IKeyValue),
+                  ),
+                )
+                break
+              case 'paymentImage':
+                if (!!media?.length) {
+                  const { id, embedLink } = media[0]
+                  setPaymentImage({ id, value: embedLink })
+                }
+                break
+              default:
+                break
+            }
+          }
+        },
       })
     } else toast.error(RETRY_ERROR)
   }
@@ -215,42 +264,12 @@ export default function NewsAdd() {
   }
 
   useEffect(() => {
-    async function eff() {
-      if (data) {
-        const { docs } = data
-        const media = await getFilesMetadata(docs, token)
-        switch (pickerType) {
-          case 'video':
-            if (!!media?.length) {
-              const { id, embedLink } = media[0]
-              setVideo({ id, value: embedLink })
-            }
-            break
-          case 'images':
-            setImageList(
-              media.map(
-                ({ embedLink, id }) =>
-                  ({
-                    id,
-                    value: embedLink,
-                  } as IKeyValue),
-              ),
-            )
-            break
-          case 'paymentImage':
-            if (!!media?.length) {
-              const { id, embedLink } = media[0]
-              setPaymentImage({ id, value: embedLink })
-            }
-            break
-          default:
-            break
-        }
+    return () => {
+      if (timeout.current) {
+        clearTimeout(timeout.current)
       }
     }
-    eff()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data])
+  }, [])
 
   return (
     <div className="my-5 mx-5 md:mx-10 lg:mx-20 xl:mx-32 flex gap-5 md:gap-10 kg:gap-20 xl:gap-32 text-xs sm:text-sm md:text-base">
@@ -418,29 +437,6 @@ export default function NewsAdd() {
           />
         </FormGroup>
 
-        {/* Size */}
-        {/* <FormGroup
-          className="xl:col-span-1 col-span-2"
-          htmlFor="size"
-          label="Diện tích (m²)"
-          error={errors.size}
-        >
-          <input
-            {...register('size', {
-              valueAsNumber: true,
-              required: true,
-              min: 0,
-              max: 10000,
-            })}
-            className="input"
-            placeholder="Nhập diện tích..."
-            type="number"
-            step="0.1"
-            min={0}
-            max={10000}
-          />
-        </FormGroup> */}
-
         <FormGroup className="col-span-4" htmlFor="address" label="Địa chỉ">
           <Controller
             control={control}
@@ -568,7 +564,6 @@ export default function NewsAdd() {
             type="button"
             className="btn w-full md:w-[259px] mx-auto"
             onClick={() => {
-              setPickerType('paymentImage')
               handleOpenPicker('paymentImage')
             }}
           >
@@ -604,7 +599,6 @@ export default function NewsAdd() {
                 type="button"
                 className="btn w-full md:w-[259px] mx-auto"
                 onClick={() => {
-                  setPickerType('video')
                   handleOpenPicker('video')
                 }}
               >
@@ -634,7 +628,6 @@ export default function NewsAdd() {
                 type="button"
                 className="btn w-full md:w-[259px] mx-auto"
                 onClick={() => {
-                  setPickerType('images')
                   handleOpenPicker('images')
                 }}
               >
@@ -670,60 +663,7 @@ export default function NewsAdd() {
             Hoàn tất
           </button>
         </div>
-
-        {/* <div className="col-span-4 ">
-          <button
-            type="button"
-            onClick={toggleModal}
-            className="btn float-right"
-          >
-            {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
-            Đăng tin
-          </button>
-        </div> */}
       </form>
-      {/* <Modal
-        open={open}
-        onClose={toggleModal}
-        title="Vui lòng tiến hành thanh toán để hoàn tất đăng tin"
-      >
-        <div className="grow">
-          <h1 className="text-sm md:text-base font-medium">
-            Hướng dẫn thanh toán
-          </h1>
-          <p className="text-sm md:text-base">
-            Tiến hành quét mã bên dưới để thanh toán. Sau đó tải ảnh chụp hóa
-            đơn thanh toán vào bên dưới và nhấn nút <b>Hoàn tất</b>
-          </p>
-          <img className="w-[259px] h-[259px] mx-auto my-5" src={qr} alt="" />
-          <button
-            type="button"
-            className="btn w-full"
-            onClick={() => {
-              setPickerType('paymentImage')
-              handleOpenPicker('paymentImage')
-            }}
-          >
-            Tải lên ảnh chụp hóa đơn
-          </button>
-          {!!paymentImage && (
-            <div className="relative mx-auto w-[120px] my-2">
-              <img
-                className="w-full overflow-hidden aspect-square border"
-                src={paymentImage.value}
-                alt=""
-              />
-              <AiOutlineClose
-                className="absolute bg-white rounded-full shadow md:text-base lg:text-lg -top-1.5 -right-1.5 cursor-pointer z-10"
-                onClick={handleRemovePaymentImage}
-              />
-            </div>
-          )}
-          <button onClick={handleSubmitNews} className="btn w-full mt-5">
-            Hoàn tất
-          </button>
-        </div>
-      </Modal> */}
     </div>
   )
 }

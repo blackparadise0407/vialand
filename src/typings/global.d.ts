@@ -91,5 +91,7 @@ declare global {
     page?: number
     limit?: number
   }
+
+  type PickerCallbackAction = 'loaded' | 'cancel' | 'picked'
 }
 export {}

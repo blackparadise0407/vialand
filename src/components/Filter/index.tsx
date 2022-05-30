@@ -38,7 +38,7 @@ export default memo(function Filter({
   }, [innerVal.district])
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const val = !isNaN(e.target.value as any)
+    const val = !isNaN((e.target.value as any) || undefined)
       ? parseInt(e.target.value, 10)
       : ''
     const evtName = e.target.name

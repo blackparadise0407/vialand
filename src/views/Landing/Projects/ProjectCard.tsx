@@ -1,11 +1,8 @@
-import { second } from 'assets/images'
 import { AiOutlineIdcard } from 'react-icons/ai'
 import { FiMapPin } from 'react-icons/fi'
 import { MdOutlineMapsHomeWork } from 'react-icons/md'
 
-type ProjectCardProps = {}
-
-export default function ProjectCard({}: ProjectCardProps) {
+export default function ProjectCard() {
   return (
     <div className="relative w-full mx-auto rounded-2xl shadow bg-white overflow-hidden">
       <div className="relative">

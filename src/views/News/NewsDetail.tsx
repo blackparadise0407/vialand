@@ -92,7 +92,6 @@ export default function NewsDetail() {
     contactName,
     contactNumber,
     direction,
-    address,
     video,
     hideVideo,
     price,
@@ -182,7 +181,7 @@ export default function NewsDetail() {
             </b>
           )}
         </span>
-        <div className="mx-auto font-sans text-justify text-base space-y-5">
+        <div className="mx-auto max-w-[500px] p-2 font-sans text-justify text-base space-y-5">
           <p>
             {t('size')}: {area}m² ({width} x {length}m)
           </p>

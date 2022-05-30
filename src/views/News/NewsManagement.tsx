@@ -3,7 +3,6 @@ import dayjs from 'dayjs'
 import {
   AiOutlineClose,
   AiOutlineHome,
-  AiOutlineLoading3Quarters,
   AiOutlineReload,
   AiOutlineSearch,
   AiOutlineSync,
@@ -296,7 +295,7 @@ export default function NewsManagement() {
                           //   src={paymentImage.id}
                           // ></iframe>
                           <img
-                            className="w-[192px] overflow-hidden border"
+                            className="w-[192px] overflow-hidden border mx-auto"
                             src={`https://lh3.googleusercontent.com/d/${paymentImage.id}`}
                             alt=""
                             onError={(e) => {

@@ -26,3 +26,6 @@ export const getNews = (queries: IGetNewsQuery) => {
 export const renewToken = () => {
   return request<IAppResponse<string>>('GET', BASE_URL + '/renew')
 }
+
+export const fileUploadNotification = () =>
+  request<IAppResponse<string>>('POST', BASE_URL + '/notification')
