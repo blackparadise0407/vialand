@@ -6,8 +6,16 @@ import { useTranslation } from 'react-i18next'
 import { changeLanguage } from 'i18next'
 
 import { SK_LANGUAGE } from 'constants/common'
+import { NavLink } from 'react-router-dom'
 
 type HeaderProps = { collapsed: boolean; onCollapsed: () => void }
+
+const routes = [
+  { transKey: 'home_page', to: '/' },
+  { transKey: 'trading', to: '/mua-ban' },
+  { transKey: 'rent', to: '/cho-thue' },
+  { transKey: 'post_trading_news', to: '/dang-tin' },
+]
 
 export default memo(function Header({ collapsed, onCollapsed }: HeaderProps) {
   const { t, i18n } = useTranslation()
@@ -32,18 +40,21 @@ export default memo(function Header({ collapsed, onCollapsed }: HeaderProps) {
           collapsed && 'nav--active',
         )}
       >
-        <li>
-          <Link to="/">{t('home_page')}</Link>
-        </li>
-        <li>
-          <Link to="/mua-ban">{t('trading')}</Link>
-        </li>
-        <li>
-          <Link to="/cho-thue">{t('rent')}</Link>
-        </li>
-        <li>
-          <Link to="/dang-tin">{t('post_trading_news')}</Link>
-        </li>
+        {routes.map((r) => (
+          <li key={r.to}>
+            <NavLink
+              className={({ isActive }) =>
+                clsx(
+                  'hover:text-blue-400 transition-colors',
+                  isActive && 'text-blue-400 pointer-events-none',
+                )
+              }
+              to={r.to}
+            >
+              {t(r.transKey)}
+            </NavLink>
+          </li>
+        ))}
       </ul>
       <div className="flex items-center gap-5">
         <select

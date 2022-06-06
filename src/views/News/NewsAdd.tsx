@@ -64,7 +64,7 @@ const contructNewsSubject = (property: Partial<IProperty>) => {
     PropertyActionOptions.find((x) => x.value === action).name,
   )} ${translate(
     PropertyTypeOptions.find((x) => x.value === houseType).name,
-  )} ${area}m² (${width} x ${length}m) - Số ${inputAddress}, ${wardName}, ${districtName}, ${provinceName}`
+  )} ${area}m² (${width} x ${length}m) - ${inputAddress}, ${wardName}, ${districtName}, ${provinceName}`
 }
 
 export default function NewsAdd() {

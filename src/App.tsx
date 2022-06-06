@@ -11,10 +11,10 @@ export default function App() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Landing />} />
-        <Route path="/mua-ban" element={<NewsList />} />
-        <Route path="/cho-thue" element={<NewsList />} />
-        <Route path="/dang-tin" element={<NewsAdd />} />
-        <Route path="/:slug" element={<NewsDetail />} />
+        <Route path="mua-ban" element={<NewsList />} />
+        <Route path="cho-thue" element={<NewsList />} />
+        <Route path="dang-tin" element={<NewsAdd />} />
+        <Route path=":slug" element={<NewsDetail />} />
       </Route>
       <Route path="/chothue" element={<AuthLayout />}>
         <Route index element={<NewsManagement />} />

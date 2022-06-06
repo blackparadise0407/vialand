@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react'
+import { memo, useCallback } from 'react'
 import clsx from 'clsx'
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi'
 
@@ -40,22 +40,25 @@ export default memo(function Pagination({
     [page, onPageChange],
   )
 
-  const totalPage = useMemo(() => Math.floor(total / limit), [total, limit])
+  const totalPage = Math.floor(total / limit)
+  const hasOnePage = total <= limit
 
   return (
     <div className="flex my-3 space-x-2">
       {totalPage > 0 && (
         <>
-          <button
-            title="Trang trước"
-            className={clsx(
-              'flex items-center justify-center w-[30px] h-[30px] px-2 py-1 bg-[#111] hover:bg-opacity-70 border border-transparent transition-colors text-white rounded',
-              page === 1 && 'pointer-events-none bg-[#aeaeae]',
-            )}
-            onClick={handleChangePrevPage}
-          >
-            <HiChevronDoubleLeft />
-          </button>
+          {!hasOnePage && (
+            <button
+              title="Trang trước"
+              className={clsx(
+                'flex items-center justify-center w-[30px] h-[30px] px-2 py-1 bg-[#111] hover:bg-opacity-70 border border-transparent transition-colors text-white rounded',
+                page === 1 && 'pointer-events-none bg-[#aeaeae]',
+              )}
+              onClick={handleChangePrevPage}
+            >
+              <HiChevronDoubleLeft />
+            </button>
+          )}
 
           {paginationRange?.map((x, idx) => {
             if (x === DOTS)
@@ -83,16 +86,18 @@ export default memo(function Pagination({
               </button>
             )
           })}
-          <button
-            title="Trang sau"
-            className={clsx(
-              'flex items-center justify-center w-[30px] h-[30px] px-2 py-1 bg-[#111] hover:bg-opacity-70 border border-transparent transition-colors text-white rounded',
-              page > totalPage && 'pointer-events-none bg-[#aeaeae]',
-            )}
-            onClick={handleChangeNextPage}
-          >
-            <HiChevronDoubleRight />
-          </button>
+          {!hasOnePage && (
+            <button
+              title="Trang sau"
+              className={clsx(
+                'flex items-center justify-center w-[30px] h-[30px] px-2 py-1 bg-[#111] hover:bg-opacity-70 border border-transparent transition-colors text-white rounded',
+                page > totalPage && 'pointer-events-none bg-[#aeaeae]',
+              )}
+              onClick={handleChangeNextPage}
+            >
+              <HiChevronDoubleRight />
+            </button>
+          )}
         </>
       )}
     </div>
