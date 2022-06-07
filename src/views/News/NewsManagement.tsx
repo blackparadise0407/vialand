@@ -286,33 +286,37 @@ export default function NewsManagement() {
                       </td>
                       <td>
                         {paymentImage ? (
-                          // <iframe
-                          //   className="w-full overflow-hidden aspect-sqr border"
-                          //   title="paymentImage"
-                          //   scrolling="no"
-                          //   src={paymentImage.id}
-                          // ></iframe>
-                          <img
-                            className="w-[192px] overflow-hidden border mx-auto"
-                            src={`https://lh3.googleusercontent.com/d/${paymentImage.id}`}
-                            alt=""
-                            onError={(e) => {
-                              e.currentTarget.onerror = null
-                              e.currentTarget.src = placeholder
-                            }}
-                          />
+                          <div className="relative aspect-sqr">
+                            <iframe
+                              className="absolute top-0 left-0 w-full h-full"
+                              title="paymentImage"
+                              scrolling="no"
+                              src={paymentImage.value}
+                            ></iframe>
+                          </div>
                         ) : (
+                          // <img
+                          //   className="w-[192px] overflow-hidden border mx-auto"
+                          //   src={`https://lh3.googleusercontent.com/d/${paymentImage.id}`}
+                          //   alt=""
+                          //   onError={(e) => {
+                          //     e.currentTarget.onerror = null
+                          //     e.currentTarget.src = placeholder
+                          //   }}
+                          // />
                           '---'
                         )}
                       </td>
                       <td>
                         {video ? (
-                          <iframe
-                            className="w-full min-w-[192px] max-w-[192px] overflow-hidden aspect-video border"
-                            title="video"
-                            scrolling="no"
-                            src={video.value}
-                          ></iframe>
+                          <div className="relative w-[192px] aspect-video">
+                            <iframe
+                              className="absolute top-0 left-0 w-full h-full"
+                              title="video"
+                              scrolling="no"
+                              src={video.value}
+                            ></iframe>
+                          </div>
                         ) : (
                           '---'
                         )}
