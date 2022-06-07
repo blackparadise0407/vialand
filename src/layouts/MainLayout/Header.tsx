@@ -45,8 +45,8 @@ export default memo(function Header({ collapsed, onCollapsed }: HeaderProps) {
             <NavLink
               className={({ isActive }) =>
                 clsx(
-                  'hover:text-blue-400 transition-colors',
-                  isActive && 'text-blue-400 pointer-events-none',
+                  'hover:text-[#8DB4F6] transition-colors',
+                  isActive && 'text-[#8DB4F6] pointer-events-none',
                 )
               }
               to={r.to}

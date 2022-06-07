@@ -112,12 +112,9 @@ export default function NewsManagement() {
     [token, state.data],
   )
 
-  const handlePageChange = useCallback(
-    (nextPage: number) => {
-      updateQuery({ ...query, page: nextPage })
-    },
-    [query, updateQuery],
-  )
+  const handlePageChange = (nextPage: number) => {
+    updateQuery({ ...query, page: nextPage })
+  }
 
   const skip = (query.page - 1) * state.limit
 

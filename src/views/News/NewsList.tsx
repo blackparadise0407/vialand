@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -37,19 +37,19 @@ export default function NewsList() {
     })
   }
 
-  const handlePageChange = useCallback((page: number) => {
-    updateQuery({ page })
-  }, [])
+  const handlePageChange = (page: number) => {
+    updateQuery({ ...query, page })
+  }
 
-  const handleChangeFilter = useCallback((v: AddressFilter) => {
-    updateQuery({ page: 1, ...v })
-  }, [])
+  const handleChangeFilter = (v: AddressFilter) => {
+    updateQuery({ ...query, page: 1, ...v })
+  }
 
-  const handleClearFilter = useCallback(() => {
+  const handleClearFilter = () => {
     updateQuery({
       page: 1,
     })
-  }, [])
+  }
 
   useEffect(() => {
     async function eff() {
