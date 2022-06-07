@@ -73,17 +73,15 @@ export default function NewsManagement() {
             removeNewsAssets(clone[foundNewsIdx], token),
           ),
         )
-        toast.promise(promises, {
+        await toast.promise(promises, {
           pending: 'Đang xóa bài đăng',
           success: 'Xóa bài đăng thành công',
           error: RETRY_ERROR,
         })
-        clone.splice(foundNewsIdx, 1)
-        setState((prev) => ({ ...prev, data: clone }))
-        console.log()
+        setState((prev) => ({ ...prev, fetched: false }))
       }
     },
-    [state.data],
+    [state.data, token],
   )
 
   const handleDeleteNewsVideo = useCallback(

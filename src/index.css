@@ -83,7 +83,7 @@ iframe {
   }
 
   .btn {
-    @apply flex justify-center items-center gap-2 text-xs md:text-base bg-[#1a73e8] text-white px-5 py-2 rounded;
+    @apply flex justify-center items-center gap-2 text-xs md:text-base bg-[#1a73e8] text-white px-5 py-2 rounded hover:bg-opacity-80 transition-colors;
   }
 
   .btn--disabled {

@@ -74,13 +74,12 @@ export default function NewsAdd() {
     formState: { errors },
     register,
     handleSubmit,
-    reset,
     watch,
   } = useForm<NewsAddForm>()
   const [openPicker] = useDrivePicker()
 
-  const [loading, setLoading] = useState(false)
   const { token } = useAuthContext()
+  const [loading, setLoading] = useState(false)
   const [imageList, setImageList] = useState<IKeyValue[]>([])
   const [video, setVideo] = useState<IKeyValue>(null)
   const [paymentImage, setPaymentImage] = useState<IKeyValue>(null)
@@ -94,12 +93,12 @@ export default function NewsAdd() {
     [watchAction],
   )
 
-  const resetForm = () => {
-    reset()
-    setVideo(null)
-    setImageList([])
-    setPaymentImage(null)
-  }
+  // const resetForm = () => {
+  //   reset()
+  //   setVideo(null)
+  //   setImageList([])
+  //   setPaymentImage(null)
+  // }
 
   const onSubmit: SubmitHandler<NewsAddForm> = async (data) => {
     setLoading(true)
@@ -131,14 +130,16 @@ export default function NewsAdd() {
           }),
         }),
       ]
-      toast.promise(Promise.all(promises), {
+      await toast.promise(Promise.all(promises), {
         pending: 'Đang đăng tin',
         success: 'Đăng tin BDS thành công',
         error: RETRY_ERROR,
       })
     } catch (e) {
     } finally {
-      resetForm()
+      if (typeof window !== 'undefined' && 'location' in window) {
+        window.location.reload()
+      }
       setLoading(false)
     }
   }
@@ -216,40 +217,42 @@ export default function NewsAdd() {
   const handleRemoveImageById = async (id: string) => {
     const clone = [...imageList]
     const foundIdx = clone.findIndex((x) => x.id === id)
+    const res = toast.promise<boolean>(removeFileFromDriveById(id, token), {
+      pending: 'Đang xóa ảnh',
+      success: 'Xóa ảnh thành công',
+      error: RETRY_ERROR,
+    })
 
-    if (
-      foundIdx > -1 &&
-      toast.promise<boolean>(removeFileFromDriveById(id, token), {
-        pending: 'Đang xóa ảnh',
-        success: 'Xóa ảnh thành công',
-        error: RETRY_ERROR,
-      })
-    ) {
+    if (foundIdx > -1 && res) {
       clone.splice(foundIdx, 1)
       setImageList(clone)
     }
   }
 
   const handleRemoveVideo = async () => {
-    if (
-      toast.promise<boolean>(removeFileFromDriveById(video.id, token), {
+    const res = await toast.promise<boolean>(
+      removeFileFromDriveById(video.id, token),
+      {
         pending: 'Đang xóa video',
         success: 'Xóa video thành công',
         error: RETRY_ERROR,
-      })
-    ) {
+      },
+    )
+    if (res) {
       setVideo(null)
     }
   }
 
   const handleRemovePaymentImage = async () => {
-    if (
-      toast.promise<boolean>(removeFileFromDriveById(paymentImage.id, token), {
+    const res = toast.promise<boolean>(
+      removeFileFromDriveById(paymentImage.id, token),
+      {
         pending: 'Đang xóa ảnh',
         success: 'Xóa ảnh thành công',
         error: RETRY_ERROR,
-      })
-    ) {
+      },
+    )
+    if (res) {
       setPaymentImage(null)
     }
   }
@@ -291,6 +294,8 @@ export default function NewsAdd() {
             Điền thông tin bất động sản
           </h1>
         </div>
+
+        {/* Subject */}
         <FormGroup
           className="col-span-4 xl:col-span-1"
           htmlFor="subject"
@@ -308,6 +313,8 @@ export default function NewsAdd() {
             ))}
           </select>
         </FormGroup>
+
+        {/* Type */}
         <FormGroup
           className="col-span-2 xl:col-span-1"
           htmlFor="type"
@@ -395,6 +402,7 @@ export default function NewsAdd() {
           />
         </FormGroup>
 
+        {/* Structure */}
         <FormGroup
           className="xl:col-span-2 col-span-4"
           htmlFor="structure"
@@ -424,6 +432,7 @@ export default function NewsAdd() {
           />
         </FormGroup>
 
+        {/* Direction */}
         <FormGroup
           className="xl:col-span-1 col-span-4"
           htmlFor="direction"
@@ -438,6 +447,7 @@ export default function NewsAdd() {
           />
         </FormGroup>
 
+        {/* Address */}
         <FormGroup className="col-span-4" htmlFor="address" label="Địa chỉ">
           <Controller
             control={control}
@@ -483,6 +493,8 @@ export default function NewsAdd() {
             )}
           />
         </FormGroup>
+
+        {/* ContactName */}
         <FormGroup
           className="col-span-2"
           htmlFor="contactName"
@@ -496,6 +508,8 @@ export default function NewsAdd() {
             type="text"
           />
         </FormGroup>
+
+        {/* ContactNumber */}
         <FormGroup
           className="col-span-2"
           htmlFor="contactNumber"
@@ -514,6 +528,8 @@ export default function NewsAdd() {
             type="text"
           />
         </FormGroup>
+
+        {/* Description */}
         <FormGroup
           className="col-span-4"
           htmlFor="description"
@@ -542,6 +558,22 @@ export default function NewsAdd() {
             type="text"
           />
         </FormGroup>
+
+        {/* Tutorial */}
+        <div className="col-span-4">
+          <label htmlFor="">
+            Hướng dẫn Đăng tin Cho thuê nhà & Mua bán Bất động sản:
+            <div className="relative aspect-vid">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/ot4gcoYtiEA?autoplay=1"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </label>
+        </div>
 
         <div className="col-span-4">
           <h1 className="text-base md:text-xl xl:text-2xl font-medium mb-5">

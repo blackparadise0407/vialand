@@ -96,14 +96,6 @@ export default function NewsList() {
 
   return (
     <div className="p-5 flex items-center flex-col">
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/ot4gcoYtiEA?autoplay=1"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
       <Filter
         value={{ province, district, ward }}
         onFilter={handleChangeFilter}
