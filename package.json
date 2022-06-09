@@ -18,7 +18,7 @@
     "query-string": "^7.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-google-drive-picker": "^1.1.4",
+    "react-google-drive-picker": "^1.2.0",
     "react-hook-form": "^7.27.1",
     "react-i18next": "^11.16.2",
     "react-icons": "^4.3.1",
