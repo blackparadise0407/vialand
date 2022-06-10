@@ -12,6 +12,12 @@ export const isMobile = () => {
     )
   ) {
     return true
+  } else if (
+    navigator.maxTouchPoints &&
+    navigator.maxTouchPoints > 2 &&
+    /MacIntel/.test(navigator.platform)
+  ) {
+    return true
   }
   return false
 }

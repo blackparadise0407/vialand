@@ -11,7 +11,6 @@ import { deleteDoc, doc, setDoc } from 'firebase/firestore'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import { placeholder } from 'assets/images'
 import { getNews, renewToken } from 'apis'
 import { CrudButton, Pagination } from 'components'
 import { PAGE_LIMIT } from 'constants/common'
